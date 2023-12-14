@@ -77,3 +77,5 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 Mistral and the Mistral logo are trademarks of Mistral.ai. This package is not affiliated with, endorsed by, or
 sponsored by Mistral.ai. All trademarks and registered trademarks are the property of their respective owners.
+
+See [Mistral.AI](https://mistral.ai/terms-of-use/) for more information.
