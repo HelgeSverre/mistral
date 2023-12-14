@@ -1,6 +1,6 @@
 {
-    "name": "helgesverre/mistral-php",
-    "description": "PHP Client for the Mistral.ai API",
+    "name": "helgesverre/mistral",
+    "description": "Laravel Client for the Mistral.ai API",
     "keywords": [
         "laravel",
         "mistral",

@@ -1,25 +1,25 @@
 <p align="center"><img src="./art/header.png"></p>
 
-# PHP Client for Mistral.AI
+# Laravel Client for Mistral.AI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/helgesverre/mistral-php.svg?style=flat-square)](https://packagist.org/packages/helgesverre/mistral-php)
-[![Total Downloads](https://img.shields.io/packagist/dt/helgesverre/mistral-php.svg?style=flat-square)](https://packagist.org/packages/helgesverre/mistral-php)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/helgesverre/mistral.svg?style=flat-square)](https://packagist.org/packages/helgesverre/mistral)
+[![Total Downloads](https://img.shields.io/packagist/dt/helgesverre/mistral.svg?style=flat-square)](https://packagist.org/packages/helgesverre/mistral)
 
-The Mistral.ai PHP Client enables PHP applications to interact with the Mistral.ai API, providing straightforward access
-to features like chat completions and text embeddings.
+The Mistral.ai Laravel Client enables laravel applications to interact with the Mistral.ai API, providing
+straightforward access to features like chat completions and text embeddings.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require helgesverre/mistral-php
+composer require helgesverre/mistral
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="mistral-php-config"
+php artisan vendor:publish --tag="mistral-config"
 ```
 
 This is the contents of the published config file:
