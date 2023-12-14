@@ -34,7 +34,8 @@ return [
 ## Usage
 
 ```php
-use HelgeSverre\Mistral\Enums\Model;use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Enums\Model;
+use HelgeSverre\Mistral\Mistral;
 
 $mistral = new Mistral(apiKey: config('mistral.api_key'));
 
@@ -65,8 +66,14 @@ $responseChat = $mistral->chat()->create(
 ```bash
 cp .env.example .env
 composer test
+composer analyse src
 ```
 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Disclaimer
+
+Mistral and the Mistral logo are trademarks of Mistral.ai. This package is not affiliated with, endorsed by, or
+sponsored by Mistral.ai. All trademarks and registered trademarks are the property of their respective owners.
