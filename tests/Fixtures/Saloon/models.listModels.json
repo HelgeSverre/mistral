@@ -1,0 +1,17 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Thu, 14 Dec 2023 11:25:59 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "1722",
+        "Connection": "keep-alive",
+        "x-kong-upstream-latency": "5",
+        "x-kong-proxy-latency": "0",
+        "x-kong-request-id": "15c2607761b6800c6886796492d4b917",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "835616e0ba17b517-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"mistral-medium\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-7af5c779feab452e8c780ac91c7a5ed3\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-small\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-373390d3ec61497ab089794a4de66d3d\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-tiny\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-67306a14cb93408896bf2b6a945e6596\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-embed\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-52f162d0174449f088a4c2c922bc5887\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]}]}"
+}

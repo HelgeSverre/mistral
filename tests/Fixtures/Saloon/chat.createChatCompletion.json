@@ -1,0 +1,25 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Thu, 14 Dec 2023 11:49:32 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "572",
+        "Connection": "keep-alive",
+        "x-ratelimitbysize-remaining-minute": "1636394",
+        "x-ratelimitbysize-remaining-month": "163805991",
+        "ratelimitbysize-remaining": "1636394",
+        "ratelimitbysize-reset": "29",
+        "ratelimitbysize-limit": "1638400",
+        "x-ratelimitbysize-limit-minute": "1638400",
+        "x-ratelimitbysize-limit-month": "163840000",
+        "ratelimitbysize-query-cost": "2006",
+        "x-kong-upstream-latency": "697",
+        "x-kong-proxy-latency": "1448",
+        "x-kong-request-id": "6ff05d23fac49d2953fc3c36426dff2c",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "8356394d88f57127-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"cmpl-b9d9be26f29b4e04a0cb9e16b3ab7986\",\"object\":\"chat.completion\",\"created\":1702554571,\"model\":\"mistral-tiny\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word you have asked me to say is \\\"banana\\\". It is a common fruit that is long, curved, and yellow when ripe. It is a staple food in many tropic and subtropic regions, and is consumed in various ways such as raw, cooked, or processed into various products like banana chips or banana bread.\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":89,\"completion_tokens\":74}}"
+}

@@ -1,36 +1,31 @@
 <?php
 
-namespace VendorName\Skeleton\Tests;
+namespace HelgeSverre\Mistral\Tests;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Dotenv\Dotenv;
+use HelgeSverre\Mistral\MistralServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use VendorName\Skeleton\SkeletonServiceProvider;
+use Saloon\Laravel\SaloonServiceProvider;
+use Spatie\LaravelData\LaravelDataServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'VendorName\\Skeleton\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
-            SkeletonServiceProvider::class,
+            SaloonServiceProvider::class,
+            MistralServiceProvider::class,
+            LaravelDataServiceProvider::class,
         ];
     }
 
     public function getEnvironmentSetUp($app)
     {
-        config()->set('database.default', 'testing');
+        // Load .env.test into the environment.
+        if (file_exists(dirname(__DIR__).'/.env')) {
+            (Dotenv::createImmutable(dirname(__DIR__), '.env'))->load();
+        }
 
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_skeleton_table.php.stub';
-        $migration->up();
-        */
+        config()->set('mistral.api_key', env('MISTRAL_API_KEY'));
     }
 }
