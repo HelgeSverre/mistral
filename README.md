@@ -44,8 +44,32 @@ return [
 ## Usage
 
 ```php
-$mistral = new HelgeSverre\Mistral();
-echo $mistral->echoPhrase('Hello, Helge Sverre!');
+use HelgeSverre\Mistral\Enums\Model;use HelgeSverre\Mistral\Mistral;
+
+$mistral = new Mistral(apiKey: config('mistral.api_key'));
+
+// Models 
+$list = $mistral->models()->list();
+
+// Embedding 
+$embedding = $mistral->embedding()->create([
+    "A string here",
+    "Another one here",
+]);
+
+// Chat 
+$responseChat = $mistral->chat()->create(
+    messages:[
+        "role" => "user",
+        "content" => "Hello world!",
+    ],
+    model: Model::medium->value, 
+    temperature:  0.4,
+    maxTokens: 1500,
+    safeMode: false
+);
+
+
 ```
 
 ## Testing
