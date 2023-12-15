@@ -2,6 +2,7 @@
 
 namespace HelgeSverre\Mistral\Resource;
 
+use Generator;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
@@ -32,5 +33,46 @@ class Chat extends BaseResource
                 randomSeed: $randomSeed,
             )
         ));
+    }
+
+    public function createStreamed(
+        array $messages,
+        string $model = Model::tiny->value,
+        float $temperature = 0.7,
+        int $maxTokens = 2000,
+        int $topP = 1,
+        bool $safeMode = false,
+        ?int $randomSeed = null,
+    ): Generator {
+        $response = $this->connector->send(new CreateChatCompletion(
+            new ChatCompletionRequest(
+                model: $model,
+                messages: $messages,
+                temperature: $temperature,
+                topP: $topP,
+                maxTokens: $maxTokens,
+                stream: true,
+                safeMode: $safeMode,
+                randomSeed: $randomSeed,
+            )
+        ));
+
+        $stream = $response->stream();
+        $buffer = '';
+
+        while (! $stream->eof()) {
+            $buffer .= $stream->read(1024);
+            // Split buffer by new lines and process each line
+            while (($newlinePos = strpos($buffer, "\n\n")) !== false) {
+                $line = substr($buffer, 0, $newlinePos);
+                $buffer = substr($buffer, $newlinePos + 2);
+
+                if (str_starts_with($line, 'data:')) {
+                    $jsonPart = substr($line, 5); // Remove 'data:' prefix
+
+                    yield json_decode($jsonPart, true, flags: JSON_THROW_ON_ERROR);
+                }
+            }
+        }
     }
 }
