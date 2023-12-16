@@ -62,15 +62,21 @@ class Chat extends BaseResource
 
         while (! $stream->eof()) {
             $buffer .= $stream->read(1024);
+
             // Split buffer by new lines and process each line
             while (($newlinePos = strpos($buffer, "\n\n")) !== false) {
+
                 $line = substr($buffer, 0, $newlinePos);
                 $buffer = substr($buffer, $newlinePos + 2);
 
                 if (str_starts_with($line, 'data:')) {
-                    $jsonPart = substr($line, 5); // Remove 'data:' prefix
+                    $part = substr($line, 5); // Remove 'data:' prefix
 
-                    yield json_decode($jsonPart, true, flags: JSON_THROW_ON_ERROR);
+                    if ($part == '[DONE]') {
+                        return;
+                    }
+
+                    yield json_decode($part, true, flags: JSON_THROW_ON_ERROR);
                 }
             }
         }
