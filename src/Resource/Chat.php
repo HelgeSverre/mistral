@@ -70,7 +70,7 @@ class Chat extends BaseResource
                 $buffer = substr($buffer, $newlinePos + 2);
 
                 if (str_starts_with($line, 'data:')) {
-                    $part = substr($line, 5); // Remove 'data:' prefix
+                    $part = trim(substr($line, 5)); // Remove 'data:' prefix
 
                     if ($part == '[DONE]') {
                         return;
