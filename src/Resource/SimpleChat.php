@@ -5,13 +5,13 @@ namespace HelgeSverre\Mistral\Resource;
 use Generator;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
 use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
+use HelgeSverre\Mistral\Dto\SimpleChat\SimpleChatResponse;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
 use Psr\Http\Message\StreamInterface;
 use Saloon\Http\BaseResource;
-use Saloon\Http\Response;
 
-class Chat extends BaseResource
+class SimpleChat extends BaseResource
 {
     public function create(
         array $messages,
@@ -20,21 +20,33 @@ class Chat extends BaseResource
         int $maxTokens = 2000,
         int $topP = 1,
         bool $safeMode = false,
-        bool $stream = false,
         ?int $randomSeed = null
-    ): Response {
-        return $this->connector->send(new CreateChatCompletion(
+    ): SimpleChatResponse {
+        $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
                 model: $model,
                 messages: $messages,
                 temperature: $temperature,
                 topP: $topP,
                 maxTokens: $maxTokens,
-                stream: $stream,
+                stream: false,
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
             )
         ));
+
+        return SimpleChatResponse::from([
+            'id' => $response->json('id'),
+            'object' => $response->json('object'),
+            'created' => $response->json('created'),
+            'role' => $response->json('choices.0.message.role'),
+            'content' => $response->json('choices.0.message.content'),
+            'finishReason' => $response->json('choices.0.finish_reason'),
+            'model' => $response->json('model'),
+            'promptTokens' => $response->json('usage.prompt_tokens'),
+            'completionTokens' => $response->json('usage.completion_tokens'),
+            'totalTokens' => $response->json('usage.total_tokens'),
+        ]);
     }
 
     /**
@@ -88,7 +100,10 @@ class Chat extends BaseResource
 
             $response = json_decode($data, true, flags: JSON_THROW_ON_ERROR);
 
-            yield StreamedChatCompletionResponse::from($response);
+            dump($response);
+
+            yield $response;
+            //            yield StreamedChatCompletionResponse::from($response);
         }
     }
 

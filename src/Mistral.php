@@ -5,6 +5,7 @@ namespace HelgeSverre\Mistral;
 use HelgeSverre\Mistral\Resource\Chat;
 use HelgeSverre\Mistral\Resource\Embedding;
 use HelgeSverre\Mistral\Resource\Models;
+use HelgeSverre\Mistral\Resource\SimpleChat;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\AcceptsJson;
@@ -39,6 +40,11 @@ class Mistral extends Connector
     public function chat(): Chat
     {
         return new Chat($this);
+    }
+
+    public function simpleChat(): SimpleChat
+    {
+        return new SimpleChat($this);
     }
 
     public function embedding(): Embedding

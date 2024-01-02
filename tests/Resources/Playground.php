@@ -18,7 +18,9 @@ it('ListModels works', function () {
     );
 
     foreach ($chunks as $chunk) {
-        dump($chunk['choices'][0]['delta']['content'] ?? '**');
+
+        dump($chunk->choices[0]->delta?->content);
+
     }
 
 });
