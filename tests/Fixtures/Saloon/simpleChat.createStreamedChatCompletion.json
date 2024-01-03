@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 03 Jan 2024 00:09:43 GMT",
+        "Content-Type": "text\/event-stream; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "ratelimitbysize-query-cost": "106",
+        "ratelimitbysize-limit": "2000000",
+        "ratelimitbysize-remaining": "1999833",
+        "x-ratelimitbysize-remaining-month": "9999904171",
+        "ratelimitbysize-reset": "17",
+        "x-ratelimitbysize-remaining-minute": "1999833",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "114",
+        "x-kong-proxy-latency": "8",
+        "x-kong-request-id": "20c7d35cc1aa3d12e174cc49d8cc2c23",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "83f703bfdf1d1bfa-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "data: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": \"assistant\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \"I'd be happy to say the word \\\"\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \"banana\\\" for you. Banana. It'\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \"s\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \" a common fruit that's long, curved,\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \" and\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \" typically yellow when ripe. It's a popular\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \" choice for snacks due to its sweet\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \" taste and high nut\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \"ritional value. Enjoy your day!\"}, \"finish_reason\": null}]}\n\ndata: {\"id\": \"cmpl-716e95d336db4e51a04cbcf2b84d1a76\", \"object\": \"chat.completion.chunk\", \"created\": 1704240583, \"model\": \"mistral-tiny\", \"choices\": [{\"index\": 0, \"delta\": {\"role\": null, \"content\": \"\"}, \"finish_reason\": \"stop\"}]}\n\ndata: [DONE]\n\n"
+}
