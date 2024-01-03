@@ -3,16 +3,18 @@
 namespace HelgeSverre\Mistral\Resource;
 
 use Generator;
+use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
 use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
-use Psr\Http\Message\StreamInterface;
 use Saloon\Http\BaseResource;
 use Saloon\Http\Response;
 
 class Chat extends BaseResource
 {
+    use HandlesStreamedResponses;
+
     public function create(
         array $messages,
         string $model = Model::tiny->value,
@@ -66,45 +68,7 @@ class Chat extends BaseResource
         ));
 
         foreach ($this->getStreamIterator($response->stream()) as $chatResponse) {
-            yield $chatResponse;
+            yield StreamedChatCompletionResponse::from($chatResponse);
         }
-    }
-
-    // Credit: https://github.com/openai-php/client/blob/main/src/Responses/StreamResponse.php
-    protected function getStreamIterator(StreamInterface $stream): Generator
-    {
-        while (! $stream->eof()) {
-            $line = $this->readLine($stream);
-
-            if (! str_starts_with($line, 'data:')) {
-                continue;
-            }
-
-            $data = trim(substr($line, strlen('data:')));
-
-            if ($data === '[DONE]') {
-                break;
-            }
-
-            $response = json_decode($data, true, flags: JSON_THROW_ON_ERROR);
-
-            yield StreamedChatCompletionResponse::from($response);
-        }
-    }
-
-    protected function readLine($stream): string
-    {
-        $buffer = '';
-        while (! $stream->eof()) {
-            if ('' === ($byte = $stream->read(1))) {
-                return $buffer;
-            }
-            $buffer .= $byte;
-            if ($byte === "\n") {
-                break;
-            }
-        }
-
-        return $buffer;
     }
 }

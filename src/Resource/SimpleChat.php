@@ -3,16 +3,19 @@
 namespace HelgeSverre\Mistral\Resource;
 
 use Generator;
+use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
 use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
 use HelgeSverre\Mistral\Dto\SimpleChat\SimpleChatResponse;
+use HelgeSverre\Mistral\Dto\SimpleChat\SimpleStreamChunk;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
-use Psr\Http\Message\StreamInterface;
 use Saloon\Http\BaseResource;
 
 class SimpleChat extends BaseResource
 {
+    use HandlesStreamedResponses;
+
     public function create(
         array $messages,
         string $model = Model::tiny->value,
@@ -55,7 +58,7 @@ class SimpleChat extends BaseResource
      * @noinspection PhpDocSignatureInspection
      * @noinspection PhpDocMissingThrowsInspection
      */
-    public function createStreamed(
+    public function stream(
         array $messages,
         string $model = Model::tiny->value,
         float $temperature = 0.7,
@@ -78,48 +81,15 @@ class SimpleChat extends BaseResource
         ));
 
         foreach ($this->getStreamIterator($response->stream()) as $chatResponse) {
-            yield $chatResponse;
+            yield SimpleStreamChunk::from([
+                'id' => $chatResponse['id'] ?? null,
+                'model' => $chatResponse['model'] ?? null,
+                'object' => $chatResponse['object'] ?? null,
+                'created' => $chatResponse['created'] ?? null,
+                'role' => $chatResponse['choices'][0]['delta']['role'] ?? null,
+                'content' => $chatResponse['choices'][0]['delta']['content'] ?? null,
+                'finishReason' => $chatResponse['choices'][0]['finish_reason'] ?? null,
+            ]);
         }
-    }
-
-    // Credit: https://github.com/openai-php/client/blob/main/src/Responses/StreamResponse.php
-    protected function getStreamIterator(StreamInterface $stream): Generator
-    {
-        while (! $stream->eof()) {
-            $line = $this->readLine($stream);
-
-            if (! str_starts_with($line, 'data:')) {
-                continue;
-            }
-
-            $data = trim(substr($line, strlen('data:')));
-
-            if ($data === '[DONE]') {
-                break;
-            }
-
-            $response = json_decode($data, true, flags: JSON_THROW_ON_ERROR);
-
-            dump($response);
-
-            yield $response;
-            //            yield StreamedChatCompletionResponse::from($response);
-        }
-    }
-
-    protected function readLine($stream): string
-    {
-        $buffer = '';
-        while (! $stream->eof()) {
-            if ('' === ($byte = $stream->read(1))) {
-                return $buffer;
-            }
-            $buffer .= $byte;
-            if ($byte === "\n") {
-                break;
-            }
-        }
-
-        return $buffer;
     }
 }
