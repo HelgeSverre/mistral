@@ -12,28 +12,19 @@ Get your API key at [console.mistral.ai](https://console.mistral.ai/).
 
 ## Installation
 
-### Composer Installation
-
-Install the package via composer to integrate it into your Laravel project. This process is straightforward and follows
-standard composer package installation procedures.
+You can install the package via composer:
 
 ```bash
 composer require helgesverre/mistral
 ```
 
-### Publishing Configuration
-
-Publish the configuration file to customize settings like the API key and base URL. This step is crucial for tailoring
-the client to interact with your specific Mistral.ai environment.
+You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="mistral-config"
 ```
 
-#### Configuration File Contents
-
-This snippet shows the default configuration, which you can modify according to your needs. By default, it uses
-environment variables for secure API key storage and sets the base URL to the production API endpoint of Mistral.AI.
+This is the contents of the published config file:
 
 ```php
 return [
@@ -50,23 +41,17 @@ Create an instance of the Mistral client to start interacting with the API. This
 for sending requests to Mistral.AI.
 
 ```php
-<?php
-
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Mistral;
 
 // Instantiate the client
 $mistral = new Mistral(apiKey: config('mistral.api_key'));
 
-```
-
-```php
-// Or use the facade with laravel
+// Or use the Facade (Laravel)
 Mistral::chat();
 Mistral::simpleChat();
 Mistral::embedding();
 Mistral::models();
-
 ```
 
 ## Resources
@@ -76,10 +61,11 @@ Mistral::models();
 #### List available models
 
 ```php
-
 // Models
-$list = $mistral->models()->list();
+$response = $mistral->models()->list();
 
+/** @var \HelgeSverre\Mistral\Dto\Embedding\EmbeddingResponse $dto */
+$dto = $response->dto();
 ```
 
 ### `Embeddings` Resource
@@ -87,11 +73,14 @@ $list = $mistral->models()->list();
 #### Create embedding
 
 ```php
-$embedding = $mistral->embedding()->create([
+$response = $mistral->embedding()->create([
     "A string here",
     "Another one here",
 ]);
 
+
+/** @var EmbeddingResponse $dto */
+$dto = $response->dto();
 ```
 
 ### `Chat` Resource
@@ -99,7 +88,7 @@ $embedding = $mistral->embedding()->create([
 #### Create Chat Completion
 
 ```php
-$responseChat = $mistral->chat()->create(
+$response = $mistral->chat()->create(
     messages: [
         [
             "role" => "user",
@@ -111,13 +100,17 @@ $responseChat = $mistral->chat()->create(
     maxTokens: 100,
     safeMode: false
 );
+
+/** @var ChatCompletionResponse $dto */
+$dto = $response->dto();
+
 ```
 
 #### Create Streamed Chat Completions
 
 ```php
-
-$chunks = $this->mistral->chat()->createStreamed(
+// Returns a generator, which you can iterate over to get the streamed chunks
+$stream = $this->mistral->chat()->createStreamed(
     messages: [
         [
             'role' => 'user', 
@@ -127,7 +120,10 @@ $chunks = $this->mistral->chat()->createStreamed(
     model: Model::tiny->value,
 );
 
-foreach ($chunks as $chunk) {
+foreach ($stream as $chunk) {
+    
+    /** @var StreamedChatCompletionResponse $chunk */
+    
     echo $chunk->id; // 'cmpl-0339459d35cb441b9f111b94216cff97'
     echo $chunk->model; // 'mistral-tiny'
     echo $chunk->object; // 'chat.completion.chunk'
@@ -140,10 +136,7 @@ foreach ($chunks as $chunk) {
         $choice->finishReason; // 'length'
     }
 }
-
 ```
-
-
 
 ### `SimpleChat` Resource
 
@@ -153,7 +146,7 @@ flattened DTO, which is useful for quick prototyping.
 #### Create simple chat completions
 
 ```php
-$responseChat = $mistral->simpleChat()->create(
+$response = $mistral->simpleChat()->create(
     messages: [
         [
             "role" => "user",
@@ -165,6 +158,8 @@ $responseChat = $mistral->simpleChat()->create(
     maxTokens: 1500,
     safeMode: false
 );
+
+/** @var ChatCompletionResponse $response */
 ```
 
 ### `SimpleChat` Resource
@@ -175,12 +170,11 @@ flattened DTO, useful for quick prototyping.
 #### Create Streamed Simple Chat Completions
 
 ```php
-use HelgeSverre\Mistral\Enums\Role;
-
+// Returns a generator, which you can iterate over to get the streamed chunks
 $response = $this->mistral->simpleChat()->stream(
     messages: [
         [
-            'role' => Role::user->value,
+            'role' => "user",
             'content' => 'Say the word "banana"',
         ],
     ],
@@ -188,6 +182,8 @@ $response = $this->mistral->simpleChat()->stream(
 );
 
 foreach ($response as $chunk) {
+    /** @var SimpleStreamChunk $chunk */
+
     $chunk->id;           // 'cmpl-716e95d336db4e51a04cbcf2b84d1a76'
     $chunk->model;        // 'mistral-medium'
     $chunk->object;       // 'chat.completion.chunk'
@@ -198,10 +194,36 @@ foreach ($response as $chunk) {
 }
 ```
 
-## Models
+## List of DTOs
 
-The `Model` enum in the Package, is simply a convenient way to refer to a string corresponding to a model name in the
-Mistral api, you're free to use the string value directly if you prefer.
+For convenience, here is a list of all the DTOs available in this package.
+
+- Chat
+    - [Chat/ChatCompletionChoice.php](./src/Dto/Chat/ChatCompletionChoice.php)
+    - [Chat/ChatCompletionMessage.php](./src/Dto/Chat/ChatCompletionMessage.php)
+    - [Chat/ChatCompletionRequest.php](./src/Dto/Chat/ChatCompletionRequest.php)
+    - [Chat/ChatCompletionResponse.php](./src/Dto/Chat/ChatCompletionResponse.php)
+    - [Chat/StreamedChatCompletionChoice.php](./src/Dto/Chat/StreamedChatCompletionChoice.php)
+    - [Chat/StreamedChatCompletionDelta.php](./src/Dto/Chat/StreamedChatCompletionDelta.php)
+    - [Chat/StreamedChatCompletionResponse.php](./src/Dto/Chat/StreamedChatCompletionResponse.php)
+- Embedding
+    - [Embedding/Embedding.php](./src/Dto/Embedding/Embedding.php)
+    - [Embedding/EmbeddingRequest.php](./src/Dto/Embedding/EmbeddingRequest.php)
+    - [Embedding/EmbeddingResponse.php](./src/Dto/Embedding/EmbeddingResponse.php)
+- Models
+    - [Models/Model.php](./src/Dto/Models/Model.php)
+    - [Models/ModelList.php](./src/Dto/Models/ModelList.php)
+    - [Models/ModelPermission.php](./src/Dto/Models/ModelPermission.php)
+- SimpleChat
+    - [SimpleChat/SimpleChatResponse.php](./src/Dto/SimpleChat/SimpleChatResponse.php)
+    - [SimpleChat/SimpleStreamChunk.php](./src/Dto/SimpleChat/SimpleStreamChunk.php)
+- Misc
+    - [Usage.php](./src/Dto/Usage.php)
+
+## List of available Mistral models
+
+The following models are available in the Mistral API. You can use the `Model` enum in this package to refer to them, or
+use the string value directly.
 
 | Enum Case              | String Value       | Documentation Link                                                                 |
 |------------------------|--------------------|------------------------------------------------------------------------------------|
