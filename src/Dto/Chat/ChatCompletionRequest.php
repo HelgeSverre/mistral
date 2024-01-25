@@ -16,7 +16,7 @@ class ChatCompletionRequest extends SpatieData
         #[MapName('max_tokens')]
         public ?int $maxTokens = null,
         public ?bool $stream = null,
-        #[MapName('safe_mode')]
+        #[MapName('safe_prompt')]
         public ?bool $safeMode = null,
         #[MapName('random_seed')]
         public ?int $randomSeed = null,
