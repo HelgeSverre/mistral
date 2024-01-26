@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 02 Jan 2024 23:44:27 GMT",
+        "Date": "Fri, 26 Jan 2024 08:55:37 GMT",
         "Content-Type": "application\/json",
-        "Content-Length": "704",
+        "Content-Length": "462",
         "Connection": "keep-alive",
+        "ratelimitbysize-limit": "2000000",
         "ratelimitbysize-remaining": "1999894",
-        "ratelimitbysize-query-cost": "106",
+        "x-ratelimitbysize-remaining-month": "9999894598",
+        "ratelimitbysize-reset": "23",
+        "x-ratelimitbysize-remaining-minute": "1999894",
         "x-ratelimitbysize-limit-minute": "2000000",
         "x-ratelimitbysize-limit-month": "10000000000",
-        "x-ratelimitbysize-remaining-month": "9999904701",
-        "ratelimitbysize-reset": "34",
-        "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-remaining-minute": "1999894",
+        "ratelimitbysize-query-cost": "106",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "846",
-        "x-kong-proxy-latency": "12995",
-        "x-kong-request-id": "229a555203d61a16c18aec47d5c18a79",
+        "x-kong-upstream-latency": "440",
+        "x-kong-proxy-latency": "10",
+        "x-kong-request-id": "d8f5630ccff18b660febe92b2f87f24c",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "83f6de66b863b518-OSL",
+        "CF-RAY": "84b789ba0cf2b4ff-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"cmpl-29b1127043904c8e8bb806b9e912c57f\",\"object\":\"chat.completion\",\"created\":1704239066,\"model\":\"mistral-tiny\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is often used to refer to the long, curved fruit that comes in various sizes and is characterized by its bright yellow skin with brown spots when ripe. It is a staple food in many tropical countries and is known for its sweet, slightly musky flavor and soft, creamy texture when fully ripe. The word itself comes from the Taino language of the Caribbean, where the fruit was first discovered by Europeans.\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":110,\"completion_tokens\":95}}"
+    "data": "{\"id\":\"74d827432b10407bbf3e168cac335681\",\"object\":\"chat.completion\",\"created\":1706259337,\"model\":\"mistral-tiny\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word you have asked me to say is \\\"banana\\\". It is a common fruit that is long, curved, and yellow when ripe. Bananas are rich in nutrients and are a popular food item around the world.\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":64,\"completion_tokens\":49}}"
 }

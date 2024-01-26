@@ -9,6 +9,7 @@ use HelgeSverre\Mistral\Resource\SimpleChat;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\AcceptsJson;
+use Saloon\Traits\Plugins\HasTimeout;
 use SensitiveParameter;
 
 /**
@@ -19,11 +20,12 @@ use SensitiveParameter;
 class Mistral extends Connector
 {
     use AcceptsJson;
+    use HasTimeout;
 
     public function __construct(
         #[SensitiveParameter] protected readonly string $apiKey,
         protected readonly ?string $baseUrl = null,
-
+        protected ?int $requestTimeout = 30,
     ) {
     }
 

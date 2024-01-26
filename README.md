@@ -30,6 +30,7 @@ This is the contents of the published config file:
 return [
     'api_key' => env('MISTRAL_API_KEY'),
     'base_url' => env('MISTRAL_BASE_URL', 'https://api.mistral.ai'),
+    'timeout' => env('MISTRAL_TIMEOUT', 30),
 ];
 ```
 

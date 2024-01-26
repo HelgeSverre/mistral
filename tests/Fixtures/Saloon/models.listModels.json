@@ -1,17 +1,18 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Thu, 14 Dec 2023 11:25:59 GMT",
+        "Date": "Fri, 26 Jan 2024 08:55:39 GMT",
         "Content-Type": "application\/json",
         "Content-Length": "1722",
         "Connection": "keep-alive",
-        "x-kong-upstream-latency": "5",
-        "x-kong-proxy-latency": "0",
-        "x-kong-request-id": "15c2607761b6800c6886796492d4b917",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "2",
+        "x-kong-proxy-latency": "1",
+        "x-kong-request-id": "3b1cd725e591723b3cb19676e0f09343",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "835616e0ba17b517-OSL",
+        "CF-RAY": "84b789c4b9450b3d-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"mistral-medium\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-7af5c779feab452e8c780ac91c7a5ed3\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-small\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-373390d3ec61497ab089794a4de66d3d\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-tiny\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-67306a14cb93408896bf2b6a945e6596\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-embed\",\"object\":\"model\",\"created\":1702553159,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-52f162d0174449f088a4c2c922bc5887\",\"object\":\"model_permission\",\"created\":1702553159,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]}]}"
+    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"mistral-medium\",\"object\":\"model\",\"created\":1706259339,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-56dd0c8924d343c597ee2575621f31e1\",\"object\":\"model_permission\",\"created\":1706259339,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-small\",\"object\":\"model\",\"created\":1706259339,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-e25be3c21c4f456fa9a97a7e5e2e37f1\",\"object\":\"model_permission\",\"created\":1706259339,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-tiny\",\"object\":\"model\",\"created\":1706259339,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-3257944086234348ab603986729802fb\",\"object\":\"model_permission\",\"created\":1706259339,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]},{\"id\":\"mistral-embed\",\"object\":\"model\",\"created\":1706259339,\"owned_by\":\"mistralai\",\"root\":null,\"parent\":null,\"permission\":[{\"id\":\"modelperm-492cba457de94a2380532705e5cc87a8\",\"object\":\"model_permission\",\"created\":1706259339,\"allow_create_engine\":false,\"allow_sampling\":true,\"allow_logprobs\":false,\"allow_search_indices\":false,\"allow_view\":true,\"allow_fine_tuning\":false,\"organization\":\"*\",\"group\":null,\"is_blocking\":false}]}]}"
 }

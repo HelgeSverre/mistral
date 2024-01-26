@@ -34,9 +34,9 @@ it('create() works', function () {
         ->and($response->role)->toBe('assistant')
         ->and($response->content)->toContain('banana')
         ->and($response->promptTokens)->toBe(15)
-        ->and($response->completionTokens)->toBe(95)
-        ->and($response->totalTokens)->toBe(110)
-        ->and($response->id)->toBe('cmpl-29b1127043904c8e8bb806b9e912c57f')
+        ->and($response->completionTokens)->toBe(49)
+        ->and($response->totalTokens)->toBe(64)
+        ->and($response->id)->toBe('74d827432b10407bbf3e168cac335681')
         ->and($response->object)->toBe('chat.completion');
 
 });
@@ -60,7 +60,7 @@ it('stream() works', function () {
 
     Saloon::assertSent(CreateChatCompletion::class);
 
-    expect($chunks)->toHaveCount(11)
+    expect($chunks)->toHaveCount(13)
         ->and($chunks[0]->model)->toBe(Model::tiny->value)
         ->and($chunks[0]->role)->toBe('assistant')
         ->and($chunks)->toContainOnlyInstancesOf(SimpleStreamChunk::class);
