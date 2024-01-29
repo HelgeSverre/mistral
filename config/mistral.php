@@ -39,5 +39,5 @@ return [
     |
     */
 
-    'timeout' => env('MISTRAL_TIMEOUT'),
+    'timeout' => env('MISTRAL_TIMEOUT', 30),
 ];
