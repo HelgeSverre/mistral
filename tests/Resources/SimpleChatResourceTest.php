@@ -153,7 +153,7 @@ it('stream() works with json mode', function () {
         ->and(json_decode($combined, true))->toBe([
             'name' => 'John Doe',
             'age' => 30,
-            'email' => 'johndoe@example.com',
+            'email' => 'john.doe@example.com',
         ]);
 
 });

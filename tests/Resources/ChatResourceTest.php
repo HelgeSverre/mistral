@@ -5,6 +5,7 @@
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionChoice;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionMessage;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
+use HelgeSverre\Mistral\Dto\Chat\ToolCalls;
 use HelgeSverre\Mistral\Dto\Usage;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Enums\Role;
@@ -91,7 +92,7 @@ it('CreateChatCompletion works with function calling', function () {
         messages: [
             [
                 'role' => Role::user->value,
-                'content' => "What's the status of the payment with id: FAKE_1234?",
+                'content' => 'What is the weather in Bergen, Norway?',
             ],
         ],
         model: Model::large->value,
@@ -100,17 +101,17 @@ it('CreateChatCompletion works with function calling', function () {
             [
                 'type' => 'function',
                 'function' => [
-                    'name' => 'retrievePaymentStatus',
-                    'description' => 'Get payment status of a transaction id',
+                    'name' => 'searchWeather',
+                    'description' => 'Get the weather for a location',
                     'parameters' => [
                         'type' => 'object',
                         'required' => [
-                            'transactionId',
+                            'location',
                         ],
                         'properties' => [
-                            'transactionId' => [
+                            'location' => [
                                 'type' => 'string',
-                                'description' => 'The transaction id.',
+                                'description' => 'The location to get the weather for.',
                             ],
                         ],
                     ],
@@ -119,17 +120,22 @@ it('CreateChatCompletion works with function calling', function () {
             [
                 'type' => 'function',
                 'function' => [
-                    'name' => 'retrievePaymentDate',
-                    'description' => 'Get payment date of a transaction id',
+                    'name' => 'sendWeatherNotification',
+                    'description' => 'Send notification about weather to a user',
                     'parameters' => [
                         'type' => 'object',
                         'required' => [
-                            'transactionId',
+                            'userId',
+                            'message',
                         ],
                         'properties' => [
-                            'transactionId' => [
+                            'userId' => [
                                 'type' => 'string',
-                                'description' => 'The transaction id.',
+                                'description' => 'the id of the user',
+                            ],
+                            'message' => [
+                                'type' => 'string',
+                                'description' => 'the message to send the user',
                             ],
                         ],
                     ],
@@ -137,14 +143,29 @@ it('CreateChatCompletion works with function calling', function () {
             ],
         ],
         toolChoice: 'any',
-        responseFormat: ['type' => 'json_object']
     );
 
     Saloon::assertSent(CreateChatCompletion::class);
 
-    // TODO: finish test once large model works
+    expect($response->json('choices.0.message.content'))->toBe('')
+        ->and($response->json('choices.0.message.tool_calls'))->toBeArray()
+        ->and($response->json('choices.0.message.tool_calls.0.id'))->toBe('null')
+        ->and($response->json('choices.0.message.tool_calls.0.type'))->toBe('function')
+        ->and($response->json('choices.0.message.tool_calls.0.function'))->toBeArray()
+        ->and($response->json('choices.0.message.tool_calls.0.function.name'))->toBe('searchWeather')
+        ->and($response->json('choices.0.message.tool_calls.0.function.arguments'))->toBeJson();
 
-})->skip('The large model is not stable yet.');
+    $dto = $response->dto();
+
+    expect($dto)->toBeInstanceOf(ChatCompletionResponse::class)
+        ->and($dto->id)->not()->toBeNull()
+        ->and($dto->usage)->toBeInstanceOf(Usage::class)
+        ->and($dto->choices)->toBeInstanceOf(DataCollection::class)
+        ->and($dto->choices[0])->toBeInstanceOf(ChatCompletionChoice::class)
+        ->and($dto->choices[0]->message)->toBeInstanceOf(ChatCompletionMessage::class)
+        ->and($dto->choices[0]->message->toolCalls[0])->toBeInstanceOf(ToolCalls::class);
+
+});
 
 it('CreateChatCompletion response can be cast to DTO', function () {
     Saloon::fake([
