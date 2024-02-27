@@ -226,14 +226,14 @@ For convenience, here is a list of all the DTOs available in this package.
 The following models are available in the Mistral API. You can use the `Model` enum in this package to refer to them, or
 use the string value directly.
 
-| Enum Case               | String Value              | Documentation Link                                                                                                                                                    |
-|-------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Model::large->value`   | `'mistral-large-latest'`  | [Mistral Large Docs](https://docs.mistral.ai/guides/model-selection/#mistral-large-complex-tasks-that-require-large-reasoning-capabilities-or-are-highly-specialized) |
-| `Model::medium->value`  | `'mistral-medium-latest'` | [Mistral Medium Docs](https://docs.mistral.ai/guides/model-selection/#mistral-medium-intermediate-tasks-that-require-language-transformation)                         |
-| `Model::small->value`   | `'mistral-small-latest'`  | [Mistral Small Docs](https://docs.mistral.ai/guides/model-selection/#mistral-small-simple-tasks-that-one-can-do-in-bulk)                                              |
-| `Model::mixtral->value` | `'open-mistral-7b'`       | [Mistral Mixtral-8x7b Docs](https://docs.mistral.ai/models/#mistral-7b)                                                                                               |
-| `Model::tiny->value`    | `'open-mistral-7b'`       | [Mistral Mistral-7b Docs](https://docs.mistral.ai/models/#mixtral-8x7b)                                                                                               |
-| `Model::embed->value`   | `'mistral-embed'`         | [Mistral Embed Docs](https://docs.mistral.ai/platform/endpoints/#embedding-models)                                                                                    |
+| Enum Case                 | String Value              | Documentation Link                                                                                                                                                    |
+|---------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `Model::large->value`     | `'mistral-large-latest'`  | [Mistral Large Docs](https://docs.mistral.ai/guides/model-selection/#mistral-large-complex-tasks-that-require-large-reasoning-capabilities-or-are-highly-specialized) |
+| `Model::medium->value`    | `'mistral-medium-latest'` | [Mistral Medium Docs](https://docs.mistral.ai/guides/model-selection/#mistral-medium-intermediate-tasks-that-require-language-transformation)                         |
+| `Model::small->value`     | `'mistral-small-latest'`  | [Mistral Small Docs](https://docs.mistral.ai/guides/model-selection/#mistral-small-simple-tasks-that-one-can-do-in-bulk)                                              |
+| `Model::mixtral->value`   | `'open-mixtral-8x7b'`     | [Mistral Mixtral-8x7b Docs](https://docs.mistral.ai/models/#mistral-7b)                                                                                               |
+| `Model::mistral7b->value` | `'open-mistral-7b'`       | [Mistral Mistral-7b Docs](https://docs.mistral.ai/models/#mixtral-8x7b)                                                                                               |
+| `Model::embed->value`     | `'mistral-embed'`         | [Mistral Embed Docs](https://docs.mistral.ai/platform/endpoints/#embedding-models)                                                                                    |
 
 ## Testing
 
