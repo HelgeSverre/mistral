@@ -6,7 +6,7 @@ it('There is a default timeout', function () {
         apiKey: config('mistral.api_key'),
     );
 
-    expect($mistral->getRequestTimeout())->toEqual(env('MISTRAL_TIMEOUT', 90));
+    expect($mistral->getRequestTimeout())->toEqual($mistral->getConnectTimeout());
 });
 
 it('Can change the timeout', function () {

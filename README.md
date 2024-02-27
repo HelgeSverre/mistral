@@ -226,8 +226,6 @@ For convenience, here is a list of all the DTOs available in this package.
 The following models are available in the Mistral API. You can use the `Model` enum in this package to refer to them, or
 use the string value directly.
 
-### New
-
 | Enum Case               | String Value              | Documentation Link                                                                                                                                                    |
 |-------------------------|---------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Model::large->value`   | `'mistral-large-latest'`  | [Mistral Large Docs](https://docs.mistral.ai/guides/model-selection/#mistral-large-complex-tasks-that-require-large-reasoning-capabilities-or-are-highly-specialized) |
