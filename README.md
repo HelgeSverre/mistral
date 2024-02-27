@@ -104,7 +104,97 @@ $response = $mistral->chat()->create(
 
 /** @var ChatCompletionResponse $dto */
 $dto = $response->dto();
+```
 
+#### Create Chat Completion with Function Calling
+
+```php
+$response = $this->mistral->chat()->create(
+    messages: [
+        [
+            'role' => Role::user->value,
+            'content' => 'What is the weather in Bergen, Norway?',
+        ],
+    ],
+    model: Model::large->value,
+    maxTokens: 1000,
+    tools: [
+        [
+            'type' => 'function',
+            'function' => [
+                'name' => 'searchWeather',
+                'description' => 'Get the weather for a location',
+                'parameters' => [
+                    'type' => 'object',
+                    'required' => [
+                        'location',
+                    ],
+                    'properties' => [
+                        'location' => [
+                            'type' => 'string',
+                            'description' => 'The location to get the weather for.',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+        [
+            'type' => 'function',
+            'function' => [
+                'name' => 'sendWeatherNotification',
+                'description' => 'Send notification about weather to a user',
+                'parameters' => [
+                    'type' => 'object',
+                    'required' => [
+                        'userId',
+                        'message',
+                    ],
+                    'properties' => [
+                        'userId' => [
+                            'type' => 'string',
+                            'description' => 'the id of the user',
+                        ],
+                        'message' => [
+                            'type' => 'string',
+                            'description' => 'the message to send the user',
+                        ],
+                    ],
+                ],
+            ],
+        ],
+    ],
+    toolChoice: 'any',
+);
+
+// Tool calls are returned in the response
+$response->json('choices.0.message.tool_calls');
+$response->json('choices.0.message.tool_calls.0.id');
+$response->json('choices.0.message.tool_calls.0.type');
+$response->json('choices.0.message.tool_calls.0.function');
+$response->json('choices.0.message.tool_calls.0.function.name');
+$response->json('choices.0.message.tool_calls.0.function.arguments');
+
+
+// Or using the dto
+
+/** @var ChatCompletionResponse $dto */
+$dto = $response->dto();
+
+$dto->choices; // array of ChatCompletionChoice
+
+foreach ($dto->choices as $choice) {
+
+    $choice->message; // ChatCompletionMessage
+
+    foreach ($choice->message->toolCalls as $toolCall) {
+        $toolCall->id; // null
+        $toolCall->type; // function
+        $toolCall->function; // FunctionCall
+        $toolCall->function->name; // 'searchWeather'
+        $toolCall->function->arguments; // '{"location":"Bergen, Norway"}'
+        $toolCall->function->args(); // ['location' => 'Bergen, Norway']
+    }
+}
 ```
 
 #### Create Streamed Chat Completions
@@ -207,6 +297,8 @@ For convenience, here is a list of all the DTOs available in this package.
     - [Chat/StreamedChatCompletionChoice.php](./src/Dto/Chat/StreamedChatCompletionChoice.php)
     - [Chat/StreamedChatCompletionDelta.php](./src/Dto/Chat/StreamedChatCompletionDelta.php)
     - [Chat/StreamedChatCompletionResponse.php](./src/Dto/Chat/StreamedChatCompletionResponse.php)
+    - [Chat/FunctionCall.php](./src/Dto/Chat/FunctionCall.php)
+    - [Chat/ToolCalls.php](./src/Dto/Chat/ToolCalls.php)
 - Embedding
     - [Embedding/Embedding.php](./src/Dto/Embedding/Embedding.php)
     - [Embedding/EmbeddingRequest.php](./src/Dto/Embedding/EmbeddingRequest.php)
