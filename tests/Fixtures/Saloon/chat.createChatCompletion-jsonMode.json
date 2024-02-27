@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 27 Feb 2024 03:57:40 GMT",
+        "Date": "Tue, 27 Feb 2024 14:02:07 GMT",
         "Content-Type": "application\/json",
         "Content-Length": "386",
         "Connection": "keep-alive",
-        "x-ratelimitbysize-remaining-minute": "1996969",
-        "ratelimitbysize-reset": "21",
-        "ratelimitbysize-remaining": "1996969",
+        "ratelimitbysize-reset": "53",
+        "x-ratelimitbysize-remaining-minute": "1998427",
         "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "ratelimitbysize-query-cost": "117",
-        "x-ratelimitbysize-remaining-month": "9999844017",
         "x-ratelimitbysize-limit-minute": "2000000",
+        "ratelimitbysize-query-cost": "117",
+        "x-ratelimitbysize-remaining-month": "9999835326",
+        "ratelimitbysize-remaining": "1998427",
+        "x-ratelimitbysize-limit-month": "10000000000",
         "access-control-allow-origin": "*",
         "x-kong-upstream-latency": "322",
         "x-kong-proxy-latency": "1",
-        "x-kong-request-id": "0827d072c7cb215447989646e0d36a2a",
+        "x-kong-request-id": "cdb1065ada18336dcaccc35611c6642c",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "85bd81438c4e569d-OSL",
+        "CF-RAY": "85c0f6b4cf9d0b69-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"bd4fc7630aa343268cb93fcb9be9e383\",\"object\":\"chat.completion\",\"created\":1709006259,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
+    "data": "{\"id\":\"6b88739cf9ed4a74a30c52a6e42acd15\",\"object\":\"chat.completion\",\"created\":1709042527,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
 }

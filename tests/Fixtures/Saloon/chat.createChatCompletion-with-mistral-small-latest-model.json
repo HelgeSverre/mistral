@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 27 Feb 2024 03:57:37 GMT",
+        "Date": "Tue, 27 Feb 2024 14:02:12 GMT",
         "Content-Type": "application\/json",
-        "Content-Length": "385",
+        "Content-Length": "388",
         "Connection": "keep-alive",
-        "x-ratelimitbysize-remaining-minute": "1999136",
-        "ratelimitbysize-reset": "23",
-        "ratelimitbysize-remaining": "1999136",
+        "ratelimitbysize-reset": "49",
+        "x-ratelimitbysize-remaining-minute": "1996343",
         "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "ratelimitbysize-query-cost": "26",
-        "x-ratelimitbysize-remaining-month": "9999846218",
         "x-ratelimitbysize-limit-minute": "2000000",
+        "ratelimitbysize-query-cost": "26",
+        "x-ratelimitbysize-remaining-month": "9999833242",
+        "ratelimitbysize-remaining": "1996343",
+        "x-ratelimitbysize-limit-month": "10000000000",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "226",
+        "x-kong-upstream-latency": "225",
         "x-kong-proxy-latency": "1",
-        "x-kong-request-id": "ce03255e9452270c04758d65d2553438",
+        "x-kong-request-id": "439a8548a2321a1a1412f20afe736906",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "85bd81338a3c5697-OSL",
+        "CF-RAY": "85c0f6d0b8cd0b55-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"cb34fe0f512846ef980ac3dbe353b5d7\",\"object\":\"chat.completion\",\"created\":1709006257,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Sure, the word is \\\"banana\\\". It's a popular fruit known for its elong\",\"tool_calls\":[]},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":10,\"total_tokens\":30,\"completion_tokens\":20}}"
+    "data": "{\"id\":\"b4ff5a7a1bca4fb18f3b6cc093b1a680\",\"object\":\"chat.completion\",\"created\":1709042531,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Sure, the word is \\\"banana\\\". It's a tropical fruit that is known for its\",\"tool_calls\":[]},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":10,\"total_tokens\":30,\"completion_tokens\":20}}"
 }

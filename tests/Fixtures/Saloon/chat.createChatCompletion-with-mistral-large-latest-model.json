@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 27 Feb 2024 14:02:09 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "385",
+        "Connection": "keep-alive",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "x-ratelimitbysize-remaining-minute": "1996395",
+        "ratelimitbysize-reset": "51",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "ratelimitbysize-limit": "2000000",
+        "ratelimitbysize-query-cost": "26",
+        "x-ratelimitbysize-remaining-month": "9999833294",
+        "ratelimitbysize-remaining": "1996395",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "493",
+        "x-kong-proxy-latency": "9",
+        "x-kong-request-id": "8505be37abe297564ae8ab7a823d504f",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "85c0f6c0ebd556cb-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"548079d5f3f2458cb87d51a29e963d02\",\"object\":\"chat.completion\",\"created\":1709042529,\"model\":\"mistral-large-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Banana. It's a sweet, elongated fruit that grows in clusters and has a\",\"tool_calls\":[]},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":10,\"total_tokens\":30,\"completion_tokens\":20}}"
+}

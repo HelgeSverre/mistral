@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 27 Feb 2024 03:57:39 GMT",
+        "Date": "Tue, 27 Feb 2024 14:02:09 GMT",
         "Content-Type": "application\/json",
-        "Content-Length": "723",
+        "Content-Length": "535",
         "Connection": "keep-alive",
-        "x-ratelimitbysize-remaining-minute": "1997095",
-        "ratelimitbysize-reset": "22",
-        "ratelimitbysize-remaining": "1997095",
+        "ratelimitbysize-reset": "53",
+        "x-ratelimitbysize-remaining-minute": "1996421",
         "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "ratelimitbysize-query-cost": "2006",
-        "x-ratelimitbysize-remaining-month": "9999844160",
         "x-ratelimitbysize-limit-minute": "2000000",
+        "ratelimitbysize-query-cost": "2006",
+        "x-ratelimitbysize-remaining-month": "9999833320",
+        "ratelimitbysize-remaining": "1996421",
+        "x-ratelimitbysize-limit-month": "10000000000",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "956",
+        "x-kong-upstream-latency": "1125",
         "x-kong-proxy-latency": "0",
-        "x-kong-request-id": "833503318a7410095318cf281aa0c802",
+        "x-kong-request-id": "aeb5b51a2f0fc733ff1fb538b0865341",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "85bd813c49d5b521-OSL",
+        "CF-RAY": "85c0f6b74d3c1bfa-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"f224dd8e97024c6190d27796e19886b4\",\"object\":\"chat.completion\",\"created\":1709006258,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is commonly used to refer to a long, curved fruit with a yellow or green peel when ripe. It is native to Southeast Asia, but is now grown in many other parts of the world. The word comes from the Taino or Arawak word \\\"bananas\\\" or \\\"plantain,\\\" meaning \\\"finger fruit.\\\" Bananas are rich in potassium, vitamin C, and dietary fiber, and are popular for their sweet taste and versatility in cooking and baking.\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":127,\"completion_tokens\":112}}"
+    "data": "{\"id\":\"a446bb9c74564deeaf70caa78f472bbf\",\"object\":\"chat.completion\",\"created\":1709042527,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word is \\\"banana\\\". It's a common fruit, long and curved, with a yellow peel, and soft, sweet, fruity flesh inside. Bananas are a popular food item worldwide and are rich in essential nutrients like vitamin C, potassium, and dietary fiber.\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":80,\"completion_tokens\":65}}"
 }

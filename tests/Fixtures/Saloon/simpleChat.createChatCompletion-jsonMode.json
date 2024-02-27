@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 27 Feb 2024 03:57:36 GMT",
+        "Date": "Tue, 27 Feb 2024 14:02:06 GMT",
         "Content-Type": "application\/json",
         "Content-Length": "386",
         "Connection": "keep-alive",
-        "x-ratelimitbysize-limit-minute": "2000000",
-        "x-ratelimitbysize-remaining-minute": "1999145",
-        "ratelimitbysize-reset": "24",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "ratelimitbysize-limit": "2000000",
         "ratelimitbysize-query-cost": "117",
-        "x-ratelimitbysize-remaining-month": "9999846244",
-        "ratelimitbysize-remaining": "1999145",
+        "ratelimitbysize-reset": "54",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "x-ratelimitbysize-remaining-month": "9999835549",
+        "ratelimitbysize-limit": "2000000",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "x-ratelimitbysize-remaining-minute": "1998650",
+        "ratelimitbysize-remaining": "1998650",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "322",
+        "x-kong-upstream-latency": "347",
         "x-kong-proxy-latency": "0",
-        "x-kong-request-id": "4e6ba32f16ae9f08142b9a75310c9b48",
+        "x-kong-request-id": "ac57fb77367f8b7bc4101e48f4e0463f",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "85bd812cdfed5697-OSL",
+        "CF-RAY": "85c0f6ad7ea0b50b-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"a90a1dd3a6a842c8bbbb1fb74fe880c6\",\"object\":\"chat.completion\",\"created\":1709006256,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
+    "data": "{\"id\":\"fa60ad70c8514c61a284840a951c3f79\",\"object\":\"chat.completion\",\"created\":1709042526,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
 }

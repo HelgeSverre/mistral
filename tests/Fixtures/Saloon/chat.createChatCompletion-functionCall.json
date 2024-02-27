@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 27 Feb 2024 14:02:00 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "431",
+        "Connection": "keep-alive",
+        "ratelimitbysize-query-cost": "1010",
+        "ratelimitbysize-reset": "60",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "x-ratelimitbysize-remaining-month": "9999835889",
+        "ratelimitbysize-limit": "2000000",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "x-ratelimitbysize-remaining-minute": "1998990",
+        "ratelimitbysize-remaining": "1998990",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "637",
+        "x-kong-proxy-latency": "5",
+        "x-kong-request-id": "0606b641322a36058fe5a42ca64f365e",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "85c0f6877d030b4d-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"c6ac3c8931764187aa39d7bfed70fd03\",\"object\":\"chat.completion\",\"created\":1709042520,\"model\":\"mistral-large-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"\",\"tool_calls\":[{\"id\":\"null\",\"type\":\"function\",\"function\":{\"name\":\"searchWeather\",\"arguments\":\"{\\\"location\\\": \\\"Bergen, Norway\\\"}\"}}]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":179,\"total_tokens\":203,\"completion_tokens\":24}}"
+}

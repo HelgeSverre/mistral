@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 27 Feb 2024 03:57:37 GMT",
+        "Date": "Tue, 27 Feb 2024 14:02:12 GMT",
         "Content-Type": "application\/json",
         "Content-Length": "376",
         "Connection": "keep-alive",
-        "x-ratelimitbysize-remaining-minute": "1999110",
-        "ratelimitbysize-reset": "23",
-        "ratelimitbysize-remaining": "1999110",
+        "ratelimitbysize-reset": "48",
+        "x-ratelimitbysize-remaining-minute": "1996317",
         "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "ratelimitbysize-query-cost": "26",
-        "x-ratelimitbysize-remaining-month": "9999846192",
         "x-ratelimitbysize-limit-minute": "2000000",
+        "ratelimitbysize-query-cost": "26",
+        "x-ratelimitbysize-remaining-month": "9999833216",
+        "ratelimitbysize-remaining": "1996317",
+        "x-ratelimitbysize-limit-month": "10000000000",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "430",
-        "x-kong-proxy-latency": "1",
-        "x-kong-request-id": "d8ac9a370f1494743f4eed4ea24a503f",
+        "x-kong-upstream-latency": "182",
+        "x-kong-proxy-latency": "0",
+        "x-kong-request-id": "f8462f7de3ec8e74b93ae564236ac975",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "85bd81356c77b512-OSL",
+        "CF-RAY": "85c0f6d28a2f5695-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"34aebd4c854c47ca86fd6166dbf83993\",\"object\":\"chat.completion\",\"created\":1709006257,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is commonly used to refer to the long, curved fruit that grows\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":35,\"completion_tokens\":20}}"
+    "data": "{\"id\":\"6070ee46f59b4feaa8f1f510e609c924\",\"object\":\"chat.completion\",\"created\":1709042532,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is commonly used to refer to the long, curved fruit that grows\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":35,\"completion_tokens\":20}}"
 }

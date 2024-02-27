@@ -46,8 +46,7 @@ it('CreateChatCompletion works', function ($model) {
         'open-mixtral-8x7b',
         'mistral-small-latest',
         'mistral-medium-latest',
-        // TODO: This times out for some reason, might not be stable yet
-        // 'mistral-large-latest',
+        'mistral-large-latest',
     ]);
 
 it('CreateChatCompletion works with json mode', function () {
