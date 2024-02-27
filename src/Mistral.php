@@ -25,8 +25,18 @@ class Mistral extends Connector
     public function __construct(
         #[SensitiveParameter] protected readonly string $apiKey,
         protected readonly ?string $baseUrl = null,
-        protected ?int $requestTimeout = 30,
+        protected ?int $timeout = 60,
     ) {
+    }
+
+    public function getConnectTimeout(): float
+    {
+        return $this->timeout;
+    }
+
+    public function getRequestTimeout(): float
+    {
+        return $this->timeout;
     }
 
     protected function defaultAuth(): TokenAuthenticator

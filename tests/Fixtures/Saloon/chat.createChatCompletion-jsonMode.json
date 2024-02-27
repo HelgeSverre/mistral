@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 27 Feb 2024 03:57:40 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "386",
+        "Connection": "keep-alive",
+        "x-ratelimitbysize-remaining-minute": "1996969",
+        "ratelimitbysize-reset": "21",
+        "ratelimitbysize-remaining": "1996969",
+        "ratelimitbysize-limit": "2000000",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "ratelimitbysize-query-cost": "117",
+        "x-ratelimitbysize-remaining-month": "9999844017",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "322",
+        "x-kong-proxy-latency": "1",
+        "x-kong-request-id": "0827d072c7cb215447989646e0d36a2a",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "85bd81438c4e569d-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"bd4fc7630aa343268cb93fcb9be9e383\",\"object\":\"chat.completion\",\"created\":1709006259,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
+}

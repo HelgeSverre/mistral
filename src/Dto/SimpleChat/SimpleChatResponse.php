@@ -44,4 +44,9 @@ class SimpleChatResponse extends SpatieData
         public ?string $finishReason,
     ) {
     }
+
+    public function contentAsJson(): ?array
+    {
+        return json_decode($this->content, true);
+    }
 }

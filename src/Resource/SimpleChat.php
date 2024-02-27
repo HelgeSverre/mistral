@@ -10,6 +10,7 @@ use HelgeSverre\Mistral\Dto\SimpleChat\SimpleChatResponse;
 use HelgeSverre\Mistral\Dto\SimpleChat\SimpleStreamChunk;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
+use InvalidArgumentException;
 use Saloon\Http\BaseResource;
 
 class SimpleChat extends BaseResource
@@ -18,13 +19,18 @@ class SimpleChat extends BaseResource
 
     public function create(
         array $messages,
-        string $model = Model::tiny->value,
+        string $model = Model::mistral7b->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
         int $topP = 1,
         bool $safeMode = false,
+        bool $jsonMode = false,
         ?int $randomSeed = null
     ): SimpleChatResponse {
+        if ($jsonMode) {
+            $this->validateJsonModeCompatible($model);
+        }
+
         $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
                 model: $model,
@@ -35,6 +41,7 @@ class SimpleChat extends BaseResource
                 stream: false,
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
+                responseFormat: $jsonMode ? ['type' => 'json_object'] : null,
             )
         ));
 
@@ -60,13 +67,18 @@ class SimpleChat extends BaseResource
      */
     public function stream(
         array $messages,
-        string $model = Model::tiny->value,
+        string $model = Model::mistral7b->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
         int $topP = 1,
         bool $safeMode = false,
+        bool $jsonMode = false,
         ?int $randomSeed = null,
     ): Generator {
+        if ($jsonMode) {
+            $this->validateJsonModeCompatible($model);
+        }
+
         $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
                 model: $model,
@@ -77,6 +89,7 @@ class SimpleChat extends BaseResource
                 stream: true,
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
+                responseFormat: $jsonMode ? ['type' => 'json_object'] : null,
             )
         ));
 
@@ -90,6 +103,14 @@ class SimpleChat extends BaseResource
                 'content' => $chatResponse['choices'][0]['delta']['content'] ?? null,
                 'finishReason' => $chatResponse['choices'][0]['finish_reason'] ?? null,
             ]);
+        }
+    }
+
+    protected function validateJsonModeCompatible(string $model): void
+    {
+        $jsonCompatible = Model::withJsonModeSupport();
+        if (in_array($model, $jsonCompatible) === false) {
+            throw new InvalidArgumentException('Only '.implode(', ', $jsonCompatible).' models support JSON mode');
         }
     }
 }

@@ -20,6 +20,11 @@ class ChatCompletionRequest extends SpatieData
         public ?bool $safeMode = null,
         #[MapName('random_seed')]
         public ?int $randomSeed = null,
+        ?array $tools = null,
+        #[MapName('tool_choice')]
+        ?string $toolChoice = null,
+        #[MapName('response_format')]
+        public ?array $responseFormat = null,
     ) {
     }
 }

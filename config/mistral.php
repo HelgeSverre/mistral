@@ -34,10 +34,10 @@ return [
     |
     | This configuration option defines the maximum duration (in seconds) that
     | your application will wait for a response when making requests to the
-    | Mistral.ai API. By default, this value is set to 30 seconds. If you wish
+    | Mistral.ai API. By default, this value is set to 60 seconds. If you wish
     | to disable the timeout entirely, you can set this value to 0.
     |
     */
 
-    'timeout' => env('MISTRAL_TIMEOUT', 30),
+    'timeout' => env('MISTRAL_TIMEOUT', 60),
 ];

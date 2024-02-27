@@ -17,13 +17,16 @@ class Chat extends BaseResource
 
     public function create(
         array $messages,
-        string $model = Model::tiny->value,
+        string $model = Model::mistral7b->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
         int $topP = 1,
         bool $safeMode = false,
         bool $stream = false,
-        ?int $randomSeed = null
+        ?int $randomSeed = null,
+        ?array $tools = null,
+        ?string $toolChoice = null,
+        ?array $responseFormat = null,
     ): Response {
         return $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -35,6 +38,9 @@ class Chat extends BaseResource
                 stream: $stream,
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
+                tools: $tools,
+                toolChoice: $toolChoice,
+                responseFormat: $responseFormat,
             )
         ));
     }
@@ -47,12 +53,13 @@ class Chat extends BaseResource
      */
     public function createStreamed(
         array $messages,
-        string $model = Model::tiny->value,
+        string $model = Model::small->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
         int $topP = 1,
         bool $safeMode = false,
         ?int $randomSeed = null,
+        ?array $responseFormat = null,
     ): Generator {
         $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -64,6 +71,7 @@ class Chat extends BaseResource
                 stream: true,
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
+                responseFormat: $responseFormat,
             )
         ));
 

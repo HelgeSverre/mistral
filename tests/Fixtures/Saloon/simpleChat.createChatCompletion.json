@@ -1,26 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 26 Jan 2024 08:55:37 GMT",
+        "Date": "Tue, 27 Feb 2024 03:57:34 GMT",
         "Content-Type": "application\/json",
-        "Content-Length": "462",
+        "Content-Length": "629",
         "Connection": "keep-alive",
-        "ratelimitbysize-limit": "2000000",
-        "ratelimitbysize-remaining": "1999894",
-        "x-ratelimitbysize-remaining-month": "9999894598",
-        "ratelimitbysize-reset": "23",
-        "x-ratelimitbysize-remaining-minute": "1999894",
         "x-ratelimitbysize-limit-minute": "2000000",
+        "x-ratelimitbysize-remaining-minute": "1999455",
+        "ratelimitbysize-reset": "26",
         "x-ratelimitbysize-limit-month": "10000000000",
+        "ratelimitbysize-limit": "2000000",
         "ratelimitbysize-query-cost": "106",
+        "x-ratelimitbysize-remaining-month": "9999846587",
+        "ratelimitbysize-remaining": "1999455",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "440",
-        "x-kong-proxy-latency": "10",
-        "x-kong-request-id": "d8f5630ccff18b660febe92b2f87f24c",
+        "x-kong-upstream-latency": "630",
+        "x-kong-proxy-latency": "1",
+        "x-kong-request-id": "25d49f36303ff371c5c79005aa8f481e",
         "CF-Cache-Status": "DYNAMIC",
         "Server": "cloudflare",
-        "CF-RAY": "84b789ba0cf2b4ff-OSL",
+        "CF-RAY": "85bd811f785556b1-OSL",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"74d827432b10407bbf3e168cac335681\",\"object\":\"chat.completion\",\"created\":1706259337,\"model\":\"mistral-tiny\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word you have asked me to say is \\\"banana\\\". It is a common fruit that is long, curved, and yellow when ripe. Bananas are rich in nutrients and are a popular food item around the world.\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":64,\"completion_tokens\":49}}"
+    "data": "{\"id\":\"6b54116dfd664a4a97fd60a27ca1cd71\",\"object\":\"chat.completion\",\"created\":1709006254,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is commonly used to refer to the long, curved fruit that grows in clusters and is characterized by its yellow skin with brown spots and sweet, soft, creamy interior. It is an important staple food in many tropical countries and is enjoyed by people all over the world for its delicious taste and nutritional benefits.\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":87,\"completion_tokens\":72}}"
 }

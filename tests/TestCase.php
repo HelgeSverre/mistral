@@ -27,5 +27,6 @@ class TestCase extends Orchestra
         }
 
         config()->set('mistral.api_key', env('MISTRAL_API_KEY'));
+        config()->set('mistral.timeout', 120);
     }
 }

@@ -1,0 +1,26 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 27 Feb 2024 03:57:37 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "363",
+        "Connection": "keep-alive",
+        "ratelimitbysize-reset": "24",
+        "x-ratelimitbysize-remaining-month": "9999846558",
+        "x-ratelimitbysize-limit-month": "10000000000",
+        "x-ratelimitbysize-limit-minute": "2000000",
+        "x-ratelimitbysize-remaining-minute": "1999459",
+        "ratelimitbysize-query-cost": "26",
+        "ratelimitbysize-limit": "2000000",
+        "ratelimitbysize-remaining": "1999459",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "521",
+        "x-kong-proxy-latency": "0",
+        "x-kong-request-id": "67795003fcbc0043128f7e061c87d84a",
+        "CF-Cache-Status": "DYNAMIC",
+        "Server": "cloudflare",
+        "CF-RAY": "85bd812f8a2a712d-OSL",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"f70103dc70c7496dacf84f82c5600921\",\"object\":\"chat.completion\",\"created\":1709006256,\"model\":\"mistral-medium-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"banana\\n\\nI'm glad you asked me to say the word \\\"banana\\\". Ban\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":35,\"completion_tokens\":20}}"
+}
