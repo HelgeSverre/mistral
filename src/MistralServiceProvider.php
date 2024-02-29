@@ -18,7 +18,7 @@ class MistralServiceProvider extends PackageServiceProvider
             return new Mistral(
                 apiKey: config('mistral.api_key'),
                 baseUrl: config('mistral.base_url'),
-                requestTimeout: config('mistral.timeout', 30),
+                timeout: config('mistral.timeout', 30),
             );
         });
     }
