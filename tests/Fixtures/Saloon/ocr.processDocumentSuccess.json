@@ -1,0 +1,111 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application\/json"
+    },
+    "data": {
+        "pages": [
+            {
+                "index": 0,
+                "markdown": "# **PDF Association Cheat Sheet \u2013 Blend Modes**\n\n![img-0.jpeg](img-0.jpeg)\n\n|  **Modes** | **Modes**  |\n| --- | --- |\n|  **Normal** | HardLight  |\n|   | SoftLight  |\n|  **Screen** | Difference  |\n|  **Overlay** | Exclusion  |\n|  **Darken** | Hue  |\n|  **Lighten** | Saturation  |\n|  **ColorDodge** | Color  |\n|  **ColorBurn** | Luminosity  |\n|  **Duck in foreground, rainbow in background** | Rainbow in foreground, duck in background  |\n|  **Separable Blend Modes (17)** | Non-separable Blend Modes (4)  |\n|  **Normal (or Compatible, deprecated in PDF 2.0), Multiply, Screen, Overlay, Darken, Lighten, ColorDodge, ColorBurn, HardLight, SoftLight, Difference, Exclusion** | Hue, Saturation, Color, Luminosity  |\n|  **Only Difference and Exclusion separable Blend Modes are not white-preserving and thus cannot be used for blending spot colors.** | \u2013  |\n\n![img-1.jpeg](img-1.jpeg)\n\n![img-2.jpeg](img-2.jpeg)\n\n![img-3.jpeg](img-3.jpeg)\n\n![img-4.jpeg](img-4.jpeg)\n\n![img-5.jpeg](img-5.jpeg)",
+                "images": [
+                    {
+                        "id": "img-0.jpeg",
+                        "top_left_x": 181,
+                        "top_left_y": 189,
+                        "bottom_right_x": 1554,
+                        "bottom_right_y": 1801,
+                        "image_base64": null,
+                        "image_annotation": null
+                    },
+                    {
+                        "id": "img-1.jpeg",
+                        "top_left_x": 1773,
+                        "top_left_y": 194,
+                        "bottom_right_x": 3149,
+                        "bottom_right_y": 1885,
+                        "image_base64": null,
+                        "image_annotation": null
+                    },
+                    {
+                        "id": "img-2.jpeg",
+                        "top_left_x": 1776,
+                        "top_left_y": 1903,
+                        "bottom_right_x": 1981,
+                        "bottom_right_y": 2070,
+                        "image_base64": null,
+                        "image_annotation": null
+                    },
+                    {
+                        "id": "img-3.jpeg",
+                        "top_left_x": 2017,
+                        "top_left_y": 1894,
+                        "bottom_right_x": 2285,
+                        "bottom_right_y": 2070,
+                        "image_base64": null,
+                        "image_annotation": null
+                    },
+                    {
+                        "id": "img-4.jpeg",
+                        "top_left_x": 2348,
+                        "top_left_y": 1899,
+                        "bottom_right_x": 2643,
+                        "bottom_right_y": 2070,
+                        "image_base64": null,
+                        "image_annotation": null
+                    },
+                    {
+                        "id": "img-5.jpeg",
+                        "top_left_x": 2973,
+                        "top_left_y": 1901,
+                        "bottom_right_x": 3155,
+                        "bottom_right_y": 2070,
+                        "image_base64": null,
+                        "image_annotation": null
+                    }
+                ],
+                "dimensions": {
+                    "dpi": 200,
+                    "height": 2339,
+                    "width": 3308
+                }
+            },
+            {
+                "index": 1,
+                "markdown": "**PDF Association Cheat Sheet \u2013 PDF Color Processing**\n\n**PDF Color Processing**\n\n![img-6.jpeg](img-6.jpeg)\n\n**Approximating sRGB with CalRGB**\n\n```\n[\/CalRGB\n<<\n  \/Matrix [ 0.412384 0.212646 0.0193176\n  0.35759 0.715164 0.119171\n  0.180496 0.0721893 0.950546 ]\n  \/WhitePoint [ 0.950455 1.0 1.08905 ]\n  \/BlackPoint [ 0 0 0 ]\n  \/Gamma [ 2.2 2.2 2.2 ]\n>>\n]\n```\n\nSee Annex A.8 in ISO 23504-1:2020 (PDF\/R)\n\n**Fragment Identifiers**\n\nhttps:\/\/labs.pdfa.org\/FragmentTest.pdf#page=2&comment=abc&zoom=200\n\n|  Object identifiers |   |\n| --- | --- |\n|  page=page | Open to specified page (\u2265 1).  |\n|  nameddest=name | Open to specified named destination.  |\n|  structelem=structID | Open to specified ID within StructElem dictionary, or first page.  |\n|  comment=commentID | Open to specified annotation defined by NM key. Must be *after* any other object identifier parameters.  |\n|  ef=name | Open the specified file from the EmbeddedFiles name tree.  |\n\n|  Open parameters \u2013 processed after object identifiers |   |\n| --- | --- |\n|  zoom=scale | Open with specified zoom *scale* (where 100 = 100%). *left* and *top* are optional coordinates from top left corner of page.  |\n|  zoom=scale,left,top | Open with specified zoom *scale* (where 100 = 100%). *left* and *top* are optional coordinates from top left corner of page.  |\n|  view=XYZ,left,top,scale | Open specified destination as the view, where coordinates are from top left corner of page.  |\n|  view=FitH,top |   |\n|  view=FitV,left |   |\n|  view=FitR,left,bottom,right,top |   |\n|  view=FitB |   |\n|  view=FitBH,top |   |\n|  view=FitBV,left |   |\n|  view=rect=left,top,width,height | Open with specified window view rectangle, where coordinates are from top left corner of page.  |\n|  highlight=left,right,top,bottom | Open with specified rectangle highlighted, where coordinates from top left corner of page.  |\n|  search= \"wordlist\" | Select first matching word in SPACE (%20) separated *wordlist*. Quotes are required around *wordlist*.  |\n|  fdf=uri | Import FDF or XFDF. *uri* is relative or absolute. Must be last.  |\n\nSee Annex 0 in ISO 32000-2:2020 or RFC 8118.",
+                "images": [
+                    {
+                        "id": "img-6.jpeg",
+                        "top_left_x": 396,
+                        "top_left_y": 219,
+                        "bottom_right_x": 1452,
+                        "bottom_right_y": 2149,
+                        "image_base64": null,
+                        "image_annotation": null
+                    }
+                ],
+                "dimensions": {
+                    "dpi": 200,
+                    "height": 2339,
+                    "width": 3308
+                }
+            },
+            {
+                "index": 2,
+                "markdown": "# **PDF Association Cheat Sheet \u2013 PDF Color Processing**\n\n# **PDF Function objects**\n\n*m* = number of input values \u2192 *n* = number of output values: {*y_{0}, y_{1}, ..., y_{n}*} = *f*(*x_{1}, x_{2}, ..., x_{m}*)\n\n|  Common Key | Description  |\n| --- | --- |\n|  FunctionType | integer  |\n|  Domain | array  |\n|  Range | array  |\n|  Type | Sampled function  |\n|  Type 0 | Sampled function  |\n|   | (stream, PDF 1.2, \u00a77.10.2)  |\n\n|  FunctionType | integer | Always required | 0, 2, 3 or 4.  |\n| --- | --- | --- | --- |\n|  Domain | array | Always required | 2 \u00d7 *m* numbers, where Domain_{1} \u2264 Domain_{2+1}. Inputs are clipped to nearest boundary.  |\n|  Range | array | Required for Type 0 and Type 4. | 2 \u00d7 *n* numbers, where Range_{2} \u2264 Range_{3+1}. Output is clipped to nearest boundary when present.  |\n|  |   |   |   |\n|  Type 0 | Sampled function | *m*-dimensional lookup table, where each entry has *n* components. |   |\n|   | (stream, PDF 1.2, \u00a77.10.2) |  |   |\n|   |  | Key | Type  |\n|   |  | Size | array  |\n|   |  |  | BitsPerSample  |\n|   |  | Order | integer  |\n|   |  |  | Encode  |\n|   |  | Decode | array  |\n|  Type 2 | Exponential function | Exponential interpolation of 1 input value to *n* output values: |   |\n|   | (dictionary, PDF 1.3, \u00a77.10.3) |  | *y_{j}* = CO_{j} + *x^{N}* \u00d7 (CI_{j} \u2212 CO_{j}) for 0 \u2264 *j* \u2264 *n*  |\n|   |  | Key | Type  |\n|   |  | CD | array  |\n|   |  |  | C1  |\n|   |  |  | N  |\n|  Type 3 | Stitching function | Stitching of subdomains of *k* 1-input functions to produce a single new 1-input function. Since resulting stitching function is a 1-input function, the domain is [Domain_{i}, Domain_{i} ]. |   |\n|   |  | Key | Type  |\n|   |  | Functions | array  |\n|   |  |  | Bounds  |\n|   |  |  | Encode  |\n|  Type 4 | PostScript calculator function | Stream contains code written in a small subset of PostScript\u2122. Nesting depth for {...} limited to 255. |   |\n|   | (stream, PDF 1.3, \u00a77.10.5) |  | Arithmetic  |\n|   |  |  | Relational, Boolean, bitwise  |\n|   |  |  | Conditional  |\n|   |  |  | Stack  |\n\nReferences to ISO 32000-2:2020 including resolved errata at https:\/\/pdf-issues.pdfa.org\n\n# **Patterns and Shadings**\n\n|  PatternType | Description  |\n| --- | --- |\n|  1 | Tiling pattern\n(stream, Table 74)  |\n|   | Repeating pattern cell using PDF graphic operators in a content stream.  |\n|   | Key  |\n|   | Type  |\n|   | PatternType  |\n|   | PaintType  |\n|   | Integer  |\n|   | 1 = Colored tiling pattern. In a content stream, reference via a named Pattern resource:  |\n|   | \/Pattern cs  |\n|   | \/P1 scn  |\n|   | 2 = Uncolored tiling pattern. Define as a ColorSpace resource such as:  |\n|   | [ \/Pattern colorspace ]  |\n|   | TilingType  |\n|   | Integer  |\n|   | 1 = Constant spacing.  |\n|   | 2 = No distortion.  |\n|   | 3 = Constant spacing and faster tiling.  |\n|   | BBox  |\n|   | rectangle  |\n|   | Bounding box (clipped).  |\n|   | XStep  |\n|   | number  |\n|   | Horizontal spacing in pattern space.  |\n|   | YStep  |\n|   | number  |\n|   | Vertical spacing in pattern space.  |\n|   | Resources  |\n|   | dictionary  |\n|   | Resources needed by pattern cell content.  |\n|   | Matrix  |\n|   | matrix  |\n|   | Optional. Pattern matrix. Default: identity.  |\n|  2 | Shading pattern\n(dictionary, PDF 1.3, Table 75)  |\n|   | Smooth gradient fills painted with the **x** **X** operator.  |\n|   | Key  |\n|   | Type  |\n|   | PatternType  |\n|   | Shading  |\n|   |\u4ed9  |\n|   | Matrix  |\n|   | Matrix  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n|   | 2x2566  |\n",
+                "images": [],
+                "dimensions": {
+                    "dpi": 200,
+                    "height": 2339,
+                    "width": 3308
+                }
+            }
+        ],
+        "model": "mistral-ocr-2505-completion",
+        "document_annotation": null,
+        "usage_info": {
+            "pages_processed": 3,
+            "doc_size_bytes": 953033
+        }
+    }
+}

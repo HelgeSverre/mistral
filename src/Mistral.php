@@ -5,6 +5,7 @@ namespace HelgeSverre\Mistral;
 use HelgeSverre\Mistral\Resource\Chat;
 use HelgeSverre\Mistral\Resource\Embedding;
 use HelgeSverre\Mistral\Resource\Models;
+use HelgeSverre\Mistral\Resource\OCR;
 use HelgeSverre\Mistral\Resource\SimpleChat;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
@@ -67,5 +68,10 @@ class Mistral extends Connector
     public function models(): Models
     {
         return new Models($this);
+    }
+
+    public function ocr(): OCR
+    {
+        return new OCR($this);
     }
 }
