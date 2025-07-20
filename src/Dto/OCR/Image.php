@@ -21,6 +21,5 @@ final class Image extends Data
         public ?string $imageBase64 = null,
         #[MapName('image_annotation')]
         public ?string $imageAnnotation = null,
-    ) {
-    }
+    ) {}
 }

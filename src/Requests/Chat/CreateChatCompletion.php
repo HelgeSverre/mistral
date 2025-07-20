@@ -26,9 +26,7 @@ class CreateChatCompletion extends Request implements HasBody
         return '/chat/completions';
     }
 
-    public function __construct(protected ChatCompletionRequest $chatCompletionRequest)
-    {
-    }
+    public function __construct(protected ChatCompletionRequest $chatCompletionRequest) {}
 
     protected function defaultBody(): array
     {

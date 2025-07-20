@@ -46,6 +46,7 @@
     },
     "scripts": {
         "analyse": "vendor/bin/phpstan analyse",
+        "stan": "vendor/bin/phpstan analyse --configuration=phpstan.neon",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"

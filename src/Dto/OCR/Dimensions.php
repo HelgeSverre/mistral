@@ -10,6 +10,5 @@ final class Dimensions extends Data
         public int $dpi,
         public int $height,
         public int $width,
-    ) {
-    }
+    ) {}
 }

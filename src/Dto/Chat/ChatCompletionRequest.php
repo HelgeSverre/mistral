@@ -26,6 +26,5 @@ class ChatCompletionRequest extends SpatieData
         public ?string $toolChoice = null,
         #[MapName('response_format')]
         public ?array $responseFormat = null,
-    ) {
-    }
+    ) {}
 }

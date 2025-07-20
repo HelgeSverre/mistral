@@ -14,6 +14,5 @@ final class Page extends Data
         #[DataCollectionOf(Image::class)]
         public DataCollection $images,
         public ?Dimensions $dimensions = null,
-    ) {
-    }
+    ) {}
 }

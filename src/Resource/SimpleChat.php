@@ -60,7 +60,7 @@ class SimpleChat extends BaseResource
     }
 
     /**
-     * @return Generator|StreamedChatCompletionResponse[]
+     * @return Generator|SimpleStreamChunk[]
      *
      * @noinspection PhpDocSignatureInspection
      * @noinspection PhpDocMissingThrowsInspection

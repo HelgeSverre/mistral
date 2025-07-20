@@ -10,6 +10,5 @@ class ToolCalls extends SpatieData
         public string $id,
         public string $type,
         public FunctionCall $function,
-    ) {
-    }
+    ) {}
 }

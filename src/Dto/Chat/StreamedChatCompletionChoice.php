@@ -13,6 +13,5 @@ class StreamedChatCompletionChoice extends SpatieData
 
         #[MapName('finish_reason')]
         public ?string $finishReason,
-    ) {
-    }
+    ) {}
 }

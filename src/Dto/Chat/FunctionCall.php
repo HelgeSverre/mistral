@@ -9,9 +9,7 @@ class FunctionCall extends SpatieData
     public function __construct(
         public string $name,
         public string $arguments,
-    ) {
-
-    }
+    ) {}
 
     public function args(): ?array
     {

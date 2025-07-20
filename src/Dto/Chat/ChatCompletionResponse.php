@@ -17,6 +17,5 @@ class ChatCompletionResponse extends SpatieData
         #[DataCollectionOf(ChatCompletionChoice::class)]
         public DataCollection $choices,
         public Usage $usage,
-    ) {
-    }
+    ) {}
 }

@@ -38,6 +38,5 @@ class ModelPermission extends SpatieData
         public ?string $group,
         #[MapName('is_blocking')]
         public bool $isBlocking,
-    ) {
-    }
+    ) {}
 }

@@ -26,9 +26,7 @@ class ProcessDocument extends Request implements HasBody
         return '/ocr';
     }
 
-    public function __construct(protected OCRRequest $ocrRequest)
-    {
-    }
+    public function __construct(protected OCRRequest $ocrRequest) {}
 
     protected function defaultBody(): array
     {

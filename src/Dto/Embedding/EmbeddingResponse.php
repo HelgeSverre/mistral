@@ -16,6 +16,5 @@ class EmbeddingResponse extends SpatieData
         public DataCollection $data,
         public ?string $model = null,
         public ?Usage $usage = null,
-    ) {
-    }
+    ) {}
 }

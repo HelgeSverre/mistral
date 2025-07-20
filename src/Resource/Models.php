@@ -10,6 +10,6 @@ class Models extends BaseResource
 {
     public function list(): Response
     {
-        return $this->connector->send(new ListModels());
+        return $this->connector->send(new ListModels);
     }
 }

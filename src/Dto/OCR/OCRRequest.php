@@ -12,8 +12,7 @@ final class OCRRequest extends Data
         public Document $document,
         #[MapName('include_image_base64')]
         public ?bool $includeImageBase64 = null,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

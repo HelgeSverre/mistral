@@ -42,8 +42,7 @@ class SimpleChatResponse extends SpatieData
         public int $totalTokens,
         #[MapName('finish_reason')]
         public ?string $finishReason,
-    ) {
-    }
+    ) {}
 
     public function contentAsJson(): ?array
     {

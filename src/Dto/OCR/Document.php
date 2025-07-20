@@ -15,8 +15,7 @@ final class Document extends Data
         public ?string $imageUrl = null,
         #[MapName('file_id')]
         public ?string $fileId = null,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

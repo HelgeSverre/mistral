@@ -27,8 +27,7 @@ class Mistral extends Connector
         #[SensitiveParameter] protected readonly string $apiKey,
         protected readonly ?string $baseUrl = null,
         protected ?int $timeout = 60,
-    ) {
-    }
+    ) {}
 
     public function getConnectTimeout(): float
     {

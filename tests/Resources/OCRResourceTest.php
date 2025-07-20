@@ -13,21 +13,28 @@ beforeEach(function () {
 
 it('ProcessDocument works with URL', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr.processDocumentSuccess'),
     ]);
 
     $response = $this->mistral->ocr()->process(
         model: 'mistral-ocr-latest',
         document: 'https://pdfa.org/download-area/cheat-sheets/Color.pdf',
-        includeImageBase64: true,
+        includeImageBase64: false,
     );
 
     Saloon::assertSent(ProcessDocument::class);
 
-    // The fixture shows a 400 error because the example URL cannot be fetched
-    expect($response->status())->toBe(400)
-        ->and($response->json())->toBeArray()
-        ->and($response->json('message'))->toBe("File could not be fetched from url 'https://example.com/document.pdf'");
+    expect($response->status())->toBe(200);
+
+    $dto = $response->dto();
+    expect($dto)->toBeInstanceOf(\HelgeSverre\Mistral\Dto\OCR\OCRResponse::class)
+        ->and($dto->model)->toBe('mistral-ocr-2505-completion')
+        ->and($dto->pages)->toHaveCount(3)
+        ->and($dto->pages[0]->index)->toBe(0)
+        ->and($dto->pages[0]->markdown)->toContain('PDF Association Cheat Sheet')
+        ->and($dto->pages[0]->images)->toHaveCount(6)
+        ->and($dto->usageInfo->pagesProcessed)->toBe(3)
+        ->and($dto->usageInfo->docSizeBytes)->toBe(953033);
 });
 
 it('ProcessDocument works with processUrl method', function () {
@@ -183,4 +190,21 @@ it('Document::fromFileId creates correct document object', function () {
 
     expect($document->type)->toBe('file')
         ->and($document->fileId)->toBe($fileId);
+});
+
+it('ProcessDocument handles error response', function () {
+    Saloon::fake([
+        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+    ]);
+
+    $response = $this->mistral->ocr()->processUrl(
+        url: 'https://example.com/document.pdf',
+        includeImageBase64: false,
+    );
+
+    expect($response->status())->toBe(400)
+        ->and($response->json('object'))->toBe('error')
+        ->and($response->json('type'))->toBe('invalid_request_file')
+        ->and($response->json('code'))->toBe('3310')
+        ->and($response->json('message'))->toContain('File could not be fetched from url');
 });

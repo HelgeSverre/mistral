@@ -21,7 +21,5 @@ class SimpleStreamChunk extends SpatieData
         #[MapName('finish_reason')]
         public ?string $finishReason
 
-    ) {
-
-    }
+    ) {}
 }
