@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"data\":[{\"id\":\"550e8400-e29b-41d4-a716-446655440010\",\"name\":\"Library Page 1\",\"description\":\"First page result\",\"created_at\":\"2024-01-15T10:00:00Z\",\"updated_at\":\"2024-01-15T10:00:00Z\"}],\"object\":\"list\",\"total\":15}"
+}
