@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Sat, 11 Oct 2025 10:30:00 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "480",
+        "Connection": "keep-alive",
+        "access-control-allow-origin": "*"
+    },
+    "data": "{\"id\":\"fim_completion_def456\",\"object\":\"fim.completion\",\"created\":1728645001,\"model\":\"codestral-latest\",\"choices\":[{\"index\":0,\"message\":\"a: number, b: number\",\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":12,\"total_tokens\":28,\"completion_tokens\":16}}"
+}
