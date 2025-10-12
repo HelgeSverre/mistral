@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 11 Oct 2025 14:02:04 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "612",
+        "Connection": "keep-alive",
+        "access-control-allow-origin": "*"
+    },
+    "data": "{\"id\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"object\":\"model\",\"created\":1715702400,\"owned_by\":\"user-123\",\"capabilities\":{\"completion_chat\":true,\"completion_fim\":false,\"function_calling\":false,\"fine_tuning\":false,\"vision\":false,\"classification\":false},\"name\":\"My Custom Model\",\"description\":\"A fine-tuned model for specific tasks\",\"max_context_length\":32768,\"aliases\":[],\"deprecation\":null,\"deprecation_replacement_model\":null,\"default_model_temperature\":0.7,\"type\":\"fine-tuned\",\"job\":\"ftjob-abc123\",\"root\":\"open-mistral-7b\",\"archived\":false}"
+}

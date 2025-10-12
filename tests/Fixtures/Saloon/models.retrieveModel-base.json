@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 11 Oct 2025 14:02:04 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "512",
+        "Connection": "keep-alive",
+        "access-control-allow-origin": "*"
+    },
+    "data": "{\"id\":\"open-mistral-7b\",\"object\":\"model\",\"created\":1709042524,\"owned_by\":\"mistralai\",\"capabilities\":{\"completion_chat\":true,\"completion_fim\":false,\"function_calling\":true,\"fine_tuning\":false,\"vision\":false,\"classification\":false},\"name\":\"Open Mistral 7B\",\"description\":\"Our first dense model released September 2023.\",\"max_context_length\":32768,\"aliases\":[],\"deprecation\":null,\"deprecation_replacement_model\":null,\"default_model_temperature\":null,\"type\":\"base\"}"
+}
