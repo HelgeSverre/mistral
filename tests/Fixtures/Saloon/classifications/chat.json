@@ -1,0 +1,10 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Sat, 11 Oct 2025 10:00:00 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "256",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\":\"class_01234569\",\"model\":\"mistral-classifier-latest\",\"results\":[{\"predicted_class\":\"technical_support\",\"categories\":{\"technical_support\":0.89,\"general_inquiry\":0.08,\"feedback\":0.03},\"category_scores\":{\"technical_support\":3.85,\"general_inquiry\":-0.67,\"feedback\":-1.89}}]}"
+}
