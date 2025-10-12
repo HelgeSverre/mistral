@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073}"
+}

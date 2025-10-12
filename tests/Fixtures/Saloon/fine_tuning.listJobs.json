@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"data\":[{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"SUCCESS\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693128,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"fine_tuned_model\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"suffix\":\"my-model-v1\",\"integrations\":null,\"trained_tokens\":458752,\"metadata\":{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073}},{\"id\":\"a9b8c7d6-e5f4-3210-9876-543210fedcba\",\"auto_start\":true,\"hyperparameters\":{\"training_steps\":50,\"learning_rate\":0.0002,\"epochs\":2},\"model\":\"mistral-small-2409\",\"status\":\"RUNNING\",\"job_type\":\"classifier\",\"created_at\":1715693000,\"modified_at\":1715693100,\"training_files\":[{\"file_id\":\"1234abcd-5678-90ef-ghij-klmnopqrstuv\"}],\"object\":\"job\",\"trained_tokens\":250000}],\"object\":\"list\",\"total\":2}"
+}
