@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\",\"metadata\":null}"
+}

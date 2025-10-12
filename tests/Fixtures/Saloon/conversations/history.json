@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"entries\":[{\"id\":\"entry_001\",\"object\":\"conversation.entry\",\"created_at\":1728648000,\"role\":\"user\",\"content\":\"Hello, how are you?\",\"metadata\":null},{\"id\":\"entry_002\",\"object\":\"conversation.entry\",\"created_at\":1728648001,\"role\":\"assistant\",\"content\":\"I'm doing well, thank you! How can I help you today?\",\"metadata\":null},{\"id\":\"entry_005\",\"object\":\"conversation.entry\",\"created_at\":1728648020,\"role\":\"user\",\"content\":\"What's 2 + 2?\",\"metadata\":null},{\"id\":\"entry_006\",\"object\":\"conversation.entry\",\"created_at\":1728648021,\"role\":\"assistant\",\"content\":\"2 + 2 equals 4.\",\"metadata\":null}]}"
+}

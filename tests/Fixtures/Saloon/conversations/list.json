@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\",\"metadata\":null},{\"id\":\"conv_def456\",\"object\":\"conversation\",\"created_at\":1728648100,\"model\":\"mistral-small-latest\",\"metadata\":null},{\"id\":\"conv_agent_xyz789\",\"object\":\"conversation\",\"created_at\":1728648200,\"agent_id\":\"agent_123\",\"metadata\":null}],\"has_more\":false,\"first_id\":\"conv_abc123\",\"last_id\":\"conv_agent_xyz789\"}"
+}

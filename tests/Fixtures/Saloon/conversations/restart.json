@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"conversation_id\":\"conv_abc123\",\"entries\":[{\"id\":\"entry_007\",\"object\":\"conversation.entry\",\"created_at\":1728648030,\"role\":\"user\",\"content\":\"Let's start over\",\"metadata\":null},{\"id\":\"entry_008\",\"object\":\"conversation.entry\",\"created_at\":1728648031,\"role\":\"assistant\",\"content\":\"Of course! How can I help you?\",\"metadata\":null}]}"
+}
