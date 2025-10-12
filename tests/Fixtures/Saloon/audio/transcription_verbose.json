@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\",\"language\":\"en\",\"duration\":5.2,\"words\":[{\"word\":\"Hello\",\"start\":0.0,\"end\":0.5},{\"word\":\"this\",\"start\":0.6,\"end\":0.8},{\"word\":\"is\",\"start\":0.9,\"end\":1.0},{\"word\":\"a\",\"start\":1.1,\"end\":1.2},{\"word\":\"test\",\"start\":1.3,\"end\":1.6},{\"word\":\"transcription\",\"start\":1.7,\"end\":2.5},{\"word\":\"of\",\"start\":2.6,\"end\":2.7},{\"word\":\"an\",\"start\":2.8,\"end\":2.9},{\"word\":\"audio\",\"start\":3.0,\"end\":3.4},{\"word\":\"file\",\"start\":3.5,\"end\":3.8}],\"segments\":[{\"id\":0,\"seek\":0,\"start\":0.0,\"end\":5.2,\"text\":\"Hello, this is a test transcription of an audio file.\",\"tokens\":[15496,11,428,318,257,1332,26955,286,281,6597,2393,13],\"temperature\":0.0,\"avg_logprob\":-0.25,\"compression_ratio\":1.5,\"no_speech_prob\":0.01}]}"
+}

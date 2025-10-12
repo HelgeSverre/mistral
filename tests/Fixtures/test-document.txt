@@ -1,0 +1,2 @@
+This is a test document for the Libraries API.
+It contains sample content for testing document upload functionality.
