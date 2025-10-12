@@ -5,6 +5,7 @@ namespace HelgeSverre\Mistral\Resource;
 use HelgeSverre\Mistral\Dto\OCR\Document;
 use HelgeSverre\Mistral\Dto\OCR\OCRRequest;
 use HelgeSverre\Mistral\Requests\OCR\ProcessDocument;
+use InvalidArgumentException;
 use Saloon\Http\BaseResource;
 use Saloon\Http\Response;
 
@@ -32,7 +33,7 @@ class OCR extends BaseResource
             } else {
                 // Assume it's base64 encoded
                 if ($mimeType === null) {
-                    throw new \InvalidArgumentException('MIME type is required when passing base64 encoded data');
+                    throw new InvalidArgumentException('MIME type is required when passing base64 encoded data');
                 }
                 $documentDto = Document::fromBase64($document, $mimeType);
             }

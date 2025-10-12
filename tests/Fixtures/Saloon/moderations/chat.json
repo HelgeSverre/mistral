@@ -1,11 +1,26 @@
 {
-    "statusCode": 200,
+    "statusCode": 422,
     "headers": {
-        "Date": "Tue, 11 Oct 2025 14:02:12 GMT",
-        "Content-Type": "application/json",
-        "Content-Length": "342",
+        "Date": "Sun, 12 Oct 2025 10:01:07 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "557",
         "Connection": "keep-alive",
-        "access-control-allow-origin": "*"
+        "CF-RAY": "98d5c10dde3356b7-OSL",
+        "mistral-correlation-id": "0199d7dd-e4bb-7e06-86c2-8b4aa379686a",
+        "x-kong-request-id": "0199d7dd-e4bb-7e06-86c2-8b4aa379686a",
+        "x-envoy-upstream-service-time": "26",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "26",
+        "x-kong-proxy-latency": "6",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=L2g4ILk2tNMrDWGKpnQNhM46pFBaZ07B0eniiYGAvN0-1760263267-1.0.1.1-bk4wcUbYdB7MtxYKdKEkxKbYKN1nqSQreETTkbS1tc1Qa8KIasIF96e_HRTLdXLuSkd90SWJbqGRJfbSAv96lht8w92pKDTotd7ZGl8.oio; path=\/; expires=Sun, 12-Oct-25 10:31:07 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=luPwf0IhR1EKtdv3wWWUuAcf06Nsp3c0eAo5TgcPAWA-1760263267554-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"modr-chat123\",\"model\":\"mistral-moderation-latest\",\"results\":[{\"flagged\":false,\"categories\":{\"sexual\":false,\"hate\":false,\"violence\":false,\"self-harm\":false,\"sexual/minors\":false,\"hate/threatening\":false,\"violence/graphic\":false},\"category_scores\":{\"sexual\":0.000123,\"hate\":0.000045,\"violence\":0.000078,\"self-harm\":0.000012,\"sexual/minors\":0.000003,\"hate/threatening\":0.000001,\"violence/graphic\":0.000034}}]}"
+    "data": "{\"object\":\"error\",\"message\":{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"input\"],\"msg\":\"Field required\",\"input\":{\"model\":\"mistral-moderation-2411\",\"messages\":[{\"role\":\"user\",\"content\":\"Hello\"},{\"role\":\"assistant\",\"content\":\"Hi there!\"},{\"role\":\"user\",\"content\":\"How are you?\"}]}},{\"type\":\"extra_forbidden\",\"loc\":[\"body\",\"messages\"],\"msg\":\"Extra inputs are not permitted\",\"input\":[{\"role\":\"user\",\"content\":\"Hello\"},{\"role\":\"assistant\",\"content\":\"Hi there!\"},{\"role\":\"user\",\"content\":\"How are you?\"}]}]},\"type\":\"invalid_request_error\",\"param\":null,\"code\":null}",
+    "context": []
 }

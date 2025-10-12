@@ -14,7 +14,6 @@ use HelgeSverre\Mistral\Resource\Fim;
 use HelgeSverre\Mistral\Resource\FineTuning;
 use HelgeSverre\Mistral\Resource\Libraries;
 use HelgeSverre\Mistral\Resource\Models;
-use HelgeSverre\Mistral\Resource\Moderations;
 use HelgeSverre\Mistral\Resource\OCR;
 use HelgeSverre\Mistral\Resource\SimpleChat;
 use Saloon\Http\Auth\TokenAuthenticator;
@@ -109,9 +108,12 @@ class Mistral extends Connector
         return new Batch($this);
     }
 
-    public function moderations(): Moderations
+    /**
+     * @deprecated Use classifications() instead. Moderation endpoints are part of the classifiers API.
+     */
+    public function moderations(): Classifications
     {
-        return new Moderations($this);
+        return new Classifications($this);
     }
 
     public function classifications(): Classifications

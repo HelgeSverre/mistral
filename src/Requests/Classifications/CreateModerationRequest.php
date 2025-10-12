@@ -1,8 +1,8 @@
 <?php
 
-namespace HelgeSverre\Mistral\Requests\Moderations;
+namespace HelgeSverre\Mistral\Requests\Classifications;
 
-use HelgeSverre\Mistral\Dto\Moderations\ChatModerationRequest;
+use HelgeSverre\Mistral\Dto\Classifications\ClassificationRequest;
 use HelgeSverre\Mistral\Dto\Moderations\ModerationResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -11,11 +11,11 @@ use Saloon\Http\Response;
 use Saloon\Traits\Body\HasJsonBody;
 
 /**
- * CreateChatModerationRequest
+ * CreateModerationRequest
  *
- * Moderate chat conversation
+ * Moderate text input
  */
-class CreateChatModerationRequest extends Request implements HasBody
+class CreateModerationRequest extends Request implements HasBody
 {
     use HasJsonBody;
 
@@ -23,14 +23,14 @@ class CreateChatModerationRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/chat/moderations';
+        return '/moderations';
     }
 
-    public function __construct(protected ChatModerationRequest $chatModerationRequest) {}
+    public function __construct(protected ClassificationRequest $classificationRequest) {}
 
     protected function defaultBody(): array
     {
-        return $this->chatModerationRequest->toArray();
+        return $this->classificationRequest->toArray();
     }
 
     public function createDtoFromResponse(Response $response): ModerationResponse

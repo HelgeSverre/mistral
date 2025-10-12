@@ -9,15 +9,16 @@ class ModerationCategories extends SpatieData
 {
     public function __construct(
         public bool $sexual = false,
-        public bool $hate = false,
-        public bool $violence = false,
-        #[MapName('self-harm')]
-        public bool $selfHarm = false,
-        #[MapName('sexual/minors')]
-        public bool $sexualMinors = false,
-        #[MapName('hate/threatening')]
-        public bool $hateThreatening = false,
-        #[MapName('violence/graphic')]
-        public bool $violenceGraphic = false,
+        #[MapName('hate_and_discrimination')]
+        public bool $hateAndDiscrimination = false,
+        #[MapName('violence_and_threats')]
+        public bool $violenceAndThreats = false,
+        #[MapName('dangerous_and_criminal_content')]
+        public bool $dangerousAndCriminalContent = false,
+        public bool $selfharm = false,
+        public bool $health = false,
+        public bool $financial = false,
+        public bool $law = false,
+        public bool $pii = false,
     ) {}
 }

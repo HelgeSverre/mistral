@@ -20,7 +20,7 @@ class Chat extends BaseResource
         string $model = Model::mistral7b->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
-        int $topP = 1,
+        float $topP = 1.0,
         bool $safeMode = false,
         bool $stream = false,
         ?int $randomSeed = null,
