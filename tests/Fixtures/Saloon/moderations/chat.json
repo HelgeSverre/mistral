@@ -1,0 +1,11 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 11 Oct 2025 14:02:12 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "342",
+        "Connection": "keep-alive",
+        "access-control-allow-origin": "*"
+    },
+    "data": "{\"id\":\"modr-chat123\",\"model\":\"mistral-moderation-latest\",\"results\":[{\"flagged\":false,\"categories\":{\"sexual\":false,\"hate\":false,\"violence\":false,\"self-harm\":false,\"sexual/minors\":false,\"hate/threatening\":false,\"violence/graphic\":false},\"category_scores\":{\"sexual\":0.000123,\"hate\":0.000045,\"violence\":0.000078,\"self-harm\":0.000012,\"sexual/minors\":0.000003,\"hate/threatening\":0.000001,\"violence/graphic\":0.000034}}]}"
+}
