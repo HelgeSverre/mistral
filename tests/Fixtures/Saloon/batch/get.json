@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"batch-job-789a0123-b45c-67d8-e901-234567890abc\",\"object\":\"batch.job\",\"status\":\"SUCCESS\",\"input_files\":[\"file-xyz123\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715690000,\"started_at\":1715690050,\"completed_at\":1715691000,\"model\":\"mistral-small-latest\",\"metadata\":{\"test\":\"value\"},\"output_file\":\"output-batch-789a\",\"error_file\":\"error-batch-789a\",\"total_requests\":200,\"succeeded_requests\":198,\"failed_requests\":2}"
+}

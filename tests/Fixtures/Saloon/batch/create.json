@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"batch-job-456e7890-f12b-34d5-c678-901234567890\",\"object\":\"batch.job\",\"status\":\"QUEUED\",\"input_files\":[\"file-input-001\",\"file-input-002\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715695000,\"model\":\"mistral-large-latest\",\"metadata\":{\"experiment\":\"batch-test\",\"user_id\":\"user-123\"},\"timeout_hours\":24,\"completion_window\":\"24h\"}"
+}
