@@ -27,6 +27,10 @@ class Chat extends BaseResource
         ?array $tools = null,
         ?string $toolChoice = null,
         ?array $responseFormat = null,
+        string|array|null $stop = null,
+        ?float $presencePenalty = null,
+        ?float $frequencyPenalty = null,
+        ?array $prediction = null,
     ): Response {
         return $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -41,6 +45,10 @@ class Chat extends BaseResource
                 tools: $tools,
                 toolChoice: $toolChoice,
                 responseFormat: $responseFormat,
+                stop: $stop,
+                presencePenalty: $presencePenalty,
+                frequencyPenalty: $frequencyPenalty,
+                prediction: $prediction,
             )
         ));
     }
@@ -60,6 +68,10 @@ class Chat extends BaseResource
         bool $safeMode = false,
         ?int $randomSeed = null,
         ?array $responseFormat = null,
+        string|array|null $stop = null,
+        ?float $presencePenalty = null,
+        ?float $frequencyPenalty = null,
+        ?array $prediction = null,
     ): Generator {
         $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -72,6 +84,10 @@ class Chat extends BaseResource
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
                 responseFormat: $responseFormat,
+                stop: $stop,
+                presencePenalty: $presencePenalty,
+                frequencyPenalty: $frequencyPenalty,
+                prediction: $prediction,
             )
         ));
 
