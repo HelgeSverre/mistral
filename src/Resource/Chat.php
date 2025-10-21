@@ -5,6 +5,7 @@ namespace HelgeSverre\Mistral\Resource;
 use Generator;
 use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
 use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
@@ -20,13 +21,17 @@ class Chat extends BaseResource
         string $model = Model::mistral7b->value,
         float $temperature = 0.7,
         int $maxTokens = 2000,
-        int $topP = 1,
+        float $topP = 1.0,
         bool $safeMode = false,
         bool $stream = false,
         ?int $randomSeed = null,
         ?array $tools = null,
         ?string $toolChoice = null,
         ?array $responseFormat = null,
+        string|array|null $stop = null,
+        ?float $presencePenalty = null,
+        ?float $frequencyPenalty = null,
+        ?array $prediction = null,
     ): Response {
         return $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -41,8 +46,50 @@ class Chat extends BaseResource
                 tools: $tools,
                 toolChoice: $toolChoice,
                 responseFormat: $responseFormat,
+                stop: $stop,
+                presencePenalty: $presencePenalty,
+                frequencyPenalty: $frequencyPenalty,
+                prediction: $prediction,
             )
         ));
+    }
+
+    /**
+     * Create chat completion and return typed DTO
+     */
+    public function createDto(
+        array $messages,
+        string $model = Model::mistral7b->value,
+        float $temperature = 0.7,
+        int $maxTokens = 2000,
+        float $topP = 1.0,
+        bool $safeMode = false,
+        ?int $randomSeed = null,
+        ?array $tools = null,
+        ?string $toolChoice = null,
+        ?array $responseFormat = null,
+        string|array|null $stop = null,
+        ?float $presencePenalty = null,
+        ?float $frequencyPenalty = null,
+        ?array $prediction = null,
+    ): ChatCompletionResponse {
+        return $this->create(
+            messages: $messages,
+            model: $model,
+            temperature: $temperature,
+            maxTokens: $maxTokens,
+            topP: $topP,
+            safeMode: $safeMode,
+            stream: false, // DTO method always non-streaming
+            randomSeed: $randomSeed,
+            tools: $tools,
+            toolChoice: $toolChoice,
+            responseFormat: $responseFormat,
+            stop: $stop,
+            presencePenalty: $presencePenalty,
+            frequencyPenalty: $frequencyPenalty,
+            prediction: $prediction,
+        )->dto();
     }
 
     /**
@@ -60,6 +107,10 @@ class Chat extends BaseResource
         bool $safeMode = false,
         ?int $randomSeed = null,
         ?array $responseFormat = null,
+        string|array|null $stop = null,
+        ?float $presencePenalty = null,
+        ?float $frequencyPenalty = null,
+        ?array $prediction = null,
     ): Generator {
         $response = $this->connector->send(new CreateChatCompletion(
             new ChatCompletionRequest(
@@ -72,6 +123,10 @@ class Chat extends BaseResource
                 safeMode: $safeMode,
                 randomSeed: $randomSeed,
                 responseFormat: $responseFormat,
+                stop: $stop,
+                presencePenalty: $presencePenalty,
+                frequencyPenalty: $frequencyPenalty,
+                prediction: $prediction,
             )
         ));
 

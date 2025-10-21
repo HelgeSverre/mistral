@@ -8,8 +8,7 @@ class ToolCalls extends SpatieData
 {
     public function __construct(
         public string $id,
-        public string $type,
         public FunctionCall $function,
-    ) {
-    }
+        public ?string $type = 'function',
+    ) {}
 }

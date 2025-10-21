@@ -9,6 +9,5 @@ class StreamedChatCompletionDelta extends SpatieData
     public function __construct(
         public ?string $role,
         public ?string $content
-    ) {
-    }
+    ) {}
 }

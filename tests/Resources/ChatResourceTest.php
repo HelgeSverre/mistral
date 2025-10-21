@@ -195,3 +195,139 @@ it('CreateChatCompletion response can be cast to DTO', function () {
         ->and($dto->model)->toBe(Model::mistral7b->value)
         ->and($dto->object)->toBe('chat.completion');
 });
+
+it('CreateChatCompletion works with stop parameter as string', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Count from 1 to 10',
+            ],
+        ],
+        model: Model::small->value,
+        stop: '5'
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    expect($response->status())->toBe(200);
+});
+
+it('CreateChatCompletion works with stop parameter as array', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Write a story',
+            ],
+        ],
+        model: Model::small->value,
+        stop: ['The end', 'END']
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    expect($response->status())->toBe(200);
+});
+
+it('CreateChatCompletion works with presence_penalty', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Generate diverse content',
+            ],
+        ],
+        model: Model::small->value,
+        presencePenalty: 0.6
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    expect($response->status())->toBe(200);
+});
+
+it('CreateChatCompletion works with frequency_penalty', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Avoid repetition',
+            ],
+        ],
+        model: Model::small->value,
+        frequencyPenalty: 0.5
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    expect($response->status())->toBe(200);
+});
+
+it('CreateChatCompletion works with prediction parameter', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Use cache',
+            ],
+        ],
+        model: Model::small->value,
+        prediction: [
+            'type' => 'cache',
+            'data' => ['key' => 'value'],
+        ]
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    expect($response->status())->toBe(200);
+});
+
+it('CreateChatCompletion works with all new parameters combined', function () {
+    Saloon::fake([
+        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+    ]);
+
+    $response = $this->mistral->chat()->create(
+        messages: [
+            [
+                'role' => Role::user->value,
+                'content' => 'Generate creative text',
+            ],
+        ],
+        model: Model::small->value,
+        stop: ['END', 'STOP'],
+        presencePenalty: 0.6,
+        frequencyPenalty: 0.4,
+        prediction: ['type' => 'cache']
+    );
+
+    Saloon::assertSent(CreateChatCompletion::class);
+
+    /** @var ChatCompletionResponse $dto */
+    $dto = $response->dto();
+
+    expect($dto)->toBeInstanceOf(ChatCompletionResponse::class)
+        ->and($response->status())->toBe(200);
+});

@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"SUCCESS\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693128,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"fine_tuned_model\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"suffix\":\"my-model-v1\",\"integrations\":null,\"trained_tokens\":458752,\"metadata\":{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073},\"checkpoints\":[{\"metrics\":{\"train_loss\":0.245,\"valid_loss\":0.312,\"valid_mean_token_accuracy\":0.89},\"step_number\":50,\"created_at\":1715693100},{\"metrics\":{\"train_loss\":0.198,\"valid_loss\":0.287,\"valid_mean_token_accuracy\":0.92},\"step_number\":100,\"created_at\":1715693128}],\"events\":[]}"
+}

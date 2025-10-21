@@ -15,6 +15,5 @@ class ChatCompletionMessage extends SpatieData
         #[MapName('tool_calls')]
         #[DataCollectionOf(ToolCalls::class)]
         public ?DataCollection $toolCalls = null,
-    ) {
-    }
+    ) {}
 }

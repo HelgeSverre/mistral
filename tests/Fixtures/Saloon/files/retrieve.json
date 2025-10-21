@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"id\":\"file-550e8400-e29b-41d4-a716-446655440000\",\"object\":\"file\",\"bytes\":1024,\"created_at\":1717059200,\"filename\":\"training_data.jsonl\",\"purpose\":\"fine-tune\",\"sample_type\":\"instruct\",\"num_lines\":100,\"source\":\"upload\"}"
+}

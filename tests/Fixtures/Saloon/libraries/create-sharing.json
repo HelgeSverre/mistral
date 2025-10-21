@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"entity_id\":\"750e8400-e29b-41d4-a716-446655440002\",\"entity_type\":\"team\",\"role\":\"editor\",\"created_at\":\"2024-01-15T11:00:00Z\",\"updated_at\":\"2024-01-15T11:00:00Z\"}"
+}

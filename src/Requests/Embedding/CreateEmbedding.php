@@ -26,9 +26,7 @@ class CreateEmbedding extends Request implements HasBody
         return '/embeddings';
     }
 
-    public function __construct(protected EmbeddingRequest $embeddingRequest)
-    {
-    }
+    public function __construct(protected EmbeddingRequest $embeddingRequest) {}
 
     protected function defaultBody(): array
     {

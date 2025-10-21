@@ -14,6 +14,5 @@ class Usage extends SpatieData
         public int $completionTokens,
         #[MapName('total_tokens')]
         public int $totalTokens,
-    ) {
-    }
+    ) {}
 }

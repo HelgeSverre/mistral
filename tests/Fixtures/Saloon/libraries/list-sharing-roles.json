@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"data\":[{\"entity_id\":\"850e8400-e29b-41d4-a716-446655440003\",\"entity_type\":\"user\",\"role\":\"owner\",\"created_at\":\"2024-01-15T10:00:00Z\",\"updated_at\":\"2024-01-15T10:00:00Z\"},{\"entity_id\":\"750e8400-e29b-41d4-a716-446655440004\",\"entity_type\":\"team\",\"role\":\"editor\",\"created_at\":\"2024-01-15T11:00:00Z\",\"updated_at\":\"2024-01-15T11:00:00Z\"},{\"entity_id\":\"950e8400-e29b-41d4-a716-446655440005\",\"entity_type\":\"user\",\"role\":\"viewer\",\"created_at\":\"2024-01-15T12:00:00Z\",\"updated_at\":\"2024-01-15T12:00:00Z\"}],\"object\":\"list\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\"}"
+}

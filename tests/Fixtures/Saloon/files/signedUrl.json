@@ -1,0 +1,7 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"url\":\"https://storage.googleapis.com/mistral-files/file-550e8400-e29b-41d4-a716-446655440000?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=service-account%40project.iam.gserviceaccount.com%2F20240601%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20240601T000000Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=abcdef123456\"}"
+}

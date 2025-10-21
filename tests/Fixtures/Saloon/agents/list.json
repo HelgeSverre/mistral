@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"ag:123456:20241011:a1b2c3d4\",\"object\":\"agent\",\"created_at\":1728648000,\"name\":\"Customer Support Agent\",\"model\":\"mistral-large-latest\",\"instructions\":\"You are a helpful customer support assistant.\",\"description\":\"Handles customer inquiries\",\"temperature\":0.7,\"top_p\":0.9,\"version\":1},{\"id\":\"ag:123456:20241010:e5f6g7h8\",\"object\":\"agent\",\"created_at\":1728561600,\"name\":\"Sales Assistant\",\"model\":\"mistral-medium-latest\",\"instructions\":\"You are a sales assistant that helps customers find products.\",\"description\":\"Product recommendation agent\",\"temperature\":0.8,\"version\":2}],\"total\":2}"
+}

@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"conversation_id\":\"conv_agent_xyz789\",\"entries\":[{\"id\":\"entry_003\",\"object\":\"conversation.entry\",\"created_at\":1728648010,\"role\":\"user\",\"content\":\"Tell me about the weather\",\"metadata\":null},{\"id\":\"entry_004\",\"object\":\"conversation.entry\",\"created_at\":1728648011,\"role\":\"assistant\",\"content\":\"Let me check the weather for you.\",\"tool_calls\":[{\"id\":\"call_001\",\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"{\\\"location\\\":\\\"current\\\"}\"}}],\"metadata\":null}]}"
+}

@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"batch-job-abc1234d-e56f-78g9-h012-ijklmnopqrst\",\"object\":\"batch.job\",\"status\":\"CANCELLATION_REQUESTED\",\"input_files\":[\"file-cancel-001\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715688000,\"started_at\":1715688100,\"model\":\"mistral-medium-latest\",\"total_requests\":150,\"succeeded_requests\":75,\"failed_requests\":0}"
+}

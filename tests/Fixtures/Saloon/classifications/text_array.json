@@ -1,0 +1,10 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Sat, 11 Oct 2025 10:00:00 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "512",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\":\"class_01234568\",\"model\":\"mistral-classifier-latest\",\"results\":[{\"predicted_class\":\"sports\",\"categories\":{\"sports\":0.92,\"health\":0.05,\"entertainment\":0.03},\"category_scores\":{\"sports\":4.25,\"health\":-0.89,\"entertainment\":-1.67}},{\"predicted_class\":\"politics\",\"categories\":{\"politics\":0.88,\"news\":0.08,\"opinion\":0.04},\"category_scores\":{\"politics\":3.95,\"news\":-0.45,\"opinion\":-1.23}},{\"predicted_class\":\"technology\",\"categories\":{\"technology\":0.94,\"science\":0.04,\"business\":0.02},\"category_scores\":{\"technology\":4.62,\"science\":-1.12,\"business\":-2.34}}]}"
+}

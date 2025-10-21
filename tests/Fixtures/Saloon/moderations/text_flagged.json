@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Sun, 12 Oct 2025 10:01:07 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "793",
+        "Connection": "keep-alive",
+        "CF-RAY": "98d5c10c9e828be6-OSL",
+        "mistral-correlation-id": "0199d7dd-e403-718c-9d5c-2beb0d828408",
+        "x-kong-request-id": "0199d7dd-e403-718c-9d5c-2beb0d828408",
+        "x-envoy-upstream-service-time": "91",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999963",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999981532",
+        "x-ratelimit-tokens-query-cost": "3",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "58",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "92",
+        "x-kong-proxy-latency": "7",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=4_DddKTpZ8yvfepn.Q0DWpIjTnTMgktISGdWVgVUY_Q-1760263267-1.0.1.1-wAMH07X591CCitUcT2LOZovQw7Qiz2ubgXcjyyHjjrf_9l6Cbkg0NtJgJ.HE_ei6JUc1lBBbXJfdbSqWi.eeAqBP6m3m2Lts63dWXVAGvJI; path=\/; expires=Sun, 12-Oct-25 10:31:07 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=8R5doNnPJXGq2j9BUFY67wRJb99xSHMHJlYaAAXyhHk-1760263267436-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"7c9d419fac054766a81aac44fc2dd4f7\",\"usage\":{\"prompt_audio_seconds\":null,\"prompt_tokens\":3,\"total_tokens\":94,\"completion_tokens\":0,\"request_count\":1,\"prompt_token_details\":null},\"model\":\"mistral-moderation-latest\",\"results\":[{\"category_scores\":{\"sexual\":6.60521473037079e-05,\"hate_and_discrimination\":0.00010889690747717395,\"violence_and_threats\":0.0001686527393758297,\"dangerous_and_criminal_content\":0.0005357805639505386,\"selfharm\":1.0129991096619051e-05,\"health\":2.4300241420860402e-05,\"financial\":1.892514956125524e-05,\"law\":1.221907587023452e-05,\"pii\":0.00015843621804378927},\"categories\":{\"sexual\":false,\"hate_and_discrimination\":false,\"violence_and_threats\":false,\"dangerous_and_criminal_content\":false,\"selfharm\":false,\"health\":false,\"financial\":false,\"law\":false,\"pii\":false}}]}",
+    "context": []
+}

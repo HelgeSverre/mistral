@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\":\"ag:123456:20241011:a1b2c3d4\",\"object\":\"agent\",\"created_at\":1728648000,\"name\":\"Customer Support Agent\",\"model\":\"mistral-large-latest\",\"instructions\":\"You are an expert customer support assistant. Always be polite, professional, and provide detailed solutions.\",\"description\":\"Handles customer inquiries and support tickets\",\"tools\":[{\"type\":\"function\",\"function\":{\"name\":\"search_knowledge_base\",\"description\":\"Search the knowledge base for relevant articles\",\"parameters\":{\"type\":\"object\",\"properties\":{\"query\":{\"type\":\"string\",\"description\":\"The search query\"}},\"required\":[\"query\"]}}},{\"type\":\"function\",\"function\":{\"name\":\"create_ticket\",\"description\":\"Create a support ticket\",\"parameters\":{\"type\":\"object\",\"properties\":{\"title\":{\"type\":\"string\"},\"description\":{\"type\":\"string\"}},\"required\":[\"title\",\"description\"]}}}],\"temperature\":0.8,\"top_p\":0.95,\"version\":2}"
+}

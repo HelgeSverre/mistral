@@ -22,6 +22,5 @@ class Model extends SpatieData
         #[DataCollectionOf(ModelPermission::class)]
         public ?array $permission = null
 
-    ) {
-    }
+    ) {}
 }

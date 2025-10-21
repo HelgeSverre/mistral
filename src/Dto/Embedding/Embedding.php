@@ -9,6 +9,6 @@ class Embedding extends SpatieData
     public function __construct(
         public ?string $object = null,
         public ?array $embedding = null,
-    ) {
-    }
+        public ?int $index = null,
+    ) {}
 }

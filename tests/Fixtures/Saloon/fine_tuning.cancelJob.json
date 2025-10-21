@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001},\"model\":\"open-mistral-7b\",\"status\":\"CANCELLATION_REQUESTED\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693200,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\"}],\"object\":\"job\",\"checkpoints\":[],\"events\":[]}"
+}

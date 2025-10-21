@@ -18,6 +18,5 @@ class StreamedChatCompletionResponse extends SpatieData
         public string $model,
         #[DataCollectionOf(StreamedChatCompletionChoice::class)]
         public DataCollection $choices,
-    ) {
-    }
+    ) {}
 }

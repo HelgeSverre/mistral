@@ -5,7 +5,6 @@ namespace HelgeSverre\Mistral\Resource;
 use Generator;
 use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
-use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
 use HelgeSverre\Mistral\Dto\SimpleChat\SimpleChatResponse;
 use HelgeSverre\Mistral\Dto\SimpleChat\SimpleStreamChunk;
 use HelgeSverre\Mistral\Enums\Model;
@@ -60,7 +59,7 @@ class SimpleChat extends BaseResource
     }
 
     /**
-     * @return Generator|StreamedChatCompletionResponse[]
+     * @return Generator|SimpleStreamChunk[]
      *
      * @noinspection PhpDocSignatureInspection
      * @noinspection PhpDocMissingThrowsInspection

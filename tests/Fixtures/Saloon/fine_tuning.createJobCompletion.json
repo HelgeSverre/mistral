@@ -1,0 +1,7 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"QUEUED\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693073,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"suffix\":\"my-model-v1\",\"integrations\":{\"project\":\"my-wandb-project\",\"name\":\"my-run-name\"},\"metadata\":{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073}}"
+}

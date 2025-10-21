@@ -26,6 +26,11 @@ class ChatCompletionRequest extends SpatieData
         public ?string $toolChoice = null,
         #[MapName('response_format')]
         public ?array $responseFormat = null,
-    ) {
-    }
+        public string|array|null $stop = null,
+        #[MapName('presence_penalty')]
+        public ?float $presencePenalty = null,
+        #[MapName('frequency_penalty')]
+        public ?float $frequencyPenalty = null,
+        public ?array $prediction = null,
+    ) {}
 }

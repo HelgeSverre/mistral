@@ -12,6 +12,5 @@ class ModelList extends SpatieData
         public ?string $object,
         #[DataCollectionOf(Model::class)]
         public ?DataCollection $data,
-    ) {
-    }
+    ) {}
 }

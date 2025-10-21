@@ -12,6 +12,5 @@ class EmbeddingRequest extends SpatieData
         public ?array $input = null,
         #[MapName('encoding_format')]
         public ?string $encodingFormat = null,
-    ) {
-    }
+    ) {}
 }
