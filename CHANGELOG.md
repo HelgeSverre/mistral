@@ -5,7 +5,49 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2025-10-11
+## [2.0.0] - 2025-10-21
+
+### Added
+
+- **Typed DTO Wrapper Methods**: All Resource classes now include typed `*Dto()` wrapper methods (e.g., `createDto()`, `listDto()`) that return properly typed DTOs instead of generic Response objects, providing perfect IDE autocomplete without needing inline `@var` annotations
+- **Updated Model Support**: Added 6 new model enum cases based on current Mistral AI API:
+  - `ministral8b` (edge model)
+  - `magistralMedium` (reasoning model)
+  - `codestral` (coding model)
+  - `pixtralLarge` (vision model)
+  - `pixtral12b` (vision model)
+  - `voxtralSmall` (audio model)
+- **Files Resource DTO Methods**: Added `uploadDto()`, `listDto()`, `retrieveDto()`, `deleteDto()`, `getSignedUrlDto()`
+- **Audio Resource DTO Method**: Added `transcribeDto()`
+- **Models Resource DTO Method**: Added `listDto()`
+
+### Changed
+
+- **Comprehensive README Update**: Expanded documentation from 348 to 744 lines
+  - Documented all 98 DTOs (previously only 16 were listed)
+  - Added complete "Available Resources & Methods" section covering all 14 Resource classes
+  - Updated model list with current Mistral AI models
+  - All usage examples now demonstrate typed DTO methods
+- **Example Updates**: All 10 example files and READMEs updated to use new typed DTO methods
+- **Cleaned Configuration**: Removed unused environment variables from `.env.example` files (reduced from 47 to 14 lines)
+- **Model Enum Organization**: Reorganized with clear category comments (general purpose, edge, reasoning, coding, vision, audio, embedding, deprecated)
+- **Updated `withJsonModeSupport()`**: Now includes new models that support JSON mode
+
+### Documentation
+
+- Updated all code samples to use `*Dto()` methods instead of `->dto()` calls
+- Removed unnecessary `@var` annotations from examples (no longer needed with typed methods)
+- 346 total line changes across example README files
+- Complete API reference documentation for all resources
+
+### Developer Experience
+
+- Perfect IDE autocomplete with native PHP return types
+- Zero runtime overhead (thin wrapper methods)
+- No breaking changes - original methods unchanged
+- Type-safe without complex PHPDoc annotations
+
+## [1.0.0] - 2025-10-11
 
 ### Added
 
