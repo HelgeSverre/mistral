@@ -48,10 +48,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - **Standalone Examples Bootstrap**: Fixed Laravel Data compatibility for standalone PHP examples
-  - Added minimal Laravel container configuration in `examples/shared/bootstrap.php`
-  - Configured required Laravel Data settings without full Laravel application
-  - Disabled validation strategy to avoid facade dependencies
-  - Examples now run independently without requiring Laravel installation
+    - Added minimal Laravel container configuration in `examples/shared/bootstrap.php`
+    - Configured required Laravel Data settings without full Laravel application
+    - Disabled validation strategy to avoid facade dependencies
+    - Examples now run independently without requiring Laravel installation
 
 ### Removed
 

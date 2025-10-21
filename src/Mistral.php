@@ -19,6 +19,7 @@ use HelgeSverre\Mistral\Resource\SimpleChat;
 use Saloon\Http\Auth\TokenAuthenticator;
 use Saloon\Http\Connector;
 use Saloon\Traits\Plugins\AcceptsJson;
+use Saloon\Traits\Plugins\AlwaysThrowOnErrors;
 use Saloon\Traits\Plugins\HasTimeout;
 use SensitiveParameter;
 
@@ -30,6 +31,7 @@ use SensitiveParameter;
 class Mistral extends Connector
 {
     use AcceptsJson;
+    use AlwaysThrowOnErrors;
     use HasTimeout;
 
     public function __construct(

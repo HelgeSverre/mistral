@@ -37,94 +37,90 @@ it('ProcessDocument works with URL', function () {
         ->and($dto->usageInfo->docSizeBytes)->toBe(953033);
 });
 
-it('ProcessDocument works with processUrl method', function () {
+it('ProcessDocument throws exception for error responses', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
-    $response = $this->mistral->ocr()->processUrl(
+    expect(fn () => $this->mistral->ocr()->processUrl(
         url: 'https://pdfa.org/download-area/cheat-sheets/Color.pdf',
         model: 'mistral-ocr-latest',
         includeImageBase64: true,
-    );
+    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
-
-    expect($response->status())->toBe(400);
 });
 
-it('ProcessDocument works with base64', function () {
+it('ProcessDocument with base64 throws exception on error', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
     $base64Data = base64_encode('PDF content here');
 
-    $response = $this->mistral->ocr()->process(
+    expect(fn () => $this->mistral->ocr()->process(
         model: 'mistral-ocr-latest',
         document: $base64Data,
         mimeType: 'application/pdf',
         includeImageBase64: false,
-    );
+    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
-
-    expect($response->status())->toBe(400);
 });
 
-it('ProcessDocument works with processBase64 method', function () {
+it('ProcessDocument with processBase64 throws exception on error', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
     $base64Data = base64_encode('PDF content here');
 
-    $response = $this->mistral->ocr()->processBase64(
+    expect(fn () => $this->mistral->ocr()->processBase64(
         base64: $base64Data,
         mimeType: 'application/pdf',
         model: 'mistral-ocr-latest',
         includeImageBase64: false,
-    );
+    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
-
-    expect($response->status())->toBe(400);
 });
 
-it('ProcessDocument works with Document object', function () {
+it('ProcessDocument with Document object throws exception on error', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
     $document = Document::fromUrl('https://pdfa.org/download-area/cheat-sheets/Color.pdf');
 
-    $response = $this->mistral->ocr()->process(
+    expect(fn () => $this->mistral->ocr()->process(
         model: 'mistral-ocr-latest',
         document: $document,
         includeImageBase64: true,
-    );
+    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
-
-    expect($response->status())->toBe(400);
 });
 
-it('ProcessDocument response shows error for invalid URL', function () {
+it('ProcessDocument throws exception with error details for invalid URL', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
-    $response = $this->mistral->ocr()->processUrl(
-        url: 'https://pdfa.org/download-area/cheat-sheets/Color.pdf',
-        includeImageBase64: true,
-    );
+    try {
+        $this->mistral->ocr()->processUrl(
+            url: 'https://pdfa.org/download-area/cheat-sheets/Color.pdf',
+            includeImageBase64: true,
+        );
+
+        expect(true)->toBe(false, 'Exception should have been thrown');
+    } catch (\Saloon\Exceptions\Request\ClientException $e) {
+        expect($e->getResponse()->status())->toBe(400)
+            ->and($e->getResponse()->json('object'))->toBe('error')
+            ->and($e->getResponse()->json('type'))->toBe('invalid_request_file')
+            ->and($e->getResponse()->json('code'))->toBe('3310');
+    }
 
     Saloon::assertSent(ProcessDocument::class);
-
-    expect($response->status())->toBe(400)
-        ->and($response->json('object'))->toBe('error')
-        ->and($response->json('type'))->toBe('invalid_request_file')
-        ->and($response->json('code'))->toBe('3310');
 });
 
 it('ProcessDocument throws exception when base64 is provided without mimeType', function () {
@@ -192,19 +188,25 @@ it('Document::fromFileId creates correct document object', function () {
         ->and($document->fileId)->toBe($fileId);
 });
 
-it('ProcessDocument handles error response', function () {
+it('ProcessDocument throws exception and includes error details', function () {
     Saloon::fake([
         ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
     ]);
 
-    $response = $this->mistral->ocr()->processUrl(
-        url: 'https://example.com/document.pdf',
-        includeImageBase64: false,
-    );
+    try {
+        $this->mistral->ocr()->processUrl(
+            url: 'https://example.com/document.pdf',
+            includeImageBase64: false,
+        );
 
-    expect($response->status())->toBe(400)
-        ->and($response->json('object'))->toBe('error')
-        ->and($response->json('type'))->toBe('invalid_request_file')
-        ->and($response->json('code'))->toBe('3310')
-        ->and($response->json('message'))->toContain('File could not be fetched from url');
+        expect(true)->toBe(false, 'Exception should have been thrown');
+    } catch (\Saloon\Exceptions\Request\ClientException $e) {
+        expect($e->getResponse()->status())->toBe(400)
+            ->and($e->getResponse()->json('object'))->toBe('error')
+            ->and($e->getResponse()->json('type'))->toBe('invalid_request_file')
+            ->and($e->getResponse()->json('code'))->toBe('3310')
+            ->and($e->getResponse()->json('message'))->toContain('File could not be fetched from url');
+    }
+
+    Saloon::assertSent(ProcessDocument::class);
 });
