@@ -55,6 +55,38 @@ Mistral::embedding();
 Mistral::models();
 ```
 
+## Examples
+
+The package includes **10 hands-on examples** in the `examples/` directory, each with detailed documentation, working code, and explanations. These examples are the fastest way to learn the SDK and see it in action.
+
+**Quick Start**: Begin with [01-getting-started](./examples/01-getting-started) to set up your first working integration.
+
+| Example | Description |
+|---------|-------------|
+| [01-getting-started](./examples/01-getting-started) | Install the SDK, configure authentication, and make your first API call |
+| [02-basic-chat](./examples/02-basic-chat) | Learn chat completions, system messages, and multi-turn conversations |
+| [03-chat-parameters](./examples/03-chat-parameters) | Master temperature, top_p, max_tokens, and other generation parameters |
+| [04-streaming-chat](./examples/04-streaming-chat) | Implement real-time streaming responses with Server-Sent Events |
+| [05-function-calling](./examples/05-function-calling) | Enable AI to call PHP functions and interact with your application |
+| [06-embeddings](./examples/06-embeddings) | Generate vector embeddings for semantic search and similarity matching |
+| [07-ocr](./examples/07-ocr) | Extract and process text from images and documents using OCR |
+| [08-audio](./examples/08-audio) | Transcribe audio files with support for multiple languages and formats |
+| [09-moderation](./examples/09-moderation) | Identify and filter inappropriate content with content moderation |
+| [10-error-handling](./examples/10-error-handling) | Implement robust error handling, retry logic, and rate limit management |
+
+Each example includes:
+- Step-by-step implementation guide
+- Complete working code
+- Real-world use cases
+- Troubleshooting tips
+- Links to related examples
+
+To run an example:
+```bash
+cd examples/01-getting-started
+php getting-started.php
+```
+
 ## Available Resources & Methods
 
 The Mistral PHP client provides 14 resource classes, each offering both Response-returning methods and typed DTO methods for convenient type-safe usage.
