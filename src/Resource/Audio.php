@@ -4,6 +4,7 @@ namespace HelgeSverre\Mistral\Resource;
 
 use Generator;
 use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
+use HelgeSverre\Mistral\Dto\Audio\TranscriptionResponse;
 use HelgeSverre\Mistral\Enums\ResponseFormat;
 use HelgeSverre\Mistral\Enums\TimestampGranularity;
 use HelgeSverre\Mistral\Requests\Audio\CreateTranscriptionRequest;
@@ -46,6 +47,21 @@ class Audio extends BaseResource
                 timestampGranularities: $timestampGranularities,
             )
         );
+    }
+
+    /**
+     * Transcribe an audio file to text and return typed DTO
+     */
+    public function transcribeDto(
+        string $filePath,
+        string $model,
+        ?string $language = null,
+        ?string $prompt = null,
+        ?ResponseFormat $responseFormat = null,
+        ?float $temperature = null,
+        ?array $timestampGranularities = null,
+    ): TranscriptionResponse {
+        return $this->transcribe($filePath, $model, $language, $prompt, $responseFormat, $temperature, $timestampGranularities)->dto();
     }
 
     /**

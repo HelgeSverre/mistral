@@ -2,7 +2,12 @@
 
 namespace HelgeSverre\Mistral\Resource;
 
+use HelgeSverre\Mistral\Dto\Files\DeleteFileOut;
+use HelgeSverre\Mistral\Dto\Files\FileSignedURL;
+use HelgeSverre\Mistral\Dto\Files\ListFilesOut;
 use HelgeSverre\Mistral\Dto\Files\ListFilesRequest;
+use HelgeSverre\Mistral\Dto\Files\RetrieveFileOut;
+use HelgeSverre\Mistral\Dto\Files\UploadFileOut;
 use HelgeSverre\Mistral\Enums\FilePurpose;
 use HelgeSverre\Mistral\Enums\SampleType;
 use HelgeSverre\Mistral\Enums\Source;
@@ -31,6 +36,16 @@ class Files extends BaseResource
             filePath: $filePath,
             purpose: $purpose
         ));
+    }
+
+    /**
+     * Upload a file and return typed DTO
+     */
+    public function uploadDto(
+        string $filePath,
+        ?FilePurpose $purpose = null
+    ): UploadFileOut {
+        return $this->upload($filePath, $purpose)->dto();
     }
 
     /**
@@ -64,6 +79,20 @@ class Files extends BaseResource
     }
 
     /**
+     * List all uploaded files and return typed DTO
+     */
+    public function listDto(
+        ?int $page = null,
+        ?int $pageSize = null,
+        ?SampleType $sampleType = null,
+        ?Source $source = null,
+        ?string $search = null,
+        ?FilePurpose $purpose = null
+    ): ListFilesOut {
+        return $this->list($page, $pageSize, $sampleType, $source, $search, $purpose)->dto();
+    }
+
+    /**
      * Retrieve file metadata by file ID
      *
      * @param  string  $fileId  The UUID of the file
@@ -74,6 +103,14 @@ class Files extends BaseResource
     }
 
     /**
+     * Retrieve file metadata and return typed DTO
+     */
+    public function retrieveDto(string $fileId): RetrieveFileOut
+    {
+        return $this->retrieve($fileId)->dto();
+    }
+
+    /**
      * Delete a file by file ID
      *
      * @param  string  $fileId  The UUID of the file
@@ -81,6 +118,14 @@ class Files extends BaseResource
     public function delete(string $fileId): Response
     {
         return $this->connector->send(new DeleteFile($fileId));
+    }
+
+    /**
+     * Delete a file and return typed DTO
+     */
+    public function deleteDto(string $fileId): DeleteFileOut
+    {
+        return $this->delete($fileId)->dto();
     }
 
     /**
@@ -103,5 +148,13 @@ class Files extends BaseResource
     public function getSignedUrl(string $fileId, ?int $expiry = null): Response
     {
         return $this->connector->send(new GetSignedUrl($fileId, $expiry));
+    }
+
+    /**
+     * Get temporary signed download URL and return typed DTO
+     */
+    public function getSignedUrlDto(string $fileId, ?int $expiry = null): FileSignedURL
+    {
+        return $this->getSignedUrl($fileId, $expiry)->dto();
     }
 }

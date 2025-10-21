@@ -3,6 +3,7 @@
 namespace HelgeSverre\Mistral\Resource;
 
 use HelgeSverre\Mistral\Dto\Embedding\EmbeddingRequest;
+use HelgeSverre\Mistral\Dto\Embedding\EmbeddingResponse;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Requests\Embedding\CreateEmbedding;
 use Saloon\Http\BaseResource;
@@ -22,5 +23,16 @@ class Embedding extends BaseResource
                 encodingFormat: $encodingFormat,
             )
         ));
+    }
+
+    /**
+     * Create embeddings and return typed DTO
+     */
+    public function createDto(
+        array $input,
+        string $model = Model::embed->value,
+        string $encodingFormat = 'float'
+    ): EmbeddingResponse {
+        return $this->create($input, $model, $encodingFormat)->dto();
     }
 }

@@ -4,6 +4,7 @@ namespace HelgeSverre\Mistral\Resource;
 
 use HelgeSverre\Mistral\Dto\OCR\Document;
 use HelgeSverre\Mistral\Dto\OCR\OCRRequest;
+use HelgeSverre\Mistral\Dto\OCR\OCRResponse;
 use HelgeSverre\Mistral\Requests\OCR\ProcessDocument;
 use InvalidArgumentException;
 use Saloon\Http\BaseResource;
@@ -51,6 +52,18 @@ class OCR extends BaseResource
     }
 
     /**
+     * Process a document with OCR and return typed DTO
+     */
+    public function processDto(
+        string $model = 'mistral-ocr-latest',
+        Document|string|null $document = null,
+        ?string $mimeType = null,
+        ?bool $includeImageBase64 = null,
+    ): OCRResponse {
+        return $this->process($model, $document, $mimeType, $includeImageBase64)->dto();
+    }
+
+    /**
      * Process a document from URL
      *
      * @param  string  $url  The URL of the document to process
@@ -67,6 +80,17 @@ class OCR extends BaseResource
             document: Document::fromUrl($url),
             includeImageBase64: $includeImageBase64,
         );
+    }
+
+    /**
+     * Process a document from URL and return typed DTO
+     */
+    public function processUrlDto(
+        string $url,
+        string $model = 'mistral-ocr-latest',
+        ?bool $includeImageBase64 = null,
+    ): OCRResponse {
+        return $this->processUrl($url, $model, $includeImageBase64)->dto();
     }
 
     /**
@@ -88,5 +112,17 @@ class OCR extends BaseResource
             document: Document::fromBase64($base64, $mimeType),
             includeImageBase64: $includeImageBase64,
         );
+    }
+
+    /**
+     * Process a document from base64 encoded data and return typed DTO
+     */
+    public function processBase64Dto(
+        string $base64,
+        string $mimeType,
+        string $model = 'mistral-ocr-latest',
+        ?bool $includeImageBase64 = null,
+    ): OCRResponse {
+        return $this->processBase64($base64, $mimeType, $model, $includeImageBase64)->dto();
     }
 }

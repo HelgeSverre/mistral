@@ -5,7 +5,11 @@ namespace HelgeSverre\Mistral\Resource;
 use Generator;
 use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Conversations\ConversationAppendRequest;
+use HelgeSverre\Mistral\Dto\Conversations\ConversationHistory;
+use HelgeSverre\Mistral\Dto\Conversations\ConversationList;
+use HelgeSverre\Mistral\Dto\Conversations\ConversationMessages;
 use HelgeSverre\Mistral\Dto\Conversations\ConversationRequest;
+use HelgeSverre\Mistral\Dto\Conversations\ConversationResponse;
 use HelgeSverre\Mistral\Dto\Conversations\ConversationRestartRequest;
 use HelgeSverre\Mistral\Requests\Conversations\AppendToConversationRequest;
 use HelgeSverre\Mistral\Requests\Conversations\AppendToConversationStreamRequest;
@@ -33,6 +37,14 @@ class Conversations extends BaseResource
     }
 
     /**
+     * Create a new conversation and return typed DTO
+     */
+    public function createDto(ConversationRequest $request): ConversationResponse
+    {
+        return $this->create($request)->dto();
+    }
+
+    /**
      * Create a new conversation with streaming
      *
      * @return Generator<array>
@@ -55,6 +67,14 @@ class Conversations extends BaseResource
     }
 
     /**
+     * List all conversations with optional pagination and return typed DTO
+     */
+    public function listDto(?int $page = null, ?int $pageSize = null, ?string $order = null): ConversationList
+    {
+        return $this->list($page, $pageSize, $order)->dto();
+    }
+
+    /**
      * Get a specific conversation by ID
      */
     public function get(string $conversationId): Response
@@ -63,11 +83,27 @@ class Conversations extends BaseResource
     }
 
     /**
+     * Get a specific conversation by ID and return typed DTO
+     */
+    public function getDto(string $conversationId): ConversationResponse
+    {
+        return $this->get($conversationId)->dto();
+    }
+
+    /**
      * Append messages to an existing conversation
      */
     public function append(string $conversationId, ConversationAppendRequest $request): Response
     {
         return $this->connector->send(new AppendToConversationRequest($conversationId, $request));
+    }
+
+    /**
+     * Append messages to an existing conversation and return typed DTO
+     */
+    public function appendDto(string $conversationId, ConversationAppendRequest $request): ConversationResponse
+    {
+        return $this->append($conversationId, $request)->dto();
     }
 
     /**
@@ -93,6 +129,14 @@ class Conversations extends BaseResource
     }
 
     /**
+     * Get the full conversation history and return typed DTO
+     */
+    public function getHistoryDto(string $conversationId): ConversationHistory
+    {
+        return $this->getHistory($conversationId)->dto();
+    }
+
+    /**
      * Get only the messages from a conversation (filtered)
      */
     public function getMessages(string $conversationId): Response
@@ -101,11 +145,27 @@ class Conversations extends BaseResource
     }
 
     /**
+     * Get only the messages from a conversation and return typed DTO
+     */
+    public function getMessagesDto(string $conversationId): ConversationMessages
+    {
+        return $this->getMessages($conversationId)->dto();
+    }
+
+    /**
      * Restart a conversation from a specific entry point
      */
     public function restart(string $conversationId, ConversationRestartRequest $request): Response
     {
         return $this->connector->send(new RestartConversationRequest($conversationId, $request));
+    }
+
+    /**
+     * Restart a conversation from a specific entry point and return typed DTO
+     */
+    public function restartDto(string $conversationId, ConversationRestartRequest $request): ConversationResponse
+    {
+        return $this->restart($conversationId, $request)->dto();
     }
 
     /**
