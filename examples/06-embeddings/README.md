@@ -65,8 +65,8 @@ $request = EmbeddingRequest::from([
     'input' => 'The quick brown fox jumps over the lazy dog.',
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$embedding = $response->data[0]->embedding; // Array of 1024 floats
+$dto = $mistral->embeddings()->createDto($request);
+$embedding = $dto->data[0]->embedding; // Array of 1024 floats
 
 echo "Embedding dimensions: " . count($embedding) . "\n";
 echo "First 5 values: " . implode(', ', array_slice($embedding, 0, 5)) . "\n";
@@ -83,8 +83,8 @@ $request = EmbeddingRequest::from([
     'input' => $texts,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-echo "Generated " . count($response->data) . " embeddings\n";
+$dto = $mistral->embeddings()->createDto($request);
+echo "Generated " . count($dto->data) . " embeddings\n";
 ```
 
 ### Semantic Search Implementation
@@ -113,10 +113,10 @@ class SemanticSearch
             'input' => $documents,
         ]);
 
-        $response = $this->client->embeddings()->create($request);
+        $dto = $this->client->embeddings()->createDto($request);
 
         // Store embeddings
-        foreach ($response->data as $embedding) {
+        foreach ($dto->data as $embedding) {
             $this->embeddings[] = $embedding->embedding;
         }
     }
@@ -129,8 +129,8 @@ class SemanticSearch
             'input' => $query,
         ]);
 
-        $response = $this->client->embeddings()->create($request);
-        $queryEmbedding = $response->data[0]->embedding;
+        $dto = $this->client->embeddings()->createDto($request);
+        $queryEmbedding = $dto->data[0]->embedding;
 
         // Calculate similarities
         $similarities = [];
@@ -204,9 +204,9 @@ class DocumentClusterer
             'input' => $documents,
         ]);
 
-        $response = $this->client->embeddings()->create($request);
+        $dto = $this->client->embeddings()->createDto($request);
 
-        foreach ($response->data as $embedding) {
+        foreach ($dto->data as $embedding) {
             $this->embeddings[] = $embedding->embedding;
         }
 
@@ -343,8 +343,8 @@ $request = EmbeddingRequest::from([
     'input' => $text,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$embedding = $response->data[0]->embedding;
+$dto = $mistral->embeddings()->createDto($request);
+$embedding = $dto->data[0]->embedding;
 
 echo "Text: \"{$text}\"\n";
 echo "Embedding dimensions: " . count($embedding) . "\n";
@@ -372,8 +372,8 @@ $request = EmbeddingRequest::from([
     'input' => $sentences,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$embeddings = array_map(fn($d) => $d->embedding, $response->data);
+$dto = $mistral->embeddings()->createDto($request);
+$embeddings = array_map(fn($d) => $d->embedding, $dto->data);
 
 // Calculate similarity matrix
 echo "Similarity Matrix (cosine similarity):\n\n";
@@ -434,8 +434,8 @@ $request = EmbeddingRequest::from([
     'input' => $knowledgeBase,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$docEmbeddings = array_map(fn($d) => $d->embedding, $response->data);
+$dto = $mistral->embeddings()->createDto($request);
+$docEmbeddings = array_map(fn($d) => $d->embedding, $dto->data);
 
 // Perform searches
 $queries = [
@@ -453,8 +453,8 @@ foreach ($queries as $query) {
         'input' => $query,
     ]);
 
-    $response = $mistral->embeddings()->create($request);
-    $queryEmbedding = $response->data[0]->embedding;
+    $dto = $mistral->embeddings()->createDto($request);
+    $queryEmbedding = $dto->data[0]->embedding;
 
     // Find most similar documents
     $similarities = [];
@@ -490,8 +490,8 @@ $request = EmbeddingRequest::from([
     'input' => $documents,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$docEmbeddings = array_map(fn($d) => $d->embedding, $response->data);
+$dto = $mistral->embeddings()->createDto($request);
+$docEmbeddings = array_map(fn($d) => $d->embedding, $dto->data);
 
 echo "Detecting near-duplicates (similarity > 0.85):\n\n";
 
@@ -533,8 +533,8 @@ $request = EmbeddingRequest::from([
     'input' => $questions,
 ]);
 
-$response = $mistral->embeddings()->create($request);
-$questionEmbeddings = array_map(fn($d) => $d->embedding, $response->data);
+$dto = $mistral->embeddings()->createDto($request);
+$questionEmbeddings = array_map(fn($d) => $d->embedding, $dto->data);
 
 // User questions
 $userQuestions = [
@@ -551,8 +551,8 @@ foreach ($userQuestions as $userQ) {
         'input' => $userQ,
     ]);
 
-    $response = $mistral->embeddings()->create($request);
-    $userEmbedding = $response->data[0]->embedding;
+    $dto = $mistral->embeddings()->createDto($request);
+    $userEmbedding = $dto->data[0]->embedding;
 
     // Find best match
     $bestMatch = -1;

@@ -8,7 +8,7 @@
  * Prerequisites: MISTRAL_API_KEY in .env file
  *
  * Note: Moderation endpoints are part of the Classifications resource (tagged as 'classifiers' in the API).
- * You can use $mistral->classifications()->moderate() or the deprecated $mistral->moderations()->moderate().
+ * Use $mistral->classifications()->moderate() for content moderation.
  *
  * @see https://docs.mistral.ai/capabilities/guardrailing/
  */
@@ -72,7 +72,7 @@ function basicModeration(Mistral $mistral): void
             input: $input,
         );
 
-        $dto = $response->dto();
+        $dto = $response->dtoOrFail();
 
         // Check moderation results
         $result = $dto->results->first();
@@ -138,10 +138,10 @@ function chatModeration(Mistral $mistral): void
     // Moderate the entire conversation
     $response = $mistral->classifications()->moderateChat(
         model: 'mistral-moderation-latest',
-        messages: $conversation,
+        input: $conversation,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
 
     echo "✅ Moderation completed\n\n";
 
@@ -192,7 +192,7 @@ function multiCategoryModeration(Mistral $mistral): void
         input: $testContent,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $result = $dto->results->first();
 
     echo "📋 Moderation Categories:\n";
@@ -278,7 +278,7 @@ function moderationPipeline(Mistral $mistral): void
         input: $userInput,
     );
 
-    $moderationResult = $moderationResponse->dto()->results->first();
+    $moderationResult = $moderationResponse->dtoOrFail()->results->first();
 
     // Check if content is safe using the isFlagged() method
     $isSafe = ! $moderationResult->isFlagged();
@@ -333,7 +333,7 @@ function moderationPipeline(Mistral $mistral): void
             maxTokens: 500,
         );
 
-        $aiResponse = $chatResponse->dto()->choices[0]->message->content;
+        $aiResponse = $chatResponse->dtoOrFail()->choices[0]->message->content;
 
         echo "AI Response generated\n\n";
 
@@ -346,7 +346,7 @@ function moderationPipeline(Mistral $mistral): void
             input: $aiResponse,
         );
 
-        $outputResult = $outputModeration->dto()->results->first();
+        $outputResult = $outputModeration->dtoOrFail()->results->first();
 
         // Check using the isFlagged() method
         if (! $outputResult->isFlagged()) {

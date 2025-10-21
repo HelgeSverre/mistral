@@ -136,7 +136,11 @@ function calculateSimilarity(Mistral $mistral): void
     );
 
     $dto = $response->dto();
-    $embeddings = $dto->data->map(fn ($item) => $item->embedding ?? [])->toArray();
+    // Extract embeddings from DataCollection
+    $embeddings = [];
+    foreach ($dto->data as $item) {
+        $embeddings[] = $item->embedding ?? [];
+    }
 
     // Calculate similarity matrix
     echo "📊 Similarity Matrix:\n";
@@ -207,7 +211,11 @@ function semanticSearch(Mistral $mistral): void
         model: Model::embed->value,
     );
 
-    $docEmbeddings = $docResponse->dto()->data->map(fn ($item) => $item->embedding ?? [])->toArray();
+    // Extract embeddings from DataCollection
+    $docEmbeddings = [];
+    foreach ($docResponse->dto()->data as $item) {
+        $docEmbeddings[] = $item->embedding ?? [];
+    }
     echo "✅ Document embeddings cached\n\n";
 
     // Search queries
@@ -303,7 +311,11 @@ function textClustering(Mistral $mistral): void
         model: Model::embed->value,
     );
 
-    $embeddings = $response->dto()->data->map(fn ($item) => $item->embedding ?? [])->toArray();
+    // Extract embeddings from DataCollection
+    $embeddings = [];
+    foreach ($response->dto()->data as $item) {
+        $embeddings[] = $item->embedding ?? [];
+    }
     echo "✅ Embeddings generated\n\n";
 
     // Simple clustering: find groups of similar texts

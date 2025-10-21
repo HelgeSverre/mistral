@@ -100,7 +100,7 @@ function simpleFunctionCalling(Mistral $mistral): void
         maxTokens: 500,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $choice = $dto->choices->first();
     if (! $choice) {
         echo "❌ No response received\n\n";
@@ -155,7 +155,7 @@ function simpleFunctionCalling(Mistral $mistral): void
             maxTokens: 200,
         );
 
-        $finalDto = $finalResponse->dto();
+        $finalDto = $finalResponse->dtoOrFail();
         $finalChoice = $finalDto->choices->first();
         if ($finalChoice) {
             echo "🤖 Assistant final response:\n";
@@ -273,7 +273,7 @@ function multipleFunctions(Mistral $mistral): void
             maxTokens: 500,
         );
 
-        $dto = $response->dto();
+        $dto = $response->dtoOrFail();
         $choice = $dto->choices->first();
         if (! $choice) {
             echo "❌ No response received\n\n";
@@ -382,7 +382,7 @@ function weatherAssistant(Mistral $mistral): void
         maxTokens: 500,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $choice = $dto->choices->first();
     if (! $choice) {
         echo "❌ No response received\n\n";
@@ -437,7 +437,7 @@ function weatherAssistant(Mistral $mistral): void
             maxTokens: 300,
         );
 
-        $finalDto = $finalResponse->dto();
+        $finalDto = $finalResponse->dtoOrFail();
         $finalChoice = $finalDto->choices->first();
         if ($finalChoice) {
             echo "🤖 Assistant:\n";

@@ -385,8 +385,8 @@ $request = ChatCompletionRequest::from([
     'toolChoice' => 'auto',
 ]);
 
-$response = $mistral->chat()->create($request);
-$assistantMessage = $response->choices[0]->message;
+$dto = $mistral->chat()->createDto($request);
+$assistantMessage = $dto->choices[0]->message;
 
 echo "User: What's the weather like in Paris, France? Give me details.\n\n";
 
@@ -413,8 +413,8 @@ if (!empty($assistantMessage->toolCalls)) {
         'messages' => $messages,
     ]);
 
-    $finalResponse = $mistral->chat()->create($finalRequest);
-    echo "Final response: " . $finalResponse->choices[0]->message->content . "\n\n";
+    $finalDto = $mistral->chat()->createDto($finalRequest);
+    echo "Final response: " . $finalDto->choices[0]->message->content . "\n\n";
 }
 
 // Example 2: Database Operations
@@ -492,12 +492,12 @@ $request = ChatCompletionRequest::from([
     'tools' => [$databaseTool],
 ]);
 
-$response = $mistral->chat()->create($request);
+$dto = $mistral->chat()->createDto($request);
 echo "Query: Find all electronic products\n";
 
 // Process function calls
-if (!empty($response->choices[0]->message->toolCalls)) {
-    foreach ($response->choices[0]->message->toolCalls as $toolCall) {
+if (!empty($dto->choices[0]->message->toolCalls)) {
+    foreach ($dto->choices[0]->message->toolCalls as $toolCall) {
         $args = json_decode($toolCall->function->arguments, true);
         $result = database_query($args);
         echo "Database returned: " . count($result['results'] ?? []) . " products\n";
@@ -577,8 +577,8 @@ $request = ChatCompletionRequest::from([
 
 echo "Question: What is 15 squared plus the square root of 144?\n\n";
 
-$response = $mistral->chat()->create($request);
-$assistantMessage = $response->choices[0]->message;
+$dto = $mistral->chat()->createDto($request);
+$assistantMessage = $dto->choices[0]->message;
 
 // AI might make multiple function calls
 if (!empty($assistantMessage->toolCalls)) {
@@ -604,8 +604,8 @@ if (!empty($assistantMessage->toolCalls)) {
         'messages' => $messages,
     ]);
 
-    $finalResponse = $mistral->chat()->create($finalRequest);
-    echo "\nFinal answer: " . $finalResponse->choices[0]->message->content . "\n";
+    $finalDto = $mistral->chat()->createDto($finalRequest);
+    echo "\nFinal answer: " . $finalDto->choices[0]->message->content . "\n";
 }
 
 // Example 4: Forced Function Usage
@@ -628,10 +628,10 @@ $request = ChatCompletionRequest::from([
 echo "User: Hello, how are you?\n";
 echo "Forcing AI to use weather tool...\n\n";
 
-$response = $mistral->chat()->create($request);
+$dto = $mistral->chat()->createDto($request);
 
-if (!empty($response->choices[0]->message->toolCalls)) {
-    $functionCall = $response->choices[0]->message->toolCalls[0];
+if (!empty($dto->choices[0]->message->toolCalls)) {
+    $functionCall = $dto->choices[0]->message->toolCalls[0];
     echo "AI called: {$functionCall->function->name}\n";
     echo "Even though it wasn't necessary for the query!\n";
 }

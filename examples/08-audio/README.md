@@ -76,11 +76,11 @@ $request = AudioTranscriptionRequest::from([
     'temperature' => 0.0, // Lower = more accurate
 ]);
 
-$response = $mistral->audio()->transcribe($request);
-$transcription = $response->text;
+$dto = $mistral->audio()->transcribeDto($request);
+$transcription = $dto->text;
 
 echo "Transcription:\n{$transcription}\n";
-echo "Duration: {$response->duration} seconds\n";
+echo "Duration: {$dto->duration} seconds\n";
 ```
 
 ### Advanced Audio Processor
@@ -138,17 +138,17 @@ class AudioProcessor
 
         // Send request
         $request = AudioTranscriptionRequest::from($requestData);
-        $response = $this->client->audio()->transcribe($request);
+        $dto = $this->client->audio()->transcribeDto($request);
 
         // Process response based on format
         if ($requestData['response_format'] ?? null === 'verbose_json') {
-            return $this->processVerboseResponse($response);
+            return $this->processVerboseResponse($dto);
         }
 
         return [
-            'text' => $response->text,
-            'duration' => $response->duration ?? null,
-            'language' => $response->language ?? $options['language'] ?? 'unknown',
+            'text' => $dto->text,
+            'duration' => $dto->duration ?? null,
+            'language' => $dto->language ?? $options['language'] ?? 'unknown',
         ];
     }
 
@@ -179,13 +179,13 @@ class AudioProcessor
         ];
     }
 
-    private function processVerboseResponse($response): array
+    private function processVerboseResponse($dto): array
     {
         $segments = [];
         $words = [];
 
-        if (isset($response->segments)) {
-            foreach ($response->segments as $segment) {
+        if (isset($dto->segments)) {
+            foreach ($dto->segments as $segment) {
                 $segments[] = [
                     'start' => $segment->start,
                     'end' => $segment->end,
@@ -207,11 +207,11 @@ class AudioProcessor
         }
 
         return [
-            'text' => $response->text,
+            'text' => $dto->text,
             'segments' => $segments,
             'words' => $words,
-            'duration' => $response->duration ?? null,
-            'language' => $response->language ?? null,
+            'duration' => $dto->duration ?? null,
+            'language' => $dto->language ?? null,
         ];
     }
 
@@ -258,16 +258,16 @@ class MeetingTranscriber
             'temperature' => 0.0,
         ]);
 
-        $response = $this->client->audio()->transcribe($request);
+        $dto = $this->client->audio()->transcribeDto($request);
 
         // Extract meeting insights
-        $transcript = $response->text;
+        $transcript = $dto->text;
         $insights = $this->extractMeetingInsights($transcript);
 
         return [
             'transcript' => $transcript,
-            'duration' => $response->duration,
-            'segments' => $response->segments,
+            'duration' => $dto->duration,
+            'segments' => $dto->segments,
             'insights' => $insights,
         ];
     }
@@ -296,8 +296,8 @@ class MeetingTranscriber
             'responseFormat' => ['type' => 'json_object'],
         ]);
 
-        $response = $this->client->chat()->create($request);
-        return json_decode($response->choices[0]->message->content, true);
+        $dto = $this->client->chat()->createDto($request);
+        return json_decode($dto->choices[0]->message->content, true);
     }
 
     public function generateSummary(string $transcript): string
@@ -314,8 +314,8 @@ class MeetingTranscriber
             'maxTokens' => 500,
         ]);
 
-        $response = $this->client->chat()->create($request);
-        return $response->choices[0]->message->content;
+        $dto = $this->client->chat()->createDto($request);
+        return $dto->choices[0]->message->content;
     }
 }
 ```
@@ -357,9 +357,9 @@ $request = AudioTranscriptionRequest::from([
 ]);
 
 try {
-    $response = $mistral->audio()->transcribe($request);
-    echo "Transcription: " . $response->text . "\n";
-    echo "Duration: " . ($response->duration ?? 'N/A') . " seconds\n\n";
+    $dto = $mistral->audio()->transcribeDto($request);
+    echo "Transcription: " . $dto->text . "\n";
+    echo "Duration: " . ($dto->duration ?? 'N/A') . " seconds\n\n";
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n\n";
 }
@@ -380,8 +380,8 @@ foreach ($languages as $lang) {
     ]);
 
     try {
-        $response = $mistral->audio()->transcribe($request);
-        echo "  Result: " . substr($response->text, 0, 100) . "...\n";
+        $dto = $mistral->audio()->transcribeDto($request);
+        echo "  Result: " . substr($dto->text, 0, 100) . "...\n";
     } catch (Exception $e) {
         echo "  Error: " . $e->getMessage() . "\n";
     }
@@ -400,13 +400,13 @@ $request = AudioTranscriptionRequest::from([
 ]);
 
 try {
-    $response = $mistral->audio()->transcribe($request);
+    $dto = $mistral->audio()->transcribeDto($request);
 
-    echo "Full text: " . $response->text . "\n\n";
+    echo "Full text: " . $dto->text . "\n\n";
 
-    if (isset($response->segments)) {
+    if (isset($dto->segments)) {
         echo "Segments with timestamps:\n";
-        foreach ($response->segments as $segment) {
+        foreach ($dto->segments as $segment) {
             echo sprintf(
                 "  [%0.2f - %0.2f] %s\n",
                 $segment->start ?? 0,
@@ -416,9 +416,9 @@ try {
         }
     }
 
-    if (isset($response->words)) {
+    if (isset($dto->words)) {
         echo "\nWord-level timestamps (first 5 words):\n";
-        foreach (array_slice($response->words, 0, 5) as $word) {
+        foreach (array_slice($dto->words, 0, 5) as $word) {
             echo sprintf(
                 "  \"%s\" at %0.2fs\n",
                 $word->word ?? '',
@@ -449,8 +449,8 @@ try {
     echo "Original language: Spanish\n";
     echo "Translating to English...\n";
 
-    $response = $mistral->audio()->transcribe($request);
-    echo "Translation: " . $response->text . "\n\n";
+    $dto = $mistral->audio()->transcribeDto($request);
+    echo "Translation: " . $dto->text . "\n\n";
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n\n";
 }
@@ -472,13 +472,13 @@ $request = AudioTranscriptionRequest::from([
 ]);
 
 try {
-    $response = $mistral->audio()->transcribe($request);
+    $dto = $mistral->audio()->transcribeDto($request);
 
     echo "Podcast Transcript (excerpt):\n";
-    echo substr($response->text, 0, 300) . "...\n\n";
+    echo substr($dto->text, 0, 300) . "...\n\n";
 
     // Generate chapters from transcript
-    if ($response->text) {
+    if ($dto->text) {
         $chaptersRequest = ChatCompletionRequest::from([
             'model' => 'mistral-small-latest',
             'messages' => [
@@ -488,16 +488,16 @@ try {
                 ]),
                 ChatMessage::from([
                     'role' => Role::User,
-                    'content' => $response->text,
+                    'content' => $dto->text,
                 ]),
             ],
             'temperature' => 0.3,
             'maxTokens' => 500,
         ]);
 
-        $chaptersResponse = $mistral->chat()->create($chaptersRequest);
+        $chaptersDto = $mistral->chat()->createDto($chaptersRequest);
         echo "Generated Chapters:\n";
-        echo $chaptersResponse->choices[0]->message->content . "\n\n";
+        echo $chaptersDto->choices[0]->message->content . "\n\n";
     }
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n\n";
@@ -517,10 +517,10 @@ $request = AudioTranscriptionRequest::from([
 ]);
 
 try {
-    $response = $mistral->audio()->transcribe($request);
+    $dto = $mistral->audio()->transcribeDto($request);
 
     echo "Voice Note Transcript:\n";
-    echo $response->text . "\n\n";
+    echo $dto->text . "\n\n";
 
     // Extract tasks from voice note
     $tasksRequest = ChatCompletionRequest::from([
@@ -533,16 +533,16 @@ try {
             ]),
             ChatMessage::from([
                 'role' => Role::User,
-                'content' => $response->text,
+                'content' => $dto->text,
             ]),
         ],
         'temperature' => 0.0,
         'maxTokens' => 200,
     ]);
 
-    $tasksResponse = $mistral->chat()->create($tasksRequest);
+    $tasksDto = $mistral->chat()->createDto($tasksRequest);
     echo "Extracted Tasks:\n";
-    echo $tasksResponse->choices[0]->message->content . "\n\n";
+    echo $tasksDto->choices[0]->message->content . "\n\n";
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n\n";
 }

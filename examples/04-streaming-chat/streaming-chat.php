@@ -241,7 +241,7 @@ function streamingPerformance(Mistral $mistral): void
     );
 
     $nonStreamTime = microtime(true) - $start;
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $choice = $dto->choices->first();
     if (! $choice) {
         echo "❌ No response received\n\n";

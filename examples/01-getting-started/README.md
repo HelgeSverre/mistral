@@ -104,16 +104,16 @@ $request = ChatCompletionRequest::from([
 
 // Send the request
 try {
-    $response = $mistral->chat()->create($request);
+    $dto = $mistral->chat()->createDto($request);
 
     // Display the response
-    echo "Mistral says: " . $response->choices[0]->message->content . "\n";
+    echo "Mistral says: " . $dto->choices[0]->message->content . "\n";
 
     // Show token usage
     echo "\nTokens used:\n";
-    echo "- Prompt: {$response->usage->promptTokens}\n";
-    echo "- Completion: {$response->usage->completionTokens}\n";
-    echo "- Total: {$response->usage->totalTokens}\n";
+    echo "- Prompt: {$dto->usage->promptTokens}\n";
+    echo "- Completion: {$dto->usage->completionTokens}\n";
+    echo "- Total: {$dto->usage->totalTokens}\n";
 
 } catch (Exception $e) {
     echo "Error: " . $e->getMessage() . "\n";
@@ -158,18 +158,18 @@ $request = ChatCompletionRequest::from([
 
 try {
     // Send request to Mistral API
-    $response = $mistral->chat()->create($request);
+    $dto = $mistral->chat()->createDto($request);
 
     // Extract the assistant's response
-    $assistantMessage = $response->choices[0]->message->content;
+    $assistantMessage = $dto->choices[0]->message->content;
 
     // Display results
     echo "Question: What is the capital of France?\n";
     echo "Answer: {$assistantMessage}\n";
     echo "\n--- Statistics ---\n";
-    echo "Model: {$response->model}\n";
-    echo "Tokens used: {$response->usage->totalTokens}\n";
-    echo "Response time: " . round($response->usage->completionTime ?? 0, 2) . "s\n";
+    echo "Model: {$dto->model}\n";
+    echo "Tokens used: {$dto->usage->totalTokens}\n";
+    echo "Response time: " . round($dto->usage->completionTime ?? 0, 2) . "s\n";
 
 } catch (Exception $e) {
     echo "Error occurred: " . $e->getMessage() . "\n";
@@ -244,8 +244,8 @@ Add a follow-up message:
 Explore available models:
 
 ```php
-$models = $mistral->models()->list();
-foreach ($models->data as $model) {
+$dto = $mistral->models()->listDto();
+foreach ($dto->data as $model) {
     echo "Model: {$model->id}\n";
     echo "  Created: " . date('Y-m-d', $model->created) . "\n";
 }

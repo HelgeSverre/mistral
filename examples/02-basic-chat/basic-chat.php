@@ -71,7 +71,7 @@ function simpleQA(Mistral $mistral): void
     );
 
     // Display the response
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     printResponse($dto);
 
     // Extract just the text content
@@ -111,7 +111,7 @@ function multiTurnConversation(Mistral $mistral): void
         maxTokens: 200,
     );
 
-    $dto1 = $response1->dto();
+    $dto1 = $response1->dtoOrFail();
     $choice1 = $dto1->choices->first();
     if (! $choice1) {
         echo "❌ No response received from API\n";
@@ -142,7 +142,7 @@ function multiTurnConversation(Mistral $mistral): void
         maxTokens: 200,
     );
 
-    $dto2 = $response2->dto();
+    $dto2 = $response2->dtoOrFail();
     $choice2 = $dto2->choices->first();
     if (! $choice2) {
         echo "❌ No response received from API\n";
@@ -187,7 +187,7 @@ function systemPromptExample(Mistral $mistral): void
         maxTokens: 150,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     echo "🏴‍☠️ Pirate Assistant Response:\n";
     printResponse($dto);
 
@@ -208,7 +208,7 @@ function systemPromptExample(Mistral $mistral): void
         maxTokens: 150,
     );
 
-    $normalDto = $normalResponse->dto();
+    $normalDto = $normalResponse->dtoOrFail();
     echo "🤖 Normal Assistant Response:\n";
     printResponse($normalDto);
 
@@ -268,7 +268,7 @@ function messageRolesExample(Mistral $mistral): void
         maxTokens: 200,
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     printResponse($dto);
 
     echo "📚 Best Practices:\n";

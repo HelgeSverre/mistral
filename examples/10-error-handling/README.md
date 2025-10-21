@@ -71,8 +71,8 @@ use Saloon\Exceptions\Request\Statuses\TooManyRequestsException;
 function safeApiCall(Mistral $client, ChatCompletionRequest $request): ?string
 {
     try {
-        $response = $client->chat()->create($request);
-        return $response->choices[0]->message->content;
+        $dto = $client->chat()->createDto($request);
+        return $dto->choices[0]->message->content;
 
     } catch (UnauthorizedException $e) {
         error_log("Authentication failed: Check your API key");
@@ -484,8 +484,8 @@ function handleBasicErrors(string $apiKey): void
         echo "Testing: {$test['name']}\n";
 
         try {
-            $response = $client->chat()->create($test['request']);
-            echo "  ✓ Success: " . substr($response->choices[0]->message->content, 0, 50) . "\n";
+            $dto = $client->chat()->createDto($test['request']);
+            echo "  ✓ Success: " . substr($dto->choices[0]->message->content, 0, 50) . "\n";
 
         } catch (RequestException $e) {
             $status = $e->getStatus();
@@ -522,9 +522,9 @@ class RetryClient
         while ($attempt < $this->maxRetries) {
             try {
                 echo "  Attempt " . ($attempt + 1) . "/{$this->maxRetries}...";
-                $response = $this->client->chat()->create($request);
+                $dto = $this->client->chat()->createDto($request);
                 echo " Success!\n";
-                return $response;
+                return $dto;
 
             } catch (RequestException $e) {
                 $status = $e->getStatus();
@@ -571,9 +571,9 @@ $request = ChatCompletionRequest::from([
 
 echo "Testing retry logic:\n";
 try {
-    $response = $retryClient->createChatCompletion($request);
-    if ($response) {
-        echo "Final result: " . $response->choices[0]->message->content . "\n";
+    $dto = $retryClient->createChatCompletion($request);
+    if ($dto) {
+        echo "Final result: " . $dto->choices[0]->message->content . "\n";
     }
 } catch (Exception $e) {
     echo "Failed after retries: " . $e->getMessage() . "\n";
@@ -601,10 +601,10 @@ class RateLimitHandler
         $this->enforceRateLimit();
 
         try {
-            $response = $this->client->chat()->create($request);
+            $dto = $this->client->chat()->createDto($request);
             $this->requestCount++;
             $this->lastRequestTime = microtime(true);
-            return $response;
+            return $dto;
 
         } catch (RequestException $e) {
             if ($e->getStatus() === 429) {
@@ -656,7 +656,7 @@ for ($i = 1; $i <= 3; $i++) {
     ]);
 
     try {
-        $response = $rateLimitHandler->request($request);
+        $dto = $rateLimitHandler->request($request);
         echo "Success\n";
     } catch (Exception $e) {
         echo "Error: " . $e->getMessage() . "\n";
@@ -696,7 +696,7 @@ for ($i = 1; $i <= 5; $i++) {
                 'maxTokens' => 5,
             ]);
 
-            return $client->chat()->create($request);
+            return $client->chat()->createDto($request);
         });
 
         echo "Success\n";
@@ -723,7 +723,7 @@ $fallbackHandler->addStrategy('primary', function($context) use ($client) {
         'maxTokens' => 100,
     ]);
 
-    return $client->chat()->create($request);
+    return $client->chat()->createDto($request);
 }, 100);
 
 // Fallback 1: Use smaller model
@@ -736,7 +736,7 @@ $fallbackHandler->addStrategy('fallback1', function($context) use ($client) {
         'maxTokens' => 50,
     ]);
 
-    return $client->chat()->create($request);
+    return $client->chat()->createDto($request);
 }, 50);
 
 // Fallback 2: Return cached/default response

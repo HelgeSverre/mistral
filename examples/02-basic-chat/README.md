@@ -136,8 +136,8 @@ class ChatSession
         ]);
 
         // Get response
-        $response = $this->client->chat()->create($request);
-        $assistantMessage = $response->choices[0]->message;
+        $dto = $this->client->chat()->createDto($request);
+        $assistantMessage = $dto->choices[0]->message;
 
         // Add assistant response to history
         $this->messages[] = $assistantMessage;
@@ -195,9 +195,9 @@ $simpleRequest = ChatCompletionRequest::from([
     'temperature' => 0.3, // Lower temperature for factual responses
 ]);
 
-$response = $mistral->chat()->create($simpleRequest);
+$dto = $mistral->chat()->createDto($simpleRequest);
 echo "Question: What are the three primary colors?\n";
-echo "Answer: " . $response->choices[0]->message->content . "\n\n";
+echo "Answer: " . $dto->choices[0]->message->content . "\n\n";
 
 // Example 2: Chat with System Message
 echo "=== Example 2: Chat with System Message ===\n\n";
@@ -218,9 +218,9 @@ $systemRequest = ChatCompletionRequest::from([
     'temperature' => 0.8, // Higher temperature for creative responses
 ]);
 
-$response = $mistral->chat()->create($systemRequest);
+$dto = $mistral->chat()->createDto($systemRequest);
 echo "Question: How do I install PHP? (as a pirate)\n";
-echo "Answer: " . $response->choices[0]->message->content . "\n\n";
+echo "Answer: " . $dto->choices[0]->message->content . "\n\n";
 
 // Example 3: Multi-turn Conversation
 echo "=== Example 3: Multi-turn Conversation ===\n\n";
@@ -242,8 +242,8 @@ $request = ChatCompletionRequest::from([
     'messages' => $conversation,
 ]);
 
-$response = $mistral->chat()->create($request);
-$firstAnswer = $response->choices[0]->message;
+$dto = $mistral->chat()->createDto($request);
+$firstAnswer = $dto->choices[0]->message;
 echo "User: What is a PHP trait?\n";
 echo "Assistant: " . $firstAnswer->content . "\n\n";
 
@@ -261,14 +261,14 @@ $request = ChatCompletionRequest::from([
     'messages' => $conversation,
 ]);
 
-$response = $mistral->chat()->create($request);
+$dto = $mistral->chat()->createDto($request);
 echo "User: Can you show me a simple example?\n";
-echo "Assistant: " . $response->choices[0]->message->content . "\n\n";
+echo "Assistant: " . $dto->choices[0]->message->content . "\n\n";
 
 // Display token usage summary
 echo "=== Token Usage Summary ===\n";
-echo "Total tokens used: " . $response->usage->totalTokens . "\n";
-echo "Approximate cost: $" . number_format($response->usage->totalTokens * 0.00002, 6) . "\n";
+echo "Total tokens used: " . $dto->usage->totalTokens . "\n";
+echo "Approximate cost: $" . number_format($dto->usage->totalTokens * 0.00002, 6) . "\n";
 ```
 
 ## Expected Output

@@ -73,10 +73,10 @@ $request = ModerationRequest::from([
     'input' => $content,
 ]);
 
-$response = $mistral->moderations()->create($request);
+$dto = $mistral->classifications()->moderateDto($request);
 
 // Check results
-foreach ($response->results as $result) {
+foreach ($dto->results as $result) {
     if ($result->flagged) {
         echo "Content flagged for moderation!\n";
         echo "Categories violated:\n";
@@ -150,8 +150,8 @@ class ContentModerator
         ]);
 
         try {
-            $response = $this->client->moderations()->create($request);
-            return $this->analyzeResponse($response, $context);
+            $dto = $this->client->classifications()->moderateDto($request);
+            return $this->analyzeResponse($dto, $context);
         } catch (Exception $e) {
             // Fallback to conservative approach on error
             return [
@@ -162,9 +162,9 @@ class ContentModerator
         }
     }
 
-    private function analyzeResponse($response, array $context): array
+    private function analyzeResponse($dto, array $context): array
     {
-        $result = $response->results[0];
+        $result = $dto->results[0];
         $action = 'approve';
         $violations = [];
         $maxScore = 0;
@@ -498,8 +498,8 @@ foreach ($testContents as $content) {
     ]);
 
     try {
-        $response = $mistral->moderations()->create($request);
-        $result = $response->results[0];
+        $dto = $mistral->classifications()->moderateDto($request);
+        $result = $dto->results[0];
 
         if ($result->flagged) {
             echo "  ❌ FLAGGED - Categories: ";
@@ -542,8 +542,8 @@ class ThresholdModerator
             'input' => $content,
         ]);
 
-        $response = $this->client->moderations()->create($request);
-        $result = $response->results[0];
+        $dto = $this->client->classifications()->moderateDto($request);
+        $result = $dto->results[0];
 
         $violations = [];
         foreach ($result->categoryScores as $category => $score) {
@@ -633,11 +633,11 @@ foreach ($userComments as $userId => $comment) {
         'input' => $comment,
     ]);
 
-    $response = $mistral->moderations()->create($request);
+    $dto = $mistral->classifications()->moderateDto($request);
     $results[$userId] = [
         'comment' => $comment,
-        'flagged' => $response->results[0]->flagged,
-        'scores' => $response->results[0]->categoryScores,
+        'flagged' => $dto->results[0]->flagged,
+        'scores' => $dto->results[0]->categoryScores,
     ];
 }
 
@@ -687,8 +687,8 @@ function moderateWithContext(
         'input' => $fullContent,
     ]);
 
-    $response = $client->moderations()->create($request);
-    $result = $response->results[0];
+    $dto = $client->classifications()->moderateDto($request);
+    $result = $dto->results[0];
 
     return [
         'message' => $message,
@@ -741,8 +741,8 @@ foreach ($multilingualContent as $lang => $content) {
         'input' => $content,
     ]);
 
-    $response = $mistral->moderations()->create($request);
-    $result = $response->results[0];
+    $dto = $mistral->classifications()->moderateDto($request);
+    $result = $dto->results[0];
 
     echo "Language: {$lang}\n";
     echo "  Content: \"{$content}\"\n";
@@ -820,8 +820,8 @@ foreach ($sampleContents as $content) {
         'input' => $content,
     ]);
 
-    $response = $mistral->moderations()->create($request);
-    $analytics->addResult($response->results[0]);
+    $dto = $mistral->classifications()->moderateDto($request);
+    $analytics->addResult($dto->results[0]);
 }
 
 $report = $analytics->getReport();

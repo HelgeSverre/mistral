@@ -82,8 +82,8 @@ function testTemperature(Mistral $client, float $temperature): string
         'maxTokens' => 50,
     ]);
 
-    $response = $client->chat()->create($request);
-    return $response->choices[0]->message->content;
+    $dto = $client->chat()->createDto($request);
+    return $dto->choices[0]->message->content;
 }
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
@@ -155,8 +155,8 @@ class ParameterTester
             'maxTokens' => 100,
         ]);
 
-        $response = $this->client->chat()->create($request);
-        return $response->choices[0]->message->content;
+        $dto = $this->client->chat()->createDto($request);
+        return $dto->choices[0]->message->content;
     }
 }
 ```
@@ -189,19 +189,19 @@ function generateWithLengthControl(
         'temperature' => 0.7,
     ]);
 
-    $response = $client->chat()->create($request);
-    $content = $response->choices[0]->message->content;
+    $dto = $client->chat()->createDto($request);
+    $content = $dto->choices[0]->message->content;
 
     // Check if response meets minimum length
-    $tokenCount = $response->usage->completionTokens;
+    $tokenCount = $dto->usage->completionTokens;
     if ($tokenCount < $minLength) {
         // Request expansion
         $request->messages[] = ChatMessage::from([
             'role' => Role::User,
             'content' => 'Please expand your response with more detail.',
         ]);
-        $response = $client->chat()->create($request);
-        $content = $response->choices[0]->message->content;
+        $dto = $client->chat()->createDto($request);
+        $content = $dto->choices[0]->message->content;
     }
 
     return $content;
@@ -247,8 +247,8 @@ foreach ($temperatures as $temp) {
         'maxTokens' => 20,
     ]);
 
-    $response = $mistral->chat()->create($request);
-    $name = trim($response->choices[0]->message->content);
+    $dto = $mistral->chat()->createDto($request);
+    $name = trim($dto->choices[0]->message->content);
     echo "Temperature {$temp}: {$name}\n";
 }
 
@@ -271,8 +271,8 @@ foreach ($topPValues as $topP) {
         'maxTokens' => 30,
     ]);
 
-    $response = $mistral->chat()->create($request);
-    $completion = trim($response->choices[0]->message->content);
+    $dto = $mistral->chat()->createDto($request);
+    $completion = trim($dto->choices[0]->message->content);
     echo "Top-p {$topP}: ...{$completion}\n";
 }
 
@@ -298,9 +298,9 @@ foreach ($lengthTests as $test) {
         'temperature' => 0.7,
     ]);
 
-    $response = $mistral->chat()->create($request);
-    $content = $response->choices[0]->message->content;
-    $tokenCount = $response->usage->completionTokens;
+    $dto = $mistral->chat()->createDto($request);
+    $content = $dto->choices[0]->message->content;
+    $tokenCount = $dto->usage->completionTokens;
 
     echo "{$test['label']}:\n";
     echo "Response ({$tokenCount} tokens): " . substr($content, 0, 200) . "...\n\n";
@@ -322,9 +322,9 @@ $request = ChatCompletionRequest::from([
     'stop' => ['6.', 'Thank you'], // Stop at "6." or "Thank you"
 ]);
 
-$response = $mistral->chat()->create($request);
+$dto = $mistral->chat()->createDto($request);
 echo "List with stop sequence:\n";
-echo $response->choices[0]->message->content . "\n\n";
+echo $dto->choices[0]->message->content . "\n\n";
 
 // Example 5: Seed for Reproducibility
 echo "=== Example 5: Reproducible Outputs with Seed ===\n\n";
@@ -346,8 +346,8 @@ for ($i = 1; $i <= 3; $i++) {
         'maxTokens' => 20,
     ]);
 
-    $response = $mistral->chat()->create($request);
-    echo "Attempt {$i}: " . $response->choices[0]->message->content . "\n";
+    $dto = $mistral->chat()->createDto($request);
+    echo "Attempt {$i}: " . $dto->choices[0]->message->content . "\n";
 }
 
 // Example 6: Parameter Combinations for Different Use Cases
@@ -390,11 +390,11 @@ foreach ($useCases as $useCase) {
         'maxTokens' => 100,
     ]);
 
-    $response = $mistral->chat()->create($request);
+    $dto = $mistral->chat()->createDto($request);
 
     echo "{$useCase['name']}:\n";
     echo "  Params: temp={$useCase['params']['temperature']}, top_p={$useCase['params']['topP']}\n";
-    echo "  Result: " . substr($response->choices[0]->message->content, 0, 150) . "...\n\n";
+    echo "  Result: " . substr($dto->choices[0]->message->content, 0, 150) . "...\n\n";
 }
 
 // Summary statistics

@@ -69,7 +69,7 @@ function main(): void
 
             // The response is a Saloon Response object
             // We can convert it to a DTO (Data Transfer Object) for type-safe access
-            $dto = $response->dto();
+            $dto = $response->dtoOrFail();
 
             // Display the AI's response
             printResponse($dto, showMetadata: true);
@@ -137,8 +137,7 @@ function verifyInstallation(Mistral $mistral): void
         $modelsResponse = $mistral->models()->list();
         if ($modelsResponse->successful()) {
 
-            /** @var \HelgeSverre\Mistral\Dto\Models\ModelList $models */
-            $models = $modelsResponse->dto();
+            $models = $modelsResponse->dtoOrFail();
             echo '  • Total models available: '.count($models->data)."\n";
 
             // Display first 5 models

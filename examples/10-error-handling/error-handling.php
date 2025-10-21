@@ -17,11 +17,12 @@ require_once __DIR__.'/../shared/bootstrap.php';
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Enums\Role;
 use HelgeSverre\Mistral\Mistral;
-use Saloon\Exceptions\Request\Statuses\BadRequestException;
+use Saloon\Exceptions\Request\ClientException;
 use Saloon\Exceptions\Request\Statuses\InternalServerErrorException;
 use Saloon\Exceptions\Request\Statuses\NotFoundException;
 use Saloon\Exceptions\Request\Statuses\TooManyRequestsException;
 use Saloon\Exceptions\Request\Statuses\UnauthorizedException;
+use Saloon\Exceptions\Request\Statuses\UnprocessableEntityException;
 use Saloon\Exceptions\Request\TimeoutException;
 
 /**
@@ -85,7 +86,7 @@ function commonApiErrors(Mistral $mistral): void
                     model: 'non-existent-model',
                 );
             },
-            'expected' => BadRequestException::class,
+            'expected' => ClientException::class,
         ],
         [
             'name' => 'Empty Messages',
@@ -96,7 +97,7 @@ function commonApiErrors(Mistral $mistral): void
                     model: Model::small->value,
                 );
             },
-            'expected' => BadRequestException::class,
+            'expected' => UnprocessableEntityException::class,
         ],
     ];
 
@@ -114,13 +115,15 @@ function commonApiErrors(Mistral $mistral): void
                 echo "✅ Caught expected error\n";
                 echo "Error message: {$e->getMessage()}\n";
 
-                // Handle specific error types
+                // Handle specific error types (check most specific first)
                 if ($e instanceof UnauthorizedException) {
                     echo "💡 Fix: Check your API key in .env file\n";
-                } elseif ($e instanceof BadRequestException) {
-                    echo "💡 Fix: Validate input parameters before sending\n";
+                } elseif ($e instanceof UnprocessableEntityException) {
+                    echo "💡 Fix: Check required fields and data structure\n";
                 } elseif ($e instanceof NotFoundException) {
                     echo "💡 Fix: Check resource ID or endpoint\n";
+                } elseif ($e instanceof ClientException) {
+                    echo "💡 Fix: Validate input parameters before sending\n";
                 }
             } else {
                 echo '⚠️ Caught unexpected error: '.get_class($e)."\n";
@@ -135,6 +138,7 @@ function commonApiErrors(Mistral $mistral): void
     echo "  • 401 Unauthorized: Invalid API key\n";
     echo "  • 403 Forbidden: Insufficient permissions\n";
     echo "  • 404 Not Found: Resource doesn't exist\n";
+    echo "  • 422 Unprocessable Entity: Missing required fields\n";
     echo "  • 429 Too Many Requests: Rate limit exceeded\n";
     echo "  • 500 Internal Server Error: API issue\n";
     echo "  • 503 Service Unavailable: Temporary outage\n\n";
@@ -177,7 +181,7 @@ function retryLogic(Mistral $mistral): void
 
             if ($response->successful()) {
                 echo "✅ Success on attempt {$attempt}\n";
-                $dto = $response->dto();
+                $dto = $response->dtoOrFail();
                 echo "Response: {$dto->choices[0]->message->content}\n\n";
                 $success = true;
             }
@@ -262,6 +266,7 @@ function timeoutHandling(): void
             maxTokens: 2000, // May take longer than 5s
         );
 
+        $response->dtoOrFail();
         echo "✅ Request completed within timeout\n\n";
 
     } catch (TimeoutException $e) {

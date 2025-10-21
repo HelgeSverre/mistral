@@ -82,7 +82,7 @@ function temperatureExample(Mistral $mistral): void
             maxTokens: 30,
         );
 
-        $dto = $response->dto();
+        $dto = $response->dtoOrFail();
         $choice = $dto->choices->first();
         if (! $choice) {
             echo "❌ No response received\n\n";
@@ -130,7 +130,7 @@ function maxTokensExample(Mistral $mistral): void
             temperature: 0.7,
         );
 
-        $dto = $response->dto();
+        $dto = $response->dtoOrFail();
         $choice = $dto->choices->first();
         if (! $choice) {
             echo "❌ No response received\n\n";
@@ -185,7 +185,7 @@ function topPExample(Mistral $mistral): void
             maxTokens: 50,
         );
 
-        $dto = $response->dto();
+        $dto = $response->dtoOrFail();
         $choice = $dto->choices->first();
         if (! $choice) {
             echo "❌ No response received\n\n";
@@ -230,7 +230,7 @@ function jsonModeExample(Mistral $mistral): void
         responseFormat: ['type' => 'json_object'],
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $choice = $dto->choices->first();
     if (! $choice) {
         echo "❌ No response received\n\n";
@@ -296,7 +296,7 @@ function stopSequenceExample(Mistral $mistral): void
         stop: "\n4.", // Stop when reaching item 4
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
     $choice = $dto->choices->first();
     if (! $choice) {
         echo "❌ No response received\n\n";
@@ -322,7 +322,7 @@ function stopSequenceExample(Mistral $mistral): void
         stop: ['The End', 'THE END', 'The end.'], // Multiple stop options
     );
 
-    $dto2 = $response2->dto();
+    $dto2 = $response2->dtoOrFail();
     $choice2 = $dto2->choices->first();
     if (! $choice2) {
         echo "❌ No response received\n\n";
@@ -363,7 +363,7 @@ function penaltiesExample(Mistral $mistral): void
         maxTokens: 150,
     );
 
-    $dto1 = $response1->dto();
+    $dto1 = $response1->dtoOrFail();
     $choice1 = $dto1->choices->first();
     if ($choice1) {
         echo $choice1->message->content."\n\n";
@@ -381,7 +381,7 @@ function penaltiesExample(Mistral $mistral): void
         frequencyPenalty: 0.8,
     );
 
-    $dto2 = $response2->dto();
+    $dto2 = $response2->dtoOrFail();
     $choice2 = $dto2->choices->first();
     if ($choice2) {
         echo $choice2->message->content."\n\n";
@@ -399,7 +399,7 @@ function penaltiesExample(Mistral $mistral): void
         presencePenalty: 0.8,
     );
 
-    $dto3 = $response3->dto();
+    $dto3 = $response3->dtoOrFail();
     $choice3 = $dto3->choices->first();
     if ($choice3) {
         echo $choice3->message->content."\n\n";

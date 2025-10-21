@@ -104,7 +104,7 @@ function basicTranscription(Mistral $mistral): void
         label: 'Audio Transcription',
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
 
     echo "✅ Transcription completed\n\n";
 
@@ -179,7 +179,7 @@ function transcriptionWithTimestamps(Mistral $mistral): void
         ],
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
 
     echo "✅ Transcription with timestamps completed\n\n";
 
@@ -294,7 +294,7 @@ function responseFormats(Mistral $mistral): void
         if ($item['format'] === ResponseFormat::TEXT) {
             echo 'Output: '.$response->body()."\n\n";
         } else {
-            $dto = $response->dto();
+            $dto = $response->dtoOrFail();
             $text = $dto->getText();
             if ($text !== null) {
                 echo "Text: {$text}\n";

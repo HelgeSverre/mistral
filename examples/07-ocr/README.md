@@ -73,7 +73,7 @@ $imageUrl = "data:image/jpeg;base64,{$imageData}";
 
 // Create OCR request
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::User,
@@ -106,7 +106,7 @@ Build a comprehensive document processor:
 class DocumentProcessor
 {
     private Mistral $client;
-    private string $model = 'pixtral-12b-2409';
+    private string $model = 'mistral-ocr-latest';
 
     public function __construct(string $apiKey)
     {
@@ -307,7 +307,7 @@ class FormExtractor
         $fieldsList = implode("\n", array_map(fn($f) => "- {$f}", $fields));
 
         $request = ChatCompletionRequest::from([
-            'model' => 'pixtral-12b-2409',
+            'model' => 'mistral-ocr-latest',
             'messages' => [
                 ChatMessage::from([
                     'role' => Role::System,
@@ -370,7 +370,7 @@ $imageData = base64_encode($sampleImage);
 $imageUrl = "data:image/png;base64,{$imageData}";
 
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::User,
@@ -398,7 +398,7 @@ echo "=== Example 2: Invoice Analysis ===\n\n";
 
 // For demo, we'll use the same sample image
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::System,
@@ -442,7 +442,7 @@ $imageData = base64_encode($multiLangImage);
 $imageUrl = "data:image/png;base64,{$imageData}";
 
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::User,
@@ -474,7 +474,7 @@ $imageData = base64_encode($tableImage);
 $imageUrl = "data:image/png;base64,{$imageData}";
 
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::User,
@@ -512,7 +512,7 @@ echo "Analyzing document with Q&A...\n\n";
 
 foreach ($questions as $question) {
     $request = ChatCompletionRequest::from([
-        'model' => 'pixtral-12b-2409',
+        'model' => 'mistral-ocr-latest',
         'messages' => [
             ChatMessage::from([
                 'role' => Role::User,
@@ -545,7 +545,7 @@ $imageData = base64_encode($handwrittenImage);
 $imageUrl = "data:image/png;base64,{$imageData}";
 
 $request = ChatCompletionRequest::from([
-    'model' => 'pixtral-12b-2409',
+    'model' => 'mistral-ocr-latest',
     'messages' => [
         ChatMessage::from([
             'role' => Role::User,

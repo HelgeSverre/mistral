@@ -64,13 +64,13 @@ function basicOCR(Mistral $mistral): void
     $response = measureTime(
         callback: fn () => $mistral->ocr()->processUrl(
             url: $documentUrl,
-            model: 'pixtral-12b-2409', // Mistral's vision model
+            model: 'mistral-ocr-latest', // Mistral's OCR model
             includeImageBase64: false, // Don't include image data in response
         ),
         label: 'OCR Processing',
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
 
     echo "✅ OCR completed successfully\n\n";
 
@@ -113,9 +113,11 @@ function basicOCR(Mistral $mistral): void
             echo "\n🖼️ Images detected: ".count($firstPage->images)."\n";
             foreach ($firstPage->images as $i => $image) {
                 echo '  Image '.($i + 1).":\n";
-                if ($image->dimensions) {
-                    echo "    • Size: {$image->dimensions->width}x{$image->dimensions->height}px\n";
-                }
+                echo "    • ID: {$image->id}\n";
+                $width = $image->bottomRightX - $image->topLeftX;
+                $height = $image->bottomRightY - $image->topLeftY;
+                echo "    • Size: {$width}x{$height}px\n";
+                echo "    • Position: ({$image->topLeftX}, {$image->topLeftY})\n";
             }
         }
     }
@@ -143,10 +145,10 @@ function multiPageOCR(Mistral $mistral): void
 
     $response = $mistral->ocr()->processUrl(
         url: $documentUrl,
-        model: 'pixtral-12b-2409',
+        model: 'mistral-ocr-latest',
     );
 
-    $dto = $response->dto();
+    $dto = $response->dtoOrFail();
 
     echo "✅ Document processed\n\n";
 
@@ -209,10 +211,10 @@ function structuredExtraction(Mistral $mistral): void
     // First, get the OCR content
     $ocrResponse = $mistral->ocr()->processUrl(
         url: $documentUrl,
-        model: 'pixtral-12b-2409',
+        model: 'mistral-ocr-latest',
     );
 
-    $ocrDto = $ocrResponse->dto();
+    $ocrDto = $ocrResponse->dtoOrFail();
 
     // Get the full text content
     $fullText = '';
@@ -249,7 +251,7 @@ function structuredExtraction(Mistral $mistral): void
         responseFormat: ['type' => 'json_object'],
     );
 
-    $extractedData = $aiResponse->dto()->choices[0]->message->content;
+    $extractedData = $aiResponse->dtoOrFail()->choices[0]->message->content;
 
     echo "📋 Extracted Structured Data:\n";
     echo str_repeat('─', 60)."\n";
@@ -286,10 +288,10 @@ function ocrWithSynthesis(Mistral $mistral): void
     // Step 1: Extract text with OCR
     $ocrResponse = $mistral->ocr()->processUrl(
         url: $documentUrl,
-        model: 'pixtral-12b-2409',
+        model: 'mistral-ocr-latest',
     );
 
-    $ocrDto = $ocrResponse->dto();
+    $ocrDto = $ocrResponse->dtoOrFail();
 
     // Collect all text
     $documentText = '';
@@ -329,7 +331,7 @@ function ocrWithSynthesis(Mistral $mistral): void
             maxTokens: 300,
         );
 
-        $answer = $response->dto()->choices[0]->message->content;
+        $answer = $response->dtoOrFail()->choices[0]->message->content;
         echo "💬 Answer: {$answer}\n\n";
     }
 
