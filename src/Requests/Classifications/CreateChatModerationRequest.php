@@ -2,7 +2,7 @@
 
 namespace HelgeSverre\Mistral\Requests\Classifications;
 
-use HelgeSverre\Mistral\Dto\Classifications\ChatClassificationRequest;
+use HelgeSverre\Mistral\Dto\Moderations\ChatModerationRequest;
 use HelgeSverre\Mistral\Dto\Moderations\ModerationResponse;
 use Saloon\Contracts\Body\HasBody;
 use Saloon\Enums\Method;
@@ -26,11 +26,11 @@ class CreateChatModerationRequest extends Request implements HasBody
         return '/chat/moderations';
     }
 
-    public function __construct(protected ChatClassificationRequest $chatClassificationRequest) {}
+    public function __construct(protected ChatModerationRequest $chatModerationRequest) {}
 
     protected function defaultBody(): array
     {
-        return $this->chatClassificationRequest->toArray();
+        return $this->chatModerationRequest->toArray();
     }
 
     public function createDtoFromResponse(Response $response): ModerationResponse

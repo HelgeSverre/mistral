@@ -1,26 +1,33 @@
 {
-    "statusCode": 422,
+    "statusCode": 200,
     "headers": {
-        "Date": "Sun, 12 Oct 2025 10:01:07 GMT",
+        "Date": "Tue, 21 Oct 2025 11:02:31 GMT",
         "Content-Type": "application\/json",
-        "Content-Length": "557",
+        "Content-Length": "796",
         "Connection": "keep-alive",
-        "CF-RAY": "98d5c10dde3356b7-OSL",
-        "mistral-correlation-id": "0199d7dd-e4bb-7e06-86c2-8b4aa379686a",
-        "x-kong-request-id": "0199d7dd-e4bb-7e06-86c2-8b4aa379686a",
-        "x-envoy-upstream-service-time": "26",
+        "CF-RAY": "9920434b68cc723c-OSL",
+        "mistral-correlation-id": "019a066f-4b32-73fa-8675-58e2ab809c30",
+        "x-kong-request-id": "019a066f-4b32-73fa-8675-58e2ab809c30",
+        "x-envoy-upstream-service-time": "2793",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999984",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999981300",
+        "x-ratelimit-tokens-query-cost": "16",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "59",
         "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "26",
+        "x-kong-upstream-latency": "2793",
         "x-kong-proxy-latency": "6",
         "cf-cache-status": "DYNAMIC",
         "Set-Cookie": [
-            "__cf_bm=L2g4ILk2tNMrDWGKpnQNhM46pFBaZ07B0eniiYGAvN0-1760263267-1.0.1.1-bk4wcUbYdB7MtxYKdKEkxKbYKN1nqSQreETTkbS1tc1Qa8KIasIF96e_HRTLdXLuSkd90SWJbqGRJfbSAv96lht8w92pKDTotd7ZGl8.oio; path=\/; expires=Sun, 12-Oct-25 10:31:07 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
-            "_cfuvid=luPwf0IhR1EKtdv3wWWUuAcf06Nsp3c0eAo5TgcPAWA-1760263267554-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+            "__cf_bm=MaJoNAxNCX74kaidyQKlIqCU0jWtsO2CO011vyY26Zw-1761044551-1.0.1.1-jb4YFGmjPyjFCMEZrgpYnzpLnK1ElunwogT3HEmm4x5uIJe4kpKqC8CEG1VoNkr3qRKBFxPfKu4acSIlYXFAjvARFaRwl52ih_Ac8PvxJ6o; path=\/; expires=Tue, 21-Oct-25 11:32:31 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=AfU2HGFNJjN1u1ynVXLXbPQwTQXu15QHDEoa5Q1AFyI-1761044551228-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
         ],
         "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
         "Server": "cloudflare",
         "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"object\":\"error\",\"message\":{\"detail\":[{\"type\":\"missing\",\"loc\":[\"body\",\"input\"],\"msg\":\"Field required\",\"input\":{\"model\":\"mistral-moderation-2411\",\"messages\":[{\"role\":\"user\",\"content\":\"Hello\"},{\"role\":\"assistant\",\"content\":\"Hi there!\"},{\"role\":\"user\",\"content\":\"How are you?\"}]}},{\"type\":\"extra_forbidden\",\"loc\":[\"body\",\"messages\"],\"msg\":\"Extra inputs are not permitted\",\"input\":[{\"role\":\"user\",\"content\":\"Hello\"},{\"role\":\"assistant\",\"content\":\"Hi there!\"},{\"role\":\"user\",\"content\":\"How are you?\"}]}]},\"type\":\"invalid_request_error\",\"param\":null,\"code\":null}",
+    "data": "{\"id\":\"33476a1305db4ffc98c225f121e3c5cf\",\"usage\":{\"prompt_audio_seconds\":null,\"prompt_tokens\":16,\"total_tokens\":107,\"completion_tokens\":0,\"request_count\":1,\"prompt_token_details\":null},\"model\":\"mistral-moderation-latest\",\"results\":[{\"category_scores\":{\"sexual\":2.7535690605873242e-05,\"hate_and_discrimination\":1.7778551409719512e-05,\"violence_and_threats\":0.00015843621804378927,\"dangerous_and_criminal_content\":5.475977377500385e-05,\"selfharm\":3.7266393064783188e-06,\"health\":2.014569145103451e-05,\"financial\":4.785094461112749e-06,\"law\":4.495181656238856e-06,\"pii\":7.031184941297397e-05},\"categories\":{\"sexual\":false,\"hate_and_discrimination\":false,\"violence_and_threats\":false,\"dangerous_and_criminal_content\":false,\"selfharm\":false,\"health\":false,\"financial\":false,\"law\":false,\"pii\":false}}]}",
     "context": []
 }

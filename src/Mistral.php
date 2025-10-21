@@ -108,14 +108,6 @@ class Mistral extends Connector
         return new Batch($this);
     }
 
-    /**
-     * @deprecated Use classifications() instead. Moderation endpoints are part of the classifiers API.
-     */
-    public function moderations(): Classifications
-    {
-        return new Classifications($this);
-    }
-
     public function classifications(): Classifications
     {
         return new Classifications($this);

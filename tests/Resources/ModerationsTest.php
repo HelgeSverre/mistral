@@ -19,7 +19,7 @@ it('can moderate text with safe content', function () {
         CreateModerationRequest::class => MockResponse::fixture('moderations/text_safe'),
     ]);
 
-    $response = $this->mistral->moderations()->moderate(
+    $response = $this->mistral->classifications()->moderate(
         model: 'mistral-moderation-latest',
         input: 'This is a safe message'
     );
@@ -37,7 +37,7 @@ it('can moderate text and cast to DTO', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateAsDto(
+    $dto = $this->mistral->classifications()->moderateAsDto(
         model: 'mistral-moderation-latest',
         input: 'This is a safe message'
     );
@@ -66,7 +66,7 @@ it('can detect flagged content', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateAsDto(
+    $dto = $this->mistral->classifications()->moderateAsDto(
         model: 'mistral-moderation-latest',
         input: 'This is a test message'
     );
@@ -85,7 +85,7 @@ it('can moderate array of text inputs', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateAsDto(
+    $dto = $this->mistral->classifications()->moderateAsDto(
         model: 'mistral-moderation-latest',
         input: [
             'First safe message',
@@ -108,7 +108,7 @@ it('can check category scores', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateAsDto(
+    $dto = $this->mistral->classifications()->moderateAsDto(
         model: 'mistral-moderation-latest',
         input: 'This is a safe message'
     );
@@ -132,9 +132,9 @@ it('can moderate chat conversation', function () {
         CreateChatModerationRequest::class => MockResponse::fixture('moderations/chat'),
     ]);
 
-    $response = $this->mistral->moderations()->moderateChat(
+    $response = $this->mistral->classifications()->moderateChat(
         model: 'mistral-moderation-latest',
-        messages: [
+        input: [
             ['role' => 'user', 'content' => 'Hello'],
             ['role' => 'assistant', 'content' => 'Hi there!'],
             ['role' => 'user', 'content' => 'How are you?'],
@@ -143,10 +143,9 @@ it('can moderate chat conversation', function () {
 
     Saloon::assertSent(CreateChatModerationRequest::class);
 
-    // Note: The API currently returns 422 for chat moderation - this is a known API issue
-    expect($response->status())->toBe(422)
+    expect($response->status())->toBe(200)
         ->and($response->json())->toBeArray();
-})->skip('Chat moderation endpoint returns 422 - API issue');
+});
 
 it('can moderate chat and cast to DTO', function () {
     Saloon::fake([
@@ -154,16 +153,16 @@ it('can moderate chat and cast to DTO', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateChatAsDto(
+    $dto = $this->mistral->classifications()->moderateChatAsDto(
         model: 'mistral-moderation-latest',
-        messages: [
+        input: [
             ['role' => 'user', 'content' => 'Hello'],
             ['role' => 'assistant', 'content' => 'Hi there!'],
         ]
     );
 
     expect($dto)->toBeInstanceOf(ModerationResponse::class);
-})->skip('Chat moderation endpoint returns 422 - API issue');
+});
 
 it('handles special category names correctly', function () {
     Saloon::fake([
@@ -171,7 +170,7 @@ it('handles special category names correctly', function () {
     ]);
 
     /** @var ModerationResponse $dto */
-    $dto = $this->mistral->moderations()->moderateAsDto(
+    $dto = $this->mistral->classifications()->moderateAsDto(
         model: 'mistral-moderation-latest',
         input: 'Test message'
     );

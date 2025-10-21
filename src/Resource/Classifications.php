@@ -5,6 +5,7 @@ namespace HelgeSverre\Mistral\Resource;
 use HelgeSverre\Mistral\Dto\Classifications\ChatClassificationRequest;
 use HelgeSverre\Mistral\Dto\Classifications\ClassificationRequest;
 use HelgeSverre\Mistral\Dto\Classifications\ClassificationResponse;
+use HelgeSverre\Mistral\Dto\Moderations\ChatModerationRequest;
 use HelgeSverre\Mistral\Dto\Moderations\ModerationResponse;
 use HelgeSverre\Mistral\Requests\Classifications\CreateChatClassificationRequest;
 use HelgeSverre\Mistral\Requests\Classifications\CreateChatModerationRequest;
@@ -38,11 +39,11 @@ class Classifications extends BaseResource
 
     public function moderateChat(
         string $model,
-        array $messages
+        array $input
     ): Response {
-        $request = new ChatClassificationRequest(
+        $request = new ChatModerationRequest(
             model: $model,
-            messages: $messages
+            input: $input
         );
 
         return $this->connector->send(new CreateChatModerationRequest($request));
@@ -50,9 +51,9 @@ class Classifications extends BaseResource
 
     public function moderateChatAsDto(
         string $model,
-        array $messages
+        array $input
     ): ModerationResponse {
-        return $this->moderateChat($model, $messages)->dto();
+        return $this->moderateChat($model, $input)->dto();
     }
 
     // Classification endpoints
