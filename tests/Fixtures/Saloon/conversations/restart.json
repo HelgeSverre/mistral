@@ -1,9 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Date": "Tue, 28 Oct 2025 23:43:03 GMT",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b10b9984e4c-OSL",
+        "mistral-correlation-id": "019a2d34-267f-75cf-a414-2fae63466db6",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"conversation_id\":\"conv_abc123\",\"entries\":[{\"id\":\"entry_007\",\"object\":\"conversation.entry\",\"created_at\":1728648030,\"role\":\"user\",\"content\":\"Let's start over\",\"metadata\":null},{\"id\":\"entry_008\",\"object\":\"conversation.entry\",\"created_at\":1728648031,\"role\":\"assistant\",\"content\":\"Of course! How can I help you?\",\"metadata\":null}]}"
+    "data": "{\"conversation_id\":\"conv_abc123\",\"entries\":[{\"id\":\"entry_007\",\"object\":\"conversation.entry\",\"created_at\":1728648400,\"role\":\"user\",\"content\":\"Let's start over\"},{\"id\":\"entry_008\",\"object\":\"conversation.entry\",\"created_at\":1728648401,\"role\":\"assistant\",\"content\":\"Of course! I'm here to help. What would you like to know?\"}]}",
+    "context": []
 }

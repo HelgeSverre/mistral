@@ -1,9 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e3c9449264e4c-OSL",
+        "mistral-correlation-id": "019a2d2b-18c3-7c45-a94a-041fda859ea4",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\",\"metadata\":null},{\"id\":\"conv_def456\",\"object\":\"conversation\",\"created_at\":1728648100,\"model\":\"mistral-small-latest\",\"metadata\":null},{\"id\":\"conv_agent_xyz789\",\"object\":\"conversation\",\"created_at\":1728648200,\"agent_id\":\"agent_123\",\"metadata\":null}],\"has_more\":false,\"first_id\":\"conv_abc123\",\"last_id\":\"conv_agent_xyz789\"}"
+    "data": "{\"object\":\"list\",\"data\":[{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\"},{\"id\":\"conv_def456\",\"object\":\"conversation\",\"created_at\":1728648100,\"model\":\"mistral-small-latest\"},{\"id\":\"conv_agent_xyz789\",\"object\":\"conversation\",\"created_at\":1728648200,\"agent_id\":\"agent_123\"}],\"has_more\":false,\"first_id\":\"conv_abc123\",\"last_id\":\"conv_agent_xyz789\"}",
+    "context": []
 }

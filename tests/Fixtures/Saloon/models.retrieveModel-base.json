@@ -1,11 +1,26 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Tue, 11 Oct 2025 14:02:04 GMT",
-        "Content-Type": "application/json",
-        "Content-Length": "512",
+        "Date": "Tue, 28 Oct 2025 23:33:09 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "538",
         "Connection": "keep-alive",
-        "access-control-allow-origin": "*"
+        "CF-RAY": "995e3c8b2a225689-OSL",
+        "mistral-correlation-id": "019a2d2b-1309-76e7-8a96-14ce8dace690",
+        "x-kong-request-id": "019a2d2b-1309-76e7-8a96-14ce8dace690",
+        "x-envoy-upstream-service-time": "4",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "5",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=b_rjOcq_RSN6vpYURhA28HbRAXcloJKy5jRJNHnfvB0-1761694389-1.0.1.1-Rk6UBICy0pehk5iVMU5fdqybLhJwVsZG.qBKRYrC2kzSVOk47wWRve7H27J5P1btolZ0fybpSqUMERbeQg9KclhNMAcf5fyPnso9F_PB1zY; path=\/; expires=Wed, 29-Oct-25 00:03:09 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=YJkC_RvNW2bG4tG_SM4S48TVU3e.wPmA2WHHeW.TSUI-1761694389017-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"open-mistral-7b\",\"object\":\"model\",\"created\":1709042524,\"owned_by\":\"mistralai\",\"capabilities\":{\"completion_chat\":true,\"completion_fim\":false,\"function_calling\":true,\"fine_tuning\":false,\"vision\":false,\"classification\":false},\"name\":\"Open Mistral 7B\",\"description\":\"Our first dense model released September 2023.\",\"max_context_length\":32768,\"aliases\":[],\"deprecation\":null,\"deprecation_replacement_model\":null,\"default_model_temperature\":null,\"type\":\"base\"}"
+    "data": "{\"id\":\"open-mistral-7b\",\"object\":\"model\",\"created\":1761694389,\"owned_by\":\"mistralai\",\"capabilities\":{\"completion_chat\":true,\"function_calling\":true,\"completion_fim\":false,\"fine_tuning\":true,\"vision\":false,\"ocr\":false,\"classification\":false,\"moderation\":false,\"audio\":false},\"name\":\"open-mistral-7b\",\"description\":\"Our first dense model released September 2023.\",\"max_context_length\":32768,\"aliases\":[\"mistral-tiny\",\"mistral-tiny-2312\"],\"deprecation\":null,\"deprecation_replacement_model\":null,\"default_model_temperature\":0.7,\"type\":\"base\"}",
+    "context": []
 }

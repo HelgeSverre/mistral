@@ -25,7 +25,7 @@ class UpdateLibrary extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}";
+        return "/libraries/{$this->libraryId}";
     }
 
     protected function defaultBody(): array

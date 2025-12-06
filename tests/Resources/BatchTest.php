@@ -38,18 +38,17 @@ it('can list batch jobs and convert to DTO', function () {
 
     expect($batchJobsOut)
         ->toBeInstanceOf(BatchJobsOut::class)
-        ->and($batchJobsOut->data)->toHaveCount(2)
-        ->and($batchJobsOut->total)->toBe(2)
+        ->and($batchJobsOut->data)->toHaveCount(1)
+        ->and($batchJobsOut->total)->toBe(1)
         ->and($batchJobsOut->object)->toBe('list')
         ->and($batchJobsOut->data[0])->toBeInstanceOf(BatchJobOut::class)
-        ->and($batchJobsOut->data[0]->id)->toBe('batch-job-123e4567-e89b-12d3-a456-426614174000')
+        ->and($batchJobsOut->data[0]->id)->toBe('877443e6-c853-4846-9857-6e4e0ab932f4')
         ->and($batchJobsOut->data[0]->status)->toBe(BatchJobStatus::RUNNING)
         ->and($batchJobsOut->data[0]->endpoint)->toBe('/v1/chat/completions')
-        ->and($batchJobsOut->data[0]->model)->toBe('mistral-large-latest')
-        ->and($batchJobsOut->data[0]->totalRequests)->toBe(100)
-        ->and($batchJobsOut->data[0]->succeededRequests)->toBe(45)
-        ->and($batchJobsOut->data[0]->failedRequests)->toBe(2)
-        ->and($batchJobsOut->data[1]->status)->toBe(BatchJobStatus::SUCCESS);
+        ->and($batchJobsOut->data[0]->model)->toBe('mistral-small-latest')
+        ->and($batchJobsOut->data[0]->totalRequests)->toBe(3)
+        ->and($batchJobsOut->data[0]->succeededRequests)->toBe(0)
+        ->and($batchJobsOut->data[0]->failedRequests)->toBe(0);
 });
 
 it('can list batch jobs with query parameters', function () {
@@ -90,19 +89,16 @@ it('can create a batch job', function () {
     ]);
 
     $batchJobIn = new BatchJobIn(
-        inputFiles: ['file-input-001', 'file-input-002'],
+        inputFiles: ['92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2'],
         endpoint: '/v1/chat/completions',
-        model: 'mistral-large-latest',
-        metadata: ['experiment' => 'batch-test', 'user_id' => 'user-123'],
-        timeoutHours: 24,
-        completionWindow: '24h'
+        model: 'mistral-small-latest'
     );
 
     $response = $this->mistral->batch()->create($batchJobIn);
 
     Saloon::assertSent(CreateBatchJobRequest::class);
 
-    expect($response->status())->toBe(200);
+    expect($response->status())->toBe(201);
 });
 
 it('can create batch job and convert to DTO', function () {
@@ -111,22 +107,22 @@ it('can create batch job and convert to DTO', function () {
     ]);
 
     $batchJobIn = new BatchJobIn(
-        inputFiles: ['file-input-001', 'file-input-002'],
+        inputFiles: ['92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2'],
         endpoint: '/v1/chat/completions',
-        model: 'mistral-large-latest'
+        model: 'mistral-small-latest'
     );
 
     $batchJobOut = $this->mistral->batch()->createAsDto($batchJobIn);
 
     expect($batchJobOut)
         ->toBeInstanceOf(BatchJobOut::class)
-        ->and($batchJobOut->id)->toBe('batch-job-456e7890-f12b-34d5-c678-901234567890')
+        ->and($batchJobOut->id)->toBe('877443e6-c853-4846-9857-6e4e0ab932f4')
         ->and($batchJobOut->status)->toBe(BatchJobStatus::QUEUED)
-        ->and($batchJobOut->object)->toBe('batch.job')
-        ->and($batchJobOut->inputFiles)->toBe(['file-input-001', 'file-input-002'])
+        ->and($batchJobOut->object)->toBe('batch')
+        ->and($batchJobOut->inputFiles)->toBe(['92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2'])
         ->and($batchJobOut->endpoint)->toBe('/v1/chat/completions')
-        ->and($batchJobOut->model)->toBe('mistral-large-latest')
-        ->and($batchJobOut->metadata)->toBeArray();
+        ->and($batchJobOut->model)->toBe('mistral-small-latest')
+        ->and($batchJobOut->metadata)->toBeNull();
 });
 
 it('can create batch job with agent_id instead of model', function () {
@@ -135,7 +131,7 @@ it('can create batch job with agent_id instead of model', function () {
     ]);
 
     $batchJobIn = new BatchJobIn(
-        inputFiles: ['file-input-001'],
+        inputFiles: ['92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2'],
         endpoint: '/v1/chat/completions',
         agentId: 'agent-abc123'
     );
@@ -150,7 +146,7 @@ it('can create batch job with agent_id instead of model', function () {
             && ! isset($body['model']);
     });
 
-    expect($response->status())->toBe(200);
+    expect($response->status())->toBe(201);
 });
 
 it('can get batch job details', function () {
@@ -158,7 +154,7 @@ it('can get batch job details', function () {
         GetBatchJobRequest::class => MockResponse::fixture('batch/get'),
     ]);
 
-    $response = $this->mistral->batch()->get('batch-job-789a0123-b45c-67d8-e901-234567890abc');
+    $response = $this->mistral->batch()->get('877443e6-c853-4846-9857-6e4e0ab932f4');
 
     Saloon::assertSent(GetBatchJobRequest::class);
 
@@ -170,19 +166,19 @@ it('can get batch job and convert to DTO', function () {
         GetBatchJobRequest::class => MockResponse::fixture('batch/get'),
     ]);
 
-    $batchJobOut = $this->mistral->batch()->getAsDto('batch-job-789a0123-b45c-67d8-e901-234567890abc');
+    $batchJobOut = $this->mistral->batch()->getAsDto('877443e6-c853-4846-9857-6e4e0ab932f4');
 
     expect($batchJobOut)
         ->toBeInstanceOf(BatchJobOut::class)
-        ->and($batchJobOut->id)->toBe('batch-job-789a0123-b45c-67d8-e901-234567890abc')
-        ->and($batchJobOut->status)->toBe(BatchJobStatus::SUCCESS)
-        ->and($batchJobOut->totalRequests)->toBe(200)
-        ->and($batchJobOut->succeededRequests)->toBe(198)
-        ->and($batchJobOut->failedRequests)->toBe(2)
-        ->and($batchJobOut->outputFile)->toBe('output-batch-789a')
-        ->and($batchJobOut->errorFile)->toBe('error-batch-789a')
-        ->and($batchJobOut->startedAt)->toBe(1715690050)
-        ->and($batchJobOut->completedAt)->toBe(1715691000);
+        ->and($batchJobOut->id)->toBe('877443e6-c853-4846-9857-6e4e0ab932f4')
+        ->and($batchJobOut->status)->toBe(BatchJobStatus::RUNNING)
+        ->and($batchJobOut->totalRequests)->toBe(3)
+        ->and($batchJobOut->succeededRequests)->toBe(0)
+        ->and($batchJobOut->failedRequests)->toBe(0)
+        ->and($batchJobOut->outputFile)->toBeNull()
+        ->and($batchJobOut->errorFile)->toBeNull()
+        ->and($batchJobOut->startedAt)->toBe(1761710171)
+        ->and($batchJobOut->completedAt)->toBeNull();
 });
 
 it('can cancel a batch job', function () {
@@ -190,7 +186,7 @@ it('can cancel a batch job', function () {
         CancelBatchJobRequest::class => MockResponse::fixture('batch/cancel'),
     ]);
 
-    $response = $this->mistral->batch()->cancel('batch-job-abc1234d-e56f-78g9-h012-ijklmnopqrst');
+    $response = $this->mistral->batch()->cancel('877443e6-c853-4846-9857-6e4e0ab932f4');
 
     Saloon::assertSent(CancelBatchJobRequest::class);
 
@@ -202,14 +198,15 @@ it('can cancel batch job and convert to DTO', function () {
         CancelBatchJobRequest::class => MockResponse::fixture('batch/cancel'),
     ]);
 
-    $batchJobOut = $this->mistral->batch()->cancelAsDto('batch-job-abc1234d-e56f-78g9-h012-ijklmnopqrst');
+    $batchJobOut = $this->mistral->batch()->cancelAsDto('877443e6-c853-4846-9857-6e4e0ab932f4');
 
     expect($batchJobOut)
         ->toBeInstanceOf(BatchJobOut::class)
-        ->and($batchJobOut->id)->toBe('batch-job-abc1234d-e56f-78g9-h012-ijklmnopqrst')
-        ->and($batchJobOut->status)->toBe(BatchJobStatus::CANCELLATION_REQUESTED)
-        ->and($batchJobOut->totalRequests)->toBe(150)
-        ->and($batchJobOut->succeededRequests)->toBe(75);
+        ->and($batchJobOut->id)->toBe('877443e6-c853-4846-9857-6e4e0ab932f4')
+        ->and($batchJobOut->status)->toBe(BatchJobStatus::SUCCESS)
+        ->and($batchJobOut->totalRequests)->toBe(3)
+        ->and($batchJobOut->succeededRequests)->toBe(3)
+        ->and($batchJobOut->outputFile)->toBe('57398329-049b-4556-9b64-3691090365ca');
 });
 
 it('BatchJobStatus enum has all required values', function () {
@@ -238,8 +235,7 @@ it('BatchJobIn DTO correctly maps snake_case', function () {
         model: 'mistral-large-latest',
         agentId: 'agent-123',
         metadata: ['key' => 'value'],
-        timeoutHours: 48,
-        completionWindow: '48h'
+        timeoutHours: 48
     );
 
     $array = $batchJobIn->toArray();
@@ -251,13 +247,11 @@ it('BatchJobIn DTO correctly maps snake_case', function () {
         ->toHaveKey('agent_id')
         ->toHaveKey('metadata')
         ->toHaveKey('timeout_hours')
-        ->toHaveKey('completion_window')
         ->and($array['input_files'])->toBe(['file-001', 'file-002'])
         ->and($array['endpoint'])->toBe('/v1/chat/completions')
         ->and($array['model'])->toBe('mistral-large-latest')
         ->and($array['agent_id'])->toBe('agent-123')
-        ->and($array['timeout_hours'])->toBe(48)
-        ->and($array['completion_window'])->toBe('48h');
+        ->and($array['timeout_hours'])->toBe(48);
 });
 
 it('BatchJobOut DTO correctly handles nullable fields', function () {

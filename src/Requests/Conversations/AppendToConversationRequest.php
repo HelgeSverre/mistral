@@ -28,7 +28,7 @@ class AppendToConversationRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_filter($this->appendRequest->toArray());
+        return array_filter($this->appendRequest->toArray(), fn ($v) => $v !== null);
     }
 
     public function createDtoFromResponse(Response $response): ConversationResponse

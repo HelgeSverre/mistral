@@ -16,7 +16,7 @@ class ListBatchJobsRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/v1/batch/jobs';
+        return '/batch/jobs';
     }
 
     /**

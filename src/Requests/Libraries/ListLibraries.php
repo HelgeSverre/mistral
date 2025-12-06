@@ -20,7 +20,7 @@ class ListLibraries extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/v1/libraries';
+        return '/libraries';
     }
 
     protected function defaultQuery(): array

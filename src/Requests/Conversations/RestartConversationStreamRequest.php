@@ -26,7 +26,7 @@ class RestartConversationStreamRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        $body = array_filter($this->restartRequest->toArray());
+        $body = array_filter($this->restartRequest->toArray(), fn ($v) => $v !== null);
         $body['stream'] = true;
 
         return $body;

@@ -60,10 +60,9 @@ Handle common API errors:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 use Saloon\Exceptions\Request\RequestException;
 use Saloon\Exceptions\Request\Statuses\UnauthorizedException;
 use Saloon\Exceptions\Request\Statuses\TooManyRequestsException;
@@ -434,10 +433,9 @@ Complete working example (`error-handling.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 use Saloon\Exceptions\Request\RequestException;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
@@ -458,25 +456,25 @@ function handleBasicErrors(string $apiKey): void
             'request' => ChatCompletionRequest::from([
                 'model' => 'mistral-small-latest',
                 'messages' => [
-                    ChatMessage::from([
-                        'role' => Role::User,
+                    [
+                        'role' => Role::user,
                         'content' => 'Hello!',
-                    ]),
+                    ],
                 ],
                 'maxTokens' => 10,
-            ]),
+            ],
         ],
         [
             'name' => 'Invalid Model',
             'request' => ChatCompletionRequest::from([
                 'model' => 'invalid-model-name',
                 'messages' => [
-                    ChatMessage::from([
-                        'role' => Role::User,
+                    [
+                        'role' => Role::user,
                         'content' => 'Hello!',
-                    ]),
+                    ],
                 ],
-            ]),
+            ],
         ],
     ];
 
@@ -561,10 +559,10 @@ $retryClient = new RetryClient($apiKey);
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Test retry logic',
-        ]),
+        ],
     ],
     'maxTokens' => 10,
 ]);
@@ -647,10 +645,10 @@ for ($i = 1; $i <= 3; $i++) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => "Request {$i}",
-            ]),
+            ],
         ],
         'maxTokens' => 5,
     ]);
@@ -688,10 +686,10 @@ for ($i = 1; $i <= 5; $i++) {
             $request = ChatCompletionRequest::from([
                 'model' => 'mistral-small-latest',
                 'messages' => [
-                    ChatMessage::from([
-                        'role' => Role::User,
+                    [
+                        'role' => Role::user,
                         'content' => "Test {$i}",
-                    ]),
+                    ],
                 ],
                 'maxTokens' => 5,
             ]);
@@ -757,10 +755,10 @@ echo "Testing fallback strategies:\n";
 try {
     $result = $fallbackHandler->execute([
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'What is the meaning of life?',
-            ]),
+            ],
         ],
     ]);
 

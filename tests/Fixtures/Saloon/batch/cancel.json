@@ -1,7 +1,8 @@
 {
-    "statusCode": 200,
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": "{\"id\":\"batch-job-abc1234d-e56f-78g9-h012-ijklmnopqrst\",\"object\":\"batch.job\",\"status\":\"CANCELLATION_REQUESTED\",\"input_files\":[\"file-cancel-001\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715688000,\"started_at\":1715688100,\"model\":\"mistral-medium-latest\",\"total_requests\":150,\"succeeded_requests\":75,\"failed_requests\":0}"
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"id\": \"877443e6-c853-4846-9857-6e4e0ab932f4\", \"object\": \"batch\", \"input_files\": [\"92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2\"], \"metadata\": null, \"endpoint\": \"/v1/chat/completions\", \"model\": \"mistral-small-latest\", \"agent_id\": null, \"output_file\": \"57398329-049b-4556-9b64-3691090365ca\", \"error_file\": null, \"errors\": [], \"status\": \"SUCCESS\", \"created_at\": 1761710170, \"total_requests\": 3, \"completed_requests\": 3, \"succeeded_requests\": 3, \"failed_requests\": 0, \"started_at\": 1761710171, \"completed_at\": 1761710174}",
+  "context": []
 }

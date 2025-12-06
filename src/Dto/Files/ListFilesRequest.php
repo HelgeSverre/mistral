@@ -10,13 +10,17 @@ use Spatie\LaravelData\Data;
 
 final class ListFilesRequest extends Data
 {
+    /**
+     * @param  SampleType[]|null  $sampleTypes  Filter by sample types
+     * @param  Source[]|null  $sources  Filter by sources
+     */
     public function __construct(
         public ?int $page = null,
         #[MapName('page_size')]
         public ?int $pageSize = null,
         #[MapName('sample_type')]
-        public ?SampleType $sampleType = null,
-        public ?Source $source = null,
+        public ?array $sampleTypes = null,
+        public ?array $sources = null,
         public ?string $search = null,
         public ?FilePurpose $purpose = null,
     ) {}
@@ -26,8 +30,12 @@ final class ListFilesRequest extends Data
         return array_filter([
             'page' => $this->page,
             'page_size' => $this->pageSize,
-            'sample_type' => $this->sampleType?->value,
-            'source' => $this->source?->value,
+            'sample_type' => $this->sampleTypes !== null
+                ? array_map(fn (SampleType $type) => $type->value, $this->sampleTypes)
+                : null,
+            'source' => $this->sources !== null
+                ? array_map(fn (Source $source) => $source->value, $this->sources)
+                : null,
             'search' => $this->search,
             'purpose' => $this->purpose?->value,
         ], fn ($value) => $value !== null);

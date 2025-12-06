@@ -29,8 +29,8 @@ This is the contents of the published config file:
 ```php
 return [
     'api_key' => env('MISTRAL_API_KEY'),
-    'base_url' => env('MISTRAL_BASE_URL', 'https://api.mistral.ai'),
-    'timeout' => env('MISTRAL_TIMEOUT', 30),
+    'base_url' => env('MISTRAL_BASE_URL'), // defaults to https://api.mistral.ai/v1 if null
+    'timeout' => env('MISTRAL_TIMEOUT', 60),
 ];
 ```
 
@@ -61,20 +61,21 @@ The package includes **10 hands-on examples** in the `examples/` directory, each
 
 **Quick Start**: Begin with [01-getting-started](./examples/01-getting-started) to set up your first working integration.
 
-| Example | Description |
-|---------|-------------|
-| [01-getting-started](./examples/01-getting-started) | Install the SDK, configure authentication, and make your first API call |
-| [02-basic-chat](./examples/02-basic-chat) | Learn chat completions, system messages, and multi-turn conversations |
-| [03-chat-parameters](./examples/03-chat-parameters) | Master temperature, top_p, max_tokens, and other generation parameters |
-| [04-streaming-chat](./examples/04-streaming-chat) | Implement real-time streaming responses with Server-Sent Events |
-| [05-function-calling](./examples/05-function-calling) | Enable AI to call PHP functions and interact with your application |
-| [06-embeddings](./examples/06-embeddings) | Generate vector embeddings for semantic search and similarity matching |
-| [07-ocr](./examples/07-ocr) | Extract and process text from images and documents using OCR |
-| [08-audio](./examples/08-audio) | Transcribe audio files with support for multiple languages and formats |
-| [09-moderation](./examples/09-moderation) | Identify and filter inappropriate content with content moderation |
-| [10-error-handling](./examples/10-error-handling) | Implement robust error handling, retry logic, and rate limit management |
+| Example                                               | Description                                                             |
+| ----------------------------------------------------- | ----------------------------------------------------------------------- |
+| [01-getting-started](./examples/01-getting-started)   | Install the SDK, configure authentication, and make your first API call |
+| [02-basic-chat](./examples/02-basic-chat)             | Learn chat completions, system messages, and multi-turn conversations   |
+| [03-chat-parameters](./examples/03-chat-parameters)   | Master temperature, top_p, max_tokens, and other generation parameters  |
+| [04-streaming-chat](./examples/04-streaming-chat)     | Implement real-time streaming responses with Server-Sent Events         |
+| [05-function-calling](./examples/05-function-calling) | Enable AI to call PHP functions and interact with your application      |
+| [06-embeddings](./examples/06-embeddings)             | Generate vector embeddings for semantic search and similarity matching  |
+| [07-ocr](./examples/07-ocr)                           | Extract and process text from images and documents using OCR            |
+| [08-audio](./examples/08-audio)                       | Transcribe audio files with support for multiple languages and formats  |
+| [09-moderation](./examples/09-moderation)             | Identify and filter inappropriate content with content moderation       |
+| [10-error-handling](./examples/10-error-handling)     | Implement robust error handling, retry logic, and rate limit management |
 
 Each example includes:
+
 - Step-by-step implementation guide
 - Complete working code
 - Real-world use cases
@@ -82,6 +83,7 @@ Each example includes:
 - Links to related examples
 
 To run an example:
+
 ```bash
 cd examples/01-getting-started
 php getting-started.php
@@ -89,7 +91,7 @@ php getting-started.php
 
 ## Available Resources & Methods
 
-The Mistral PHP client provides 14 resource classes, each offering both Response-returning methods and typed DTO methods for convenient type-safe usage.
+The Mistral PHP client provides 14 resource classes. Most resources offer both Response-returning methods and typed DTO convenience methods; where omitted, you can still call ->dto() on the Response.
 
 ### Chat Resource
 
@@ -264,7 +266,7 @@ Access via `$mistral->audio()`
 ```php
 $transcription = $mistral->audio()->transcribeDto(
     filePath: '/path/to/audio.mp3',
-    model: 'whisper-large-v3'
+    model: 'voxtral-small-latest'
 );
 ```
 
@@ -532,7 +534,7 @@ foreach ($dto->choices as $choice) {
 
 ```php
 // Returns a generator, which you can iterate over to get the streamed chunks
-$stream = $this->mistral->chat()->createStreamed(
+$stream = $mistral->chat()->createStreamed(
     messages: [
         [
             'role' => 'user',
@@ -581,19 +583,14 @@ $response = $mistral->simpleChat()->create(
     safeMode: false
 );
 
-/** @var ChatCompletionResponse $response */
+/** @var SimpleChatResponse $response */
 ```
-
-### `SimpleChat` Resource
-
-For convenience, the client also provides a simple chat completion method, which returns a simpler, condensed, and
-flattened DTO, useful for quick prototyping.
 
 #### Create Streamed Simple Chat Completions
 
 ```php
 // Returns a generator, which you can iterate over to get the streamed chunks
-$response = $this->mistral->simpleChat()->stream(
+$response = $mistral->simpleChat()->stream(
     messages: [
         [
             'role' => "user",
@@ -772,17 +769,18 @@ The following models are available in the Mistral API. You can use the `Model` e
 
 ### Current Production Models
 
-| Enum Case                    | String Value              | Type       | Description                                                             |
-| ---------------------------- | ------------------------- | ---------- | ----------------------------------------------------------------------- |
-| `Model::large->value`        | `'mistral-large-latest'`  | Chat       | Most capable model for complex reasoning and specialized tasks          |
-| `Model::medium->value`       | `'mistral-medium-latest'` | Chat       | Balanced model for intermediate tasks (alias: mistral-medium-2508)      |
-| `Model::small->value`        | `'mistral-small-latest'`  | Chat       | Fast, efficient model for simple bulk tasks (alias: mistral-small-2506) |
-| `Model::pixtralLarge->value` | `'pixtral-large-latest'`  | Vision     | Advanced vision model for image understanding                           |
-| `Model::pixtral12b->value`   | `'pixtral-12b-latest'`    | Vision     | Efficient vision model                                                  |
-| `Model::codestral->value`    | `'codestral-latest'`      | Code       | Specialized model for code generation and understanding                 |
-| `Model::ministral8b->value`  | `'ministral-8b-latest'`   | Chat       | Compact 8B parameter model                                              |
-| `Model::ministral3b->value`  | `'ministral-3b-latest'`   | Chat       | Ultra-compact 3B parameter model for edge deployment                    |
-| `Model::embed->value`        | `'mistral-embed'`         | Embeddings | Text embedding model for semantic search and retrieval                  |
+| Enum Case                       | String Value                | Type       | Description                                                    |
+| ------------------------------- | --------------------------- | ---------- | -------------------------------------------------------------- |
+| `Model::large->value`           | `'mistral-large-latest'`    | Chat       | Most capable model for complex reasoning and specialized tasks |
+| `Model::medium->value`          | `'mistral-medium-latest'`   | Chat       | Balanced model for intermediate tasks                          |
+| `Model::small->value`           | `'mistral-small-latest'`    | Chat       | Fast, efficient model for simple bulk tasks                    |
+| `Model::magistralMedium->value` | `'magistral-medium-latest'` | Reasoning  | Advanced reasoning model                                       |
+| `Model::pixtralLarge->value`    | `'pixtral-large-latest'`    | Vision     | Advanced vision model for image understanding                  |
+| `Model::pixtral12b->value`      | `'pixtral-12b-latest'`      | Vision     | Efficient vision model                                         |
+| `Model::codestral->value`       | `'codestral-latest'`        | Code       | Specialized model for code generation and understanding        |
+| `Model::ministral8b->value`     | `'ministral-8b-latest'`     | Chat       | Compact 8B parameter model for edge deployment                 |
+| `Model::voxtralSmall->value`    | `'voxtral-small-latest'`    | Audio      | Audio transcription model                                      |
+| `Model::embed->value`           | `'mistral-embed'`           | Embeddings | Text embedding model for semantic search and retrieval         |
 
 ### Open Source Models
 

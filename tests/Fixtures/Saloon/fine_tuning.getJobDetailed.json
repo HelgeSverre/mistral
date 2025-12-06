@@ -1,7 +1,14 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b04f98c1525-OSL",
+        "mistral-correlation-id": "019a2d34-1f29-7198-b86c-815b05d88b77",
+        "access-control-allow-origin": "*",
+        "Server": "cloudflare"
     },
-    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"SUCCESS\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693128,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"fine_tuned_model\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"suffix\":\"my-model-v1\",\"integrations\":null,\"trained_tokens\":458752,\"metadata\":{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073},\"checkpoints\":[{\"metrics\":{\"train_loss\":0.245,\"valid_loss\":0.312,\"valid_mean_token_accuracy\":0.89},\"step_number\":50,\"created_at\":1715693100},{\"metrics\":{\"train_loss\":0.198,\"valid_loss\":0.287,\"valid_mean_token_accuracy\":0.92},\"step_number\":100,\"created_at\":1715693128}],\"events\":[]}"
+    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001},\"fine_tuned_model\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"model\":\"open-mistral-7b\",\"status\":\"SUCCESS\",\"job_type\":\"completion\",\"created_at\":1715692800,\"modified_at\":1715693400,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"trained_tokens\":458752,\"checkpoints\":[{\"step_number\":50,\"metrics\":{\"train_loss\":0.245,\"valid_loss\":0.267,\"valid_mean_token_accuracy\":0.892},\"created_at\":1715693100},{\"step_number\":100,\"metrics\":{\"train_loss\":0.198,\"valid_loss\":0.223,\"valid_mean_token_accuracy\":0.912},\"created_at\":1715693400}],\"events\":[{\"name\":\"job.queued\",\"created_at\":1715692800},{\"name\":\"job.started\",\"created_at\":1715692850},{\"name\":\"job.succeeded\",\"created_at\":1715693400}]}",
+    "context": []
 }

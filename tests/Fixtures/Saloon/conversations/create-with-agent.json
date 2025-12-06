@@ -1,9 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Date": "Tue, 28 Oct 2025 23:43:03 GMT",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b0d12345678-OSL",
+        "mistral-correlation-id": "019a2d34-2431-779b-b83d-4ffbe48e6f6b",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"conversation_id\":\"conv_agent_xyz789\",\"entries\":[{\"id\":\"entry_003\",\"object\":\"conversation.entry\",\"created_at\":1728648010,\"role\":\"user\",\"content\":\"Tell me about the weather\",\"metadata\":null},{\"id\":\"entry_004\",\"object\":\"conversation.entry\",\"created_at\":1728648011,\"role\":\"assistant\",\"content\":\"Let me check the weather for you.\",\"tool_calls\":[{\"id\":\"call_001\",\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"{\\\"location\\\":\\\"current\\\"}\"}}],\"metadata\":null}]}"
+    "data": "{\"conversation_id\":\"conv_agent_xyz789\",\"entries\":[{\"id\":\"entry_003\",\"object\":\"conversation.entry\",\"created_at\":1728648100,\"role\":\"user\",\"content\":\"Tell me about the weather\"},{\"id\":\"entry_004\",\"object\":\"conversation.entry\",\"created_at\":1728648101,\"role\":\"assistant\",\"content\":\"I'll check the weather for you.\",\"tool_calls\":[{\"type\":\"function\",\"function\":{\"name\":\"get_weather\",\"arguments\":\"{\\\"location\\\":\\\"current\\\"}\"}}]}]}",
+    "context": []
 }

@@ -20,7 +20,7 @@ class GetDocument extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}/documents/{$this->documentId}";
+        return "/libraries/{$this->libraryId}/documents/{$this->documentId}";
     }
 
     public function createDtoFromResponse(Response $response): DocumentOut

@@ -11,12 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **Typed DTO Wrapper Methods**: All Resource classes now include typed `*Dto()` wrapper methods (e.g., `createDto()`, `listDto()`) that return properly typed DTOs instead of generic Response objects, providing perfect IDE autocomplete without needing inline `@var` annotations
 - **Updated Model Support**: Added 6 new model enum cases based on current Mistral AI API:
-  - `ministral8b` (edge model)
-  - `magistralMedium` (reasoning model)
-  - `codestral` (coding model)
-  - `pixtralLarge` (vision model)
-  - `pixtral12b` (vision model)
-  - `voxtralSmall` (audio model)
+    - `ministral8b` (edge model)
+    - `magistralMedium` (reasoning model)
+    - `codestral` (coding model)
+    - `pixtralLarge` (vision model)
+    - `pixtral12b` (vision model)
+    - `voxtralSmall` (audio model)
 - **Files Resource DTO Methods**: Added `uploadDto()`, `listDto()`, `retrieveDto()`, `deleteDto()`, `getSignedUrlDto()`
 - **Audio Resource DTO Method**: Added `transcribeDto()`
 - **Models Resource DTO Method**: Added `listDto()`
@@ -24,10 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - **Comprehensive README Update**: Expanded documentation from 348 to 744 lines
-  - Documented all 98 DTOs (previously only 16 were listed)
-  - Added complete "Available Resources & Methods" section covering all 14 Resource classes
-  - Updated model list with current Mistral AI models
-  - All usage examples now demonstrate typed DTO methods
+    - Documented all 98 DTOs (previously only 16 were listed)
+    - Added complete "Available Resources & Methods" section covering all 14 Resource classes
+    - Updated model list with current Mistral AI models
+    - All usage examples now demonstrate typed DTO methods
 - **Example Updates**: All 10 example files and READMEs updated to use new typed DTO methods
 - **Cleaned Configuration**: Removed unused environment variables from `.env.example` files (reduced from 47 to 14 lines)
 - **Model Enum Organization**: Reorganized with clear category comments (general purpose, edge, reasoning, coding, vision, audio, embedding, deprecated)

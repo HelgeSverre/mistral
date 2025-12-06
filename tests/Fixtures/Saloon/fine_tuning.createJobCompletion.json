@@ -1,7 +1,14 @@
 {
     "statusCode": 200,
     "headers": {
-        "Content-Type": "application/json"
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b04f98c1525-OSL",
+        "mistral-correlation-id": "019a2d34-1f29-7198-b86c-815b05d88b77",
+        "access-control-allow-origin": "*",
+        "Server": "cloudflare"
     },
-    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"QUEUED\",\"job_type\":\"completion\",\"created_at\":1715693073,\"modified_at\":1715693073,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"suffix\":\"my-model-v1\",\"integrations\":{\"project\":\"my-wandb-project\",\"name\":\"my-run-name\"},\"metadata\":{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4587,\"train_tokens\":458752,\"data_tokens\":500000,\"estimated_start_time\":1715693073}}"
+    "data": "{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001,\"weight_decay\":0.1,\"warmup_fraction\":0.05,\"epochs\":3,\"fim_ratio\":0.9,\"seq_len\":512},\"model\":\"open-mistral-7b\",\"status\":\"QUEUED\",\"job_type\":\"completion\",\"created_at\":1715692800,\"modified_at\":1715692800,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"suffix\":\"my-model-v1\",\"integrations\":{\"type\":\"wandb\",\"project\":\"my-wandb-project\",\"name\":\"my-run-name\"},\"auto_start\":false}",
+    "context": []
 }

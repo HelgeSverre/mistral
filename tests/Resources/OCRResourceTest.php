@@ -32,7 +32,7 @@ it('ProcessDocument works with URL', function () {
         ->and($dto->pages)->toHaveCount(3)
         ->and($dto->pages[0]->index)->toBe(0)
         ->and($dto->pages[0]->markdown)->toContain('PDF Association Cheat Sheet')
-        ->and($dto->pages[0]->images)->toHaveCount(6)
+        ->and($dto->pages[0]->images)->toHaveCount(1)
         ->and($dto->usageInfo->pagesProcessed)->toBe(3)
         ->and($dto->usageInfo->docSizeBytes)->toBe(953033);
 });

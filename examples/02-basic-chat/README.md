@@ -53,10 +53,9 @@ The simplest form - one user message, one response:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
@@ -64,10 +63,10 @@ $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Explain quantum computing in simple terms.',
-        ]),
+        ],
     ],
 ]);
 
@@ -83,15 +82,15 @@ System messages define the AI's personality, expertise, and constraints:
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::System,
+        [
+            'role' => Role::system,
             'content' => 'You are a helpful coding assistant. You explain concepts clearly
                          and provide practical PHP examples. Always use modern PHP 8+ syntax.',
-        ]),
-        ChatMessage::from([
-            'role' => Role::User,
+        ],
+        [
+            'role' => Role::user,
             'content' => 'How do I use PHP attributes?',
-        ]),
+        ],
     ],
 ]);
 
@@ -113,8 +112,8 @@ class ChatSession
         $this->client = new Mistral($apiKey);
 
         if ($systemPrompt) {
-            $this->messages[] = ChatMessage::from([
-                'role' => Role::System,
+            $this->messages[] = [
+                'role' => Role::system,
                 'content' => $systemPrompt,
             ]);
         }
@@ -123,8 +122,8 @@ class ChatSession
     public function sendMessage(string $userMessage): string
     {
         // Add user message to history
-        $this->messages[] = ChatMessage::from([
-            'role' => Role::User,
+        $this->messages[] = [
+            'role' => Role::user,
             'content' => $userMessage,
         ]);
 
@@ -154,7 +153,7 @@ class ChatSession
     {
         // Keep system message if present
         $this->messages = array_filter($this->messages, function($msg) {
-            return $msg->role === Role::System;
+            return $msg->role === Role::system;
         });
     }
 }
@@ -169,10 +168,9 @@ Complete working example (`basic-chat.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -187,10 +185,10 @@ echo "=== Example 1: Simple Chat ===\n\n";
 $simpleRequest = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'What are the three primary colors?',
-        ]),
+        ],
     ],
     'temperature' => 0.3, // Lower temperature for factual responses
 ]);
@@ -205,15 +203,15 @@ echo "=== Example 2: Chat with System Message ===\n\n";
 $systemRequest = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::System,
+        [
+            'role' => Role::system,
             'content' => 'You are a pirate. Answer all questions as a pirate would,
                          using pirate speech patterns and vocabulary.',
-        ]),
-        ChatMessage::from([
-            'role' => Role::User,
+        ],
+        [
+            'role' => Role::user,
             'content' => 'How do I install PHP?',
-        ]),
+        ],
     ],
     'temperature' => 0.8, // Higher temperature for creative responses
 ]);
@@ -226,14 +224,14 @@ echo "Answer: " . $dto->choices[0]->message->content . "\n\n";
 echo "=== Example 3: Multi-turn Conversation ===\n\n";
 
 $conversation = [
-    ChatMessage::from([
-        'role' => Role::System,
+    [
+        'role' => Role::system,
         'content' => 'You are a helpful PHP tutor. Keep explanations concise.',
-    ]),
-    ChatMessage::from([
-        'role' => Role::User,
+    ],
+    [
+        'role' => Role::user,
         'content' => 'What is a PHP trait?',
-    ]),
+    ],
 ];
 
 // First turn
@@ -251,8 +249,8 @@ echo "Assistant: " . $firstAnswer->content . "\n\n";
 $conversation[] = $firstAnswer;
 
 // Second turn - follow-up question
-$conversation[] = ChatMessage::from([
-    'role' => Role::User,
+$conversation[] = [
+    'role' => Role::user,
     'content' => 'Can you show me a simple example?',
 ]);
 
@@ -324,8 +322,8 @@ Implement a sliding window to manage long conversations:
 function trimConversation(array $messages, int $maxMessages = 10): array
 {
     // Always keep system message
-    $systemMessage = array_filter($messages, fn($m) => $m->role === Role::System);
-    $otherMessages = array_filter($messages, fn($m) => $m->role !== Role::System);
+    $systemMessage = array_filter($messages, fn($m) => $m->role === Role::system);
+    $otherMessages = array_filter($messages, fn($m) => $m->role !== Role::system);
 
     // Keep only recent messages
     $recentMessages = array_slice($otherMessages, -$maxMessages);

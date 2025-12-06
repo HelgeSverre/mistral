@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"library_id\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"processing-doc.pdf\",\"status\":\"processing\",\"created_at\":\"2024-01-15T10:30:00Z\",\"updated_at\":\"2024-01-15T10:31:00Z\",\"size_bytes\":null,\"num_chunks\":null}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 14:45:55 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "625",
+        "Connection": "keep-alive",
+        "CF-RAY": "9963759b599d56a5-OSL",
+        "mistral-correlation-id": "019a306e-bd2b-7009-a503-92ac1baf8495",
+        "x-kong-request-id": "019a306e-bd2b-7009-a503-92ac1baf8495",
+        "x-envoy-upstream-service-time": "17",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "17",
+        "x-kong-proxy-latency": "6",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=cFCeHfurp09bvyr1zoXbtwxQj_KxxYHpYxeZOrnQV.0-1761749155-1.0.1.1-Mgvu3RcLj5DzSosvqoZyX.v1PeBeS0stRoFSX9v4vYbnuDABmZQvOgEAUzOV5JWOQ0dZpYGAul6qpqQpMrsTxUC_TumhVQ1c1Tg19q67Blc; path=/; expires=Wed, 29-Oct-25 15:15:55 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=KWstTKjbr3bQxcZ_9okXoFgytAS7E7VEIRVNIETi50c-1761749155145-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"f94baae5-758c-4da0-99f7-049254e94b95\",\"library_id\":\"019a306e-aebe-775e-9290-67ee7100e41e\",\"hash\":\"057a1aabbea7434e320a6195c61ff491\",\"mime_type\":\"text\\/plain\",\"extension\":\"txt\",\"size\":44,\"name\":\"test_doc_tKBQRm\",\"summary\":\"This is a brief test document used for library testing purposes.\",\"created_at\":\"2025-10-29T14:45:52.897939Z\",\"last_processed_at\":null,\"number_of_pages\":null,\"processing_status\":\"Processing\",\"uploaded_by_id\":\"253a62c0-6672-496a-beb5-ecae98b2bc31\",\"uploaded_by_type\":\"Workspace\",\"tokens_processing_main_content\":11,\"tokens_processing_summary\":70,\"tokens_processing_total\":81}",
+    "context": []
 }

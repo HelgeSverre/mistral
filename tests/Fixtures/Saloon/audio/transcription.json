@@ -1,7 +1,15 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\"}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4af9a8ab56ab-OSL",
+        "mistral-correlation-id": "019a2d34-1819-7e31-939f-c817339db9cf",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
+    },
+    "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\"}",
+    "context": []
 }

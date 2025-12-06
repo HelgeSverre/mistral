@@ -30,7 +30,7 @@ class ProcessDocument extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_filter($this->ocrRequest->toArray());
+        return array_filter($this->ocrRequest->toArray(), fn ($v) => $v !== null);
     }
 
     public function createDtoFromResponse(Response $response): OCRResponse

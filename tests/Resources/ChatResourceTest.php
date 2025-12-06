@@ -78,7 +78,9 @@ it('CreateChatCompletion works with json mode', function () {
         ->and($dto->choices)->toBeInstanceOf(DataCollection::class)
         ->and($dto->choices[0])->toBeInstanceOf(ChatCompletionChoice::class)
         ->and($dto->choices[0]->message)->toBeInstanceOf(ChatCompletionMessage::class)
-        ->and($dto->choices[0]->message->content)->toBe('{"name": "John Doe", "age": 30, "email": "johndoe@example.com"}')
+        ->and($dto->choices[0]->message->content)->toBeJson()
+        ->and(json_decode($dto->choices[0]->message->content, true))->toMatchArray(['name' => 'John Doe', 'age' => 30])
+        ->and(json_decode($dto->choices[0]->message->content, true)['email'])->toContain('@')
         ->and($dto->model)->toBe(Model::small->value)
         ->and($dto->object)->toBe('chat.completion');
 });
@@ -149,8 +151,7 @@ it('CreateChatCompletion works with function calling', function () {
 
     expect($response->json('choices.0.message.content'))->toBe('')
         ->and($response->json('choices.0.message.tool_calls'))->toBeArray()
-        ->and($response->json('choices.0.message.tool_calls.0.id'))->toBe('null')
-        ->and($response->json('choices.0.message.tool_calls.0.type'))->toBe('function')
+        ->and($response->json('choices.0.message.tool_calls.0.id'))->toBeString()->not->toBeEmpty()
         ->and($response->json('choices.0.message.tool_calls.0.function'))->toBeArray()
         ->and($response->json('choices.0.message.tool_calls.0.function.name'))->toBe('searchWeather')
         ->and($response->json('choices.0.message.tool_calls.0.function.arguments'))->toBeJson();

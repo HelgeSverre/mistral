@@ -58,8 +58,8 @@ Transcribe a simple audio file:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Audio\AudioTranscriptionRequest;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Audio\AudioTranscriptionRequest;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
@@ -102,7 +102,7 @@ class AudioProcessor
     {
         // Validate file
         $fileInfo = pathinfo($filePath);
-        if (!in_array(strtolower($fileInfo['extension']), $this->supportedFormats)) {
+        if (!in_array(strtolower($fileInfo['extension'], $this->supportedFormats)) {
             throw new Exception("Unsupported format: {$fileInfo['extension']}");
         }
 
@@ -278,19 +278,19 @@ class MeetingTranscriber
         $request = ChatCompletionRequest::from([
             'model' => 'mistral-small-latest',
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::System,
+                [
+                    'role' => Role::system,
                     'content' => 'Analyze this meeting transcript and extract:
                                  - Key topics discussed
                                  - Action items
                                  - Decisions made
                                  - Questions raised
                                  Return as JSON.',
-                ]),
-                ChatMessage::from([
-                    'role' => Role::User,
+                ],
+                [
+                    'role' => Role::user,
                     'content' => $transcript,
-                ]),
+                ],
             ],
             'temperature' => 0.0,
             'responseFormat' => ['type' => 'json_object'],
@@ -305,10 +305,10 @@ class MeetingTranscriber
         $request = ChatCompletionRequest::from([
             'model' => 'mistral-small-latest',
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::User,
+                [
+                    'role' => Role::user,
                     'content' => "Summarize this meeting transcript in bullet points:\n\n{$transcript}",
-                ]),
+                ],
             ],
             'temperature' => 0.3,
             'maxTokens' => 500,
@@ -329,11 +329,10 @@ Complete working example (`audio.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Audio\AudioTranscriptionRequest;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Audio\AudioTranscriptionRequest;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -482,14 +481,14 @@ try {
         $chaptersRequest = ChatCompletionRequest::from([
             'model' => 'mistral-small-latest',
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::System,
+                [
+                    'role' => Role::system,
                     'content' => 'Generate podcast chapters with timestamps from this transcript.',
-                ]),
-                ChatMessage::from([
-                    'role' => Role::User,
+                ],
+                [
+                    'role' => Role::user,
                     'content' => $dto->text,
-                ]),
+                ],
             ],
             'temperature' => 0.3,
             'maxTokens' => 500,
@@ -526,15 +525,15 @@ try {
     $tasksRequest = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::System,
+            [
+                'role' => Role::system,
                 'content' => 'Extract action items and tasks from this voice note.
                              Return as a numbered list.',
-            ]),
-            ChatMessage::from([
-                'role' => Role::User,
+            ],
+            [
+                'role' => Role::user,
                 'content' => $dto->text,
-            ]),
+            ],
         ],
         'temperature' => 0.0,
         'maxTokens' => 200,

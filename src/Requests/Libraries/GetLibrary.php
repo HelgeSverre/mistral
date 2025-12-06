@@ -19,7 +19,7 @@ class GetLibrary extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}";
+        return "/libraries/{$this->libraryId}";
     }
 
     public function createDtoFromResponse(Response $response): LibraryOut

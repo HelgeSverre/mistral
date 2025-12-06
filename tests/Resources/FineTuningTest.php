@@ -99,7 +99,7 @@ it('can create a fine-tuning job', function () {
     $jobIn = new JobIn(
         model: 'open-mistral-7b',
         trainingFiles: [
-            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210', weight: 1),
+            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210', weight: 1.0),
         ],
         hyperparameters: new TrainingParameters(
             trainingSteps: 100,
@@ -111,10 +111,10 @@ it('can create a fine-tuning job', function () {
             seqLen: 512,
         ),
         suffix: 'my-model-v1',
-        integrations: new WandbIntegration(
+        integrations: [new WandbIntegration(
             project: 'my-wandb-project',
             name: 'my-run-name',
-        ),
+        )],
         autoStart: false,
     );
 
@@ -133,8 +133,12 @@ it('can create job and convert to DTO for completion type', function () {
     $jobIn = new JobIn(
         model: 'open-mistral-7b',
         trainingFiles: [
-            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210'),
+            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210', weight: 1.0),
         ],
+        hyperparameters: new TrainingParameters(
+            trainingSteps: 100,
+            learningRate: 0.0001,
+        ),
     );
 
     $jobOut = $this->mistral->fineTuning()->createAsDto($jobIn);
@@ -158,8 +162,12 @@ it('can create job with dry run', function () {
     $jobIn = new JobIn(
         model: 'open-mistral-7b',
         trainingFiles: [
-            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210'),
+            new TrainingFile(fileId: '9876dcba-4321-0987-fedc-ba9876543210', weight: 1.0),
         ],
+        hyperparameters: new TrainingParameters(
+            trainingSteps: 100,
+            learningRate: 0.0001,
+        ),
     );
 
     $metadataOut = $this->mistral->fineTuning()->createAsDto($jobIn, dryRun: true);
@@ -384,7 +392,7 @@ it('TrainingFile DTO works correctly', function () {
     expect($array)
         ->toHaveKey('file_id')
         ->and($array['file_id'])->toBe('9876dcba-4321-0987-fedc-ba9876543210')
-        ->and($array['weight'])->toBe(1);
+        ->and($array['weight'])->toBe(1.0);
 });
 
 it('TrainingParameters DTO correctly maps snake_case', function () {

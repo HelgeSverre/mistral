@@ -1,7 +1,15 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\",\"language\":\"en\",\"duration\":5.2,\"words\":[{\"word\":\"Hello\",\"start\":0.0,\"end\":0.5},{\"word\":\"this\",\"start\":0.6,\"end\":0.8},{\"word\":\"is\",\"start\":0.9,\"end\":1.0},{\"word\":\"a\",\"start\":1.1,\"end\":1.2},{\"word\":\"test\",\"start\":1.3,\"end\":1.6},{\"word\":\"transcription\",\"start\":1.7,\"end\":2.5},{\"word\":\"of\",\"start\":2.6,\"end\":2.7},{\"word\":\"an\",\"start\":2.8,\"end\":2.9},{\"word\":\"audio\",\"start\":3.0,\"end\":3.4},{\"word\":\"file\",\"start\":3.5,\"end\":3.8}],\"segments\":[{\"id\":0,\"seek\":0,\"start\":0.0,\"end\":5.2,\"text\":\"Hello, this is a test transcription of an audio file.\",\"tokens\":[15496,11,428,318,257,1332,26955,286,281,6597,2393,13],\"temperature\":0.0,\"avg_logprob\":-0.25,\"compression_ratio\":1.5,\"no_speech_prob\":0.01}]}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:00 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4afba8ab56ad-OSL",
+        "mistral-correlation-id": "019a2d34-181b-7e31-939f-c817339db9d1",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
+    },
+    "data": "{\"text\":\"Hello, this is a test transcription of an audio file.\",\"language\":\"en\",\"duration\":5.2,\"words\":[{\"word\":\"Hello\",\"start\":0.0,\"end\":0.5},{\"word\":\"this\",\"start\":0.6,\"end\":0.8},{\"word\":\"is\",\"start\":0.9,\"end\":1.0},{\"word\":\"a\",\"start\":1.1,\"end\":1.2},{\"word\":\"test\",\"start\":1.3,\"end\":1.7},{\"word\":\"transcription\",\"start\":1.8,\"end\":2.6},{\"word\":\"of\",\"start\":2.7,\"end\":2.9},{\"word\":\"an\",\"start\":3.0,\"end\":3.2},{\"word\":\"audio\",\"start\":3.3,\"end\":3.8},{\"word\":\"file\",\"start\":3.9,\"end\":4.3}],\"segments\":[{\"id\":0,\"seek\":0,\"start\":0.0,\"end\":5.2,\"text\":\"Hello, this is a test transcription of an audio file.\",\"tokens\":[1,2,3,4,5,6,7,8,9,10],\"temperature\":0.0,\"avg_logprob\":-0.25,\"compression_ratio\":1.5,\"no_speech_prob\":0.01}]}",
+    "context": []
 }

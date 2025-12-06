@@ -21,7 +21,7 @@ class CreateBatchJobRequest extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/v1/batch/jobs';
+        return '/batch/jobs';
     }
 
     public function __construct(

@@ -12,7 +12,11 @@ enum Model: string
     case large = 'mistral-large-latest';
 
     // Edge models
+    case ministral3b = 'ministral-3b-latest';
     case ministral8b = 'ministral-8b-latest';
+
+    // Nemo models
+    case mistralNemo = 'open-mistral-nemo';
 
     // Reasoning models
     case magistralMedium = 'magistral-medium-latest';
@@ -47,7 +51,11 @@ enum Model: string
             'mistral-large-2402',
 
             // Ministral (edge)
+            'ministral-3b-latest',
             'ministral-8b-latest',
+
+            // Nemo
+            'open-mistral-nemo',
 
             // Reasoning
             'magistral-medium-latest',

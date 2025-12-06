@@ -29,7 +29,7 @@ class CreateJobRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_filter($this->jobIn->toArray());
+        return array_filter($this->jobIn->toArray(), fn ($v) => $v !== null);
     }
 
     protected function defaultQuery(): array

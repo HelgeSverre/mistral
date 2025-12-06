@@ -1,7 +1,8 @@
 {
-    "statusCode": 200,
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": "{\"id\":\"batch-job-789a0123-b45c-67d8-e901-234567890abc\",\"object\":\"batch.job\",\"status\":\"SUCCESS\",\"input_files\":[\"file-xyz123\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715690000,\"started_at\":1715690050,\"completed_at\":1715691000,\"model\":\"mistral-small-latest\",\"metadata\":{\"test\":\"value\"},\"output_file\":\"output-batch-789a\",\"error_file\":\"error-batch-789a\",\"total_requests\":200,\"succeeded_requests\":198,\"failed_requests\":2}"
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"id\": \"877443e6-c853-4846-9857-6e4e0ab932f4\", \"object\": \"batch\", \"input_files\": [\"92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2\"], \"metadata\": null, \"endpoint\": \"/v1/chat/completions\", \"model\": \"mistral-small-latest\", \"agent_id\": null, \"output_file\": null, \"error_file\": null, \"errors\": [], \"status\": \"RUNNING\", \"created_at\": 1761710170, \"total_requests\": 3, \"completed_requests\": 0, \"succeeded_requests\": 0, \"failed_requests\": 0, \"started_at\": 1761710171, \"completed_at\": null}",
+  "context": []
 }

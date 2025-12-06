@@ -23,7 +23,7 @@ class CreateConversationStreamRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        $body = array_filter($this->conversationRequest->toArray());
+        $body = array_filter($this->conversationRequest->toArray(), fn ($v) => $v !== null);
         $body['stream'] = true;
 
         return $body;

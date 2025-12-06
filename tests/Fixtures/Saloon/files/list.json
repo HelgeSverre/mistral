@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"object\":\"list\",\"data\":[{\"id\":\"file-550e8400-e29b-41d4-a716-446655440000\",\"object\":\"file\",\"bytes\":1024,\"created_at\":1717059200,\"filename\":\"training_data.jsonl\",\"purpose\":\"fine-tune\",\"sample_type\":\"instruct\",\"num_lines\":100,\"source\":\"upload\"},{\"id\":\"file-660e8400-e29b-41d4-a716-446655440001\",\"object\":\"file\",\"bytes\":2048,\"created_at\":1717145600,\"filename\":\"batch_data.jsonl\",\"purpose\":\"batch\",\"sample_type\":\"pretrain\",\"num_lines\":200,\"source\":\"upload\"}],\"total\":2}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 02:43:46 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "995f53c8ed000731-OSL",
+        "mistral-correlation-id": "019a2dd9-99c9-707d-bf45-473d0eb3513e",
+        "x-kong-request-id": "019a2dd9-99c9-707d-bf45-473d0eb3513e",
+        "x-envoy-upstream-service-time": "113",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "114",
+        "x-kong-proxy-latency": "4",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=U6yM2Wd8VvEnwU5HwF1sgepFREoaVkDhmNzfajZFzro-1761705826-1.0.1.1-iNdIc6cXlnnUaMWLMdxbBe4G7F5Cl50HaITpkE7_ITlOrcJ_3CfFVAbKB8pUc0dvjby8McAbv9klhS2DR.jesSBCp_36cb32Klg.mYqy95Q; path=/; expires=Wed, 29-Oct-25 03:13:46 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=69UC_iYcFM86GpE9we4Iog0lzcMxwnDGvZxIrktk8NA-1761705826886-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"data\": [{\"id\": \"0a980fee-f172-4555-b2ca-3b70e43b036c\", \"object\": \"file\", \"bytes\": 2066, \"created_at\": 1761701186, \"filename\": \"batch-input.jsonl\", \"purpose\": \"batch\", \"sample_type\": \"batch_request\", \"num_lines\": 3, \"mimetype\": \"application/jsonl\", \"source\": \"upload\", \"signature\": \"bc3cb0543587433d\"}, {\"id\": \"92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2\", \"object\": \"file\", \"bytes\": 2066, \"created_at\": 1761697766, \"filename\": \"batch-input.jsonl\", \"purpose\": \"batch\", \"sample_type\": \"batch_request\", \"num_lines\": 3, \"mimetype\": \"application/jsonl\", \"source\": \"upload\", \"signature\": \"2d2a179bb429af3b\"}, {\"id\": \"615c701a-38f0-4101-9765-649919412a7c\", \"object\": \"file\", \"bytes\": 865, \"created_at\": 1761697766, \"filename\": \"training-data.jsonl\", \"purpose\": \"fine-tune\", \"sample_type\": \"instruct\", \"num_lines\": 5, \"mimetype\": \"application/jsonl\", \"source\": \"upload\", \"signature\": \"ab56facf0e21bf0d\"}], \"object\": \"list\", \"total\": 3}",
+    "context": []
 }

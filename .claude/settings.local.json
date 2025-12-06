@@ -1,7 +1,28 @@
 {
   "permissions": {
     "allow": [
-      "Bash(git commit:*)"
+      "Bash(php -r:*)",
+      "Bash(php check_models.php:*)",
+      "Bash(composer test:*)",
+      "WebSearch",
+      "Bash(php generate_fixtures.php:*)",
+      "Bash(php create_test_resources.php:*)",
+      "Bash(cat:*)",
+      "Bash(php update_audio_tests.php:*)",
+      "Bash(php generate_audio_fixtures.php:*)",
+      "Bash(for file in tests/Fixtures/Saloon/files/*.json)",
+      "Bash(do echo \"=== $file ===\")",
+      "Bash(jq:*)",
+      "Bash(done)",
+      "Bash(php:*)",
+      "Bash(chmod:*)",
+      "Bash(./generate_batch_curl.sh)",
+      "Bash(for file in tests/Fixtures/Saloon/libraries/*.json)",
+      "Bash(xargs:*)",
+      "WebFetch(domain:docs.mistral.ai)",
+      "Bash(git checkout:*)",
+      "Bash(./regenerate_chat_fixtures.sh:*)",
+      "Bash(./regenerate_simplechat_fixtures.sh)"
     ],
     "deny": [],
     "ask": []

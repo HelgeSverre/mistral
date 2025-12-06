@@ -10,6 +10,6 @@ class TrainingFile extends Data
     public function __construct(
         #[MapName('file_id')]
         public string $fileId,
-        public ?int $weight = null,
+        public ?float $weight = null,
     ) {}
 }

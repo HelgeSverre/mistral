@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"data\":[{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"library_id\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"api-reference.pdf\",\"status\":\"processed\",\"created_at\":\"2024-01-15T10:30:00Z\",\"updated_at\":\"2024-01-15T10:35:00Z\",\"size_bytes\":1048576,\"num_chunks\":42},{\"id\":\"650e8400-e29b-41d4-a716-446655440002\",\"library_id\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"user-guide.pdf\",\"status\":\"processed\",\"created_at\":\"2024-01-15T11:00:00Z\",\"updated_at\":\"2024-01-15T11:05:00Z\",\"size_bytes\":2097152,\"num_chunks\":87}],\"object\":\"list\",\"total\":2}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 14:45:52 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "108",
+        "Connection": "keep-alive",
+        "CF-RAY": "9963758cca6e56a5-OSL",
+        "mistral-correlation-id": "019a306e-b41b-79e6-ac5c-5c0c563cdb76",
+        "x-kong-request-id": "019a306e-b41b-79e6-ac5c-5c0c563cdb76",
+        "x-envoy-upstream-service-time": "12",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "13",
+        "x-kong-proxy-latency": "7",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=gT6vs0Iroa_IUGUB_FY5VbO0ZzVUEOSNbVteG8yBRMc-1761749152-1.0.1.1-BX37YxDYH4Ie4TLb_da0K3Jx0aWfd2wTyUmWaqyhxZr4UhzrLzpilJlro1Mr.qpUgKyFArSv0pfSivYtQ9vSKcK5d86tdREaaeSgSJlcnuY; path=/; expires=Wed, 29-Oct-25 15:15:52 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=JuBdwAiOKt4c5qatoOXSiSW2H9wMFbuMV6jXtAoDSzA-1761749152835-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"pagination\":{\"total_items\":0,\"total_pages\":0,\"current_page\":0,\"page_size\":100,\"has_more\":false},\"data\":[]}",
+    "context": []
 }

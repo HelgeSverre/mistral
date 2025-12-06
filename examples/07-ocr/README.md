@@ -57,12 +57,11 @@ Extract text from an image:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Dto\Chat\ImageContent;
-use Helge\Mistral\Dto\Chat\TextContent;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Dto\Chat\ImageContent;
+use HelgeSverre\Mistral\Dto\Chat\TextContent;
+use HelgeSverre\Mistral\Enums\Role;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
@@ -75,19 +74,19 @@ $imageUrl = "data:image/jpeg;base64,{$imageData}";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
                     'text' => 'Extract all text from this image.',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0, // Use low temperature for accuracy
 ]);
@@ -156,20 +155,20 @@ class DocumentProcessor
         $request = ChatCompletionRequest::from([
             'model' => $this->model,
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::User,
+                [
+                    'role' => Role::user,
                     'content' => [
                         TextContent::from([
                             'type' => 'text',
                             'text' => 'Extract all text from this document.
                                       Preserve the original formatting and structure.',
-                        ]),
+                        ],
                         ImageContent::from([
                             'type' => 'image_url',
                             'imageUrl' => ['url' => $imageUrl],
-                        ]),
+                        ],
                     ],
-                ]),
+                ],
             ],
             'temperature' => 0.0,
         ]);
@@ -183,13 +182,13 @@ class DocumentProcessor
         $request = ChatCompletionRequest::from([
             'model' => $this->model,
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::System,
+                [
+                    'role' => Role::system,
                     'content' => 'You are a document structure analyzer.
                                  Return results as JSON.',
-                ]),
-                ChatMessage::from([
-                    'role' => Role::User,
+                ],
+                [
+                    'role' => Role::user,
                     'content' => [
                         TextContent::from([
                             'type' => 'text',
@@ -200,13 +199,13 @@ class DocumentProcessor
                                       - has_images (boolean)
                                       - language
                                       - key_value_pairs (if any)',
-                        ]),
+                        ],
                         ImageContent::from([
                             'type' => 'image_url',
                             'imageUrl' => ['url' => $imageUrl],
-                        ]),
+                        ],
                     ],
-                ]),
+                ],
             ],
             'temperature' => 0.0,
             'responseFormat' => ['type' => 'json_object'],
@@ -221,21 +220,21 @@ class DocumentProcessor
         $request = ChatCompletionRequest::from([
             'model' => $this->model,
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::User,
+                [
+                    'role' => Role::user,
                     'content' => [
                         TextContent::from([
                             'type' => 'text',
                             'text' => 'Extract all tables from this document.
                                       Format each table as a JSON array of objects,
                                       where each object represents a row.',
-                        ]),
+                        ],
                         ImageContent::from([
                             'type' => 'image_url',
                             'imageUrl' => ['url' => $imageUrl],
-                        ]),
+                        ],
                     ],
-                ]),
+                ],
             ],
             'temperature' => 0.0,
             'responseFormat' => ['type' => 'json_object'],
@@ -253,19 +252,19 @@ class DocumentProcessor
             $request = ChatCompletionRequest::from([
                 'model' => $this->model,
                 'messages' => [
-                    ChatMessage::from([
-                        'role' => Role::User,
+                    [
+                        'role' => Role::user,
                         'content' => [
                             TextContent::from([
                                 'type' => 'text',
                                 'text' => $question,
-                            ]),
+                            ],
                             ImageContent::from([
                                 'type' => 'image_url',
                                 'imageUrl' => ['url' => $imageUrl],
-                            ]),
+                            ],
                         ],
-                    ]),
+                    ],
                 ],
                 'temperature' => 0.0,
             ]);
@@ -309,24 +308,24 @@ class FormExtractor
         $request = ChatCompletionRequest::from([
             'model' => 'mistral-ocr-latest',
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::System,
+                [
+                    'role' => Role::system,
                     'content' => 'Extract form fields and return as JSON.
                                  For missing fields, use null.',
-                ]),
-                ChatMessage::from([
-                    'role' => Role::User,
+                ],
+                [
+                    'role' => Role::user,
                     'content' => [
                         TextContent::from([
                             'type' => 'text',
                             'text' => "Extract these fields from the form:\n{$fieldsList}",
-                        ]),
+                        ],
                         ImageContent::from([
                             'type' => 'image_url',
                             'imageUrl' => ['url' => $imageUrl],
-                        ]),
+                        ],
                     ],
-                ]),
+                ],
             ],
             'temperature' => 0.0,
             'responseFormat' => ['type' => 'json_object'],
@@ -347,12 +346,11 @@ Complete working example (`ocr.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Dto\Chat\ImageContent;
-use Helge\Mistral\Dto\Chat\TextContent;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Dto\Chat\ImageContent;
+use HelgeSverre\Mistral\Dto\Chat\TextContent;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -372,19 +370,19 @@ $imageUrl = "data:image/png;base64,{$imageData}";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
                     'text' => 'Extract all text from this image.',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0,
 ]);
@@ -400,13 +398,13 @@ echo "=== Example 2: Invoice Analysis ===\n\n";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::System,
+        [
+            'role' => Role::system,
             'content' => 'You are an invoice processing system.
                          Extract key information and return as JSON.',
-        ]),
-        ChatMessage::from([
-            'role' => Role::User,
+        ],
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
@@ -416,13 +414,13 @@ $request = ChatCompletionRequest::from([
                              - total_amount
                              - vendor_name
                              - line_items (array of items with description and amount)',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0,
     'responseFormat' => ['type' => 'json_object'],
@@ -444,20 +442,20 @@ $imageUrl = "data:image/png;base64,{$imageData}";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
                     'text' => 'Extract text from this document.
                              Identify the languages used and preserve them.',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0,
 ]);
@@ -476,20 +474,20 @@ $imageUrl = "data:image/png;base64,{$imageData}";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
                     'text' => 'Extract the table data from this image.
                              Format as CSV with headers.',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0,
 ]);
@@ -514,19 +512,19 @@ foreach ($questions as $question) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-ocr-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => [
                     TextContent::from([
                         'type' => 'text',
                         'text' => $question,
-                    ]),
+                    ],
                     ImageContent::from([
                         'type' => 'image_url',
                         'imageUrl' => ['url' => $imageUrl],
-                    ]),
+                    ],
                 ],
-            ]),
+            ],
         ],
         'temperature' => 0.0,
         'maxTokens' => 100,
@@ -547,20 +545,20 @@ $imageUrl = "data:image/png;base64,{$imageData}";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-ocr-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => [
                 TextContent::from([
                     'type' => 'text',
                     'text' => 'This image contains handwritten text.
                              Please extract and transcribe it carefully.',
-                ]),
+                ],
                 ImageContent::from([
                     'type' => 'image_url',
                     'imageUrl' => ['url' => $imageUrl],
-                ]),
+                ],
             ],
-        ]),
+        ],
     ],
     'temperature' => 0.0,
 ]);

@@ -1,0 +1,3 @@
+{"custom_id": "request-1", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "mistral-large-latest", "messages": [{"role": "user", "content": "What is artificial intelligence?"}], "max_tokens": 100}}
+{"custom_id": "request-2", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "mistral-large-latest", "messages": [{"role": "user", "content": "Explain machine learning in simple terms"}], "max_tokens": 100}}
+{"custom_id": "request-3", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "mistral-large-latest", "messages": [{"role": "user", "content": "What is the difference between AI and ML?"}], "max_tokens": 100}}

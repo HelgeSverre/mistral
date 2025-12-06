@@ -17,6 +17,6 @@ class DeleteLibrary extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}";
+        return "/libraries/{$this->libraryId}";
     }
 }

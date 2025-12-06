@@ -16,7 +16,7 @@ class GetBatchJobRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/batch/jobs/{$this->jobId}";
+        return "/batch/jobs/{$this->jobId}";
     }
 
     public function __construct(

@@ -1,26 +1,6 @@
 {
-    "statusCode": 200,
-    "headers": {
-        "Date": "Tue, 27 Feb 2024 14:02:07 GMT",
-        "Content-Type": "application\/json",
-        "Content-Length": "522",
-        "Connection": "keep-alive",
-        "ratelimitbysize-reset": "54",
-        "x-ratelimitbysize-remaining-minute": "1998661",
-        "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-minute": "2000000",
-        "ratelimitbysize-query-cost": "106",
-        "x-ratelimitbysize-remaining-month": "9999835560",
-        "ratelimitbysize-remaining": "1998661",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "657",
-        "x-kong-proxy-latency": "0",
-        "x-kong-request-id": "11acc132d7eae863ab61a3317858287b",
-        "CF-Cache-Status": "DYNAMIC",
-        "Server": "cloudflare",
-        "CF-RAY": "85c0f6b01fb356a9-OSL",
-        "alt-svc": "h3=\":443\"; ma=86400"
-    },
-    "data": "{\"id\":\"525ffbed3d514c0494f44f57d5751a92\",\"object\":\"chat.completion\",\"created\":1709042526,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word you've asked me to say is \\\"banana\\\". It's a common fruit that is long, curved, and yellow when ripe. Bananas are rich in nutrients, including vitamins C and B6, manganese, net carbs, fiber, and potassium. Enjoy your day!\"},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":86,\"completion_tokens\":71}}"
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"466c2a4e019342d8b690779c9e2eb379\",\"created\":1761719904,\"model\":\"open-mistral-7b\",\"usage\":{\"prompt_tokens\":14,\"total_tokens\":79,\"completion_tokens\":65},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Sure, the word is \\\"banana\\\". Interestingly, bananas are not actually berries, despite being called so in many English-speaking countries. They are considered a type of fruit called an \\\"infrustescence,\\\" which is a cluster of flowers and fruit fused together on a single stem.\"}}]}",
+  "context": []
 }

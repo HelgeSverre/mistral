@@ -7,6 +7,6 @@ use Spatie\LaravelData\Data;
 class ValidationError extends Data
 {
     public function __construct(
-        public string $error,
+        public ?string $error = null,
     ) {}
 }

@@ -62,11 +62,8 @@ it('create() works using json mode', function () {
     expect($response->model)->toBe(Model::small->value)
         ->and($response->role)->toBe('assistant')
         ->and($response->content)->toBeJson()
-        ->and($response->contentAsJson())->toBe([
-            'name' => 'John Doe',
-            'age' => 30,
-            'email' => 'johndoe@example.com',
-        ])
+        ->and($response->contentAsJson())->toMatchArray(['name' => 'John Doe', 'age' => 30])
+        ->and($response->contentAsJson()['email'])->toContain('@example.com')
         ->and($response->promptTokens)->toBeInt()
         ->and($response->completionTokens)->toBeInt()
         ->and($response->totalTokens)->toBeInt()

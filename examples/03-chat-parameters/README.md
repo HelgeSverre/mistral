@@ -63,20 +63,19 @@ Let's see how temperature affects creativity:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 function testTemperature(Mistral $client, float $temperature): string
 {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'Write a creative tagline for a coffee shop.',
-            ]),
+            ],
         ],
         'temperature' => $temperature,
         'maxTokens' => 50,
@@ -145,10 +144,10 @@ class ParameterTester
         $request = ChatCompletionRequest::from([
             'model' => 'mistral-small-latest',
             'messages' => [
-                ChatMessage::from([
-                    'role' => Role::User,
+                [
+                    'role' => Role::user,
                     'content' => $prompt,
-                ]),
+                ],
             ],
             'temperature' => $params['temperature'],
             'topP' => $params['topP'],
@@ -176,14 +175,14 @@ function generateWithLengthControl(
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::System,
+            [
+                'role' => Role::system,
                 'content' => "Provide responses between {$minLength} and {$maxLength} tokens.",
-            ]),
-            ChatMessage::from([
-                'role' => Role::User,
+            ],
+            [
+                'role' => Role::user,
                 'content' => $prompt,
-            ]),
+            ],
         ],
         'maxTokens' => $maxLength,
         'temperature' => 0.7,
@@ -196,8 +195,8 @@ function generateWithLengthControl(
     $tokenCount = $dto->usage->completionTokens;
     if ($tokenCount < $minLength) {
         // Request expansion
-        $request->messages[] = ChatMessage::from([
-            'role' => Role::User,
+        $request->messages[] = [
+            'role' => Role::user,
             'content' => 'Please expand your response with more detail.',
         ]);
         $dto = $client->chat()->createDto($request);
@@ -217,10 +216,9 @@ Complete working example (`chat-parameters.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -238,10 +236,10 @@ foreach ($temperatures as $temp) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'Generate a product name for a smart water bottle',
-            ]),
+            ],
         ],
         'temperature' => $temp,
         'maxTokens' => 20,
@@ -261,10 +259,10 @@ foreach ($topPValues as $topP) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'Complete this sentence: The future of technology is',
-            ]),
+            ],
         ],
         'temperature' => 1.0,
         'topP' => $topP,
@@ -289,10 +287,10 @@ foreach ($lengthTests as $test) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'Explain machine learning',
-            ]),
+            ],
         ],
         'maxTokens' => $test['maxTokens'],
         'temperature' => 0.7,
@@ -312,10 +310,10 @@ echo "=== Example 4: Stop Sequences ===\n\n";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'List 5 programming languages with brief descriptions:',
-        ]),
+        ],
     ],
     'temperature' => 0.5,
     'maxTokens' => 200,
@@ -336,10 +334,10 @@ for ($i = 1; $i <= 3; $i++) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => 'Generate a random number between 1 and 100',
-            ]),
+            ],
         ],
         'temperature' => 1.0,
         'seed' => $seed,
@@ -380,10 +378,10 @@ foreach ($useCases as $useCase) {
     $request = ChatCompletionRequest::from([
         'model' => 'mistral-small-latest',
         'messages' => [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => $useCase['prompt'],
-            ]),
+            ],
         ],
         'temperature' => $useCase['params']['temperature'],
         'topP' => $useCase['params']['topP'],

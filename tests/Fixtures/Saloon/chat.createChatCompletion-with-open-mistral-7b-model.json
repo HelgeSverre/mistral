@@ -1,26 +1,6 @@
 {
     "statusCode": 200,
-    "headers": {
-        "Date": "Tue, 27 Feb 2024 14:02:12 GMT",
-        "Content-Type": "application\/json",
-        "Content-Length": "376",
-        "Connection": "keep-alive",
-        "ratelimitbysize-reset": "48",
-        "x-ratelimitbysize-remaining-minute": "1996317",
-        "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-minute": "2000000",
-        "ratelimitbysize-query-cost": "26",
-        "x-ratelimitbysize-remaining-month": "9999833216",
-        "ratelimitbysize-remaining": "1996317",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "182",
-        "x-kong-proxy-latency": "0",
-        "x-kong-request-id": "f8462f7de3ec8e74b93ae564236ac975",
-        "CF-Cache-Status": "DYNAMIC",
-        "Server": "cloudflare",
-        "CF-RAY": "85c0f6d28a2f5695-OSL",
-        "alt-svc": "h3=\":443\"; ma=86400"
-    },
-    "data": "{\"id\":\"6070ee46f59b4feaa8f1f510e609c924\",\"object\":\"chat.completion\",\"created\":1709042532,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"The word \\\"banana\\\" is commonly used to refer to the long, curved fruit that grows\"},\"finish_reason\":\"length\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":15,\"total_tokens\":35,\"completion_tokens\":20}}"
+    "headers": {},
+    "data": "{\"id\":\"94c9a63ac2d9464b85dabfe64d490b5d\",\"created\":1761706637,\"model\":\"open-mistral-7b\",\"usage\":{\"prompt_tokens\":6,\"total_tokens\":16,\"completion_tokens\":10},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Hello! How can I help you today?\"}}]}",
+    "context": []
 }

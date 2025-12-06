@@ -19,7 +19,7 @@ class ListSharing extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}/share";
+        return "/libraries/{$this->libraryId}/share";
     }
 
     public function createDtoFromResponse(Response $response): ListSharingOut

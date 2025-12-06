@@ -1,0 +1,5 @@
+{"messages": [{"role": "user", "content": "What is the capital of France?"}, {"role": "assistant", "content": "The capital of France is Paris."}]}
+{"messages": [{"role": "user", "content": "What is 2 + 2?"}, {"role": "assistant", "content": "2 + 2 equals 4."}]}
+{"messages": [{"role": "user", "content": "Who wrote Romeo and Juliet?"}, {"role": "assistant", "content": "William Shakespeare wrote Romeo and Juliet."}]}
+{"messages": [{"role": "user", "content": "What is the largest planet?"}, {"role": "assistant", "content": "Jupiter is the largest planet in our solar system."}]}
+{"messages": [{"role": "user", "content": "What year did World War II end?"}, {"role": "assistant", "content": "World War II ended in 1945."}]}

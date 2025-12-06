@@ -42,14 +42,14 @@ it('can upload a file', function () {
 
     $dto = $response->dto();
     expect($dto)->toBeInstanceOf(UploadFileOut::class)
-        ->and($dto->data->id)->toBe('file-550e8400-e29b-41d4-a716-446655440000')
-        ->and($dto->data->object)->toBe('file')
-        ->and($dto->data->bytes)->toBe(1024)
-        ->and($dto->data->filename)->toBe('training_data.jsonl')
-        ->and($dto->data->purpose)->toBe(FilePurpose::FINE_TUNE)
-        ->and($dto->data->sampleType)->toBe(SampleType::INSTRUCT)
-        ->and($dto->data->numLines)->toBe(100)
-        ->and($dto->data->source)->toBe(Source::UPLOAD);
+        ->and($dto->id)->toBe('ed3e56f8-8df4-4548-a5bc-a4e07ff29d09')
+        ->and($dto->object)->toBe('file')
+        ->and($dto->bytes)->toBe(409)
+        ->and($dto->filename)->toBe('mistral_test_D2Ip0s')
+        ->and($dto->purpose)->toBe(FilePurpose::FINE_TUNE)
+        ->and($dto->sampleType)->toBe(SampleType::INSTRUCT)
+        ->and($dto->numLines)->toBe(2)
+        ->and($dto->source)->toBe(Source::UPLOAD);
 
     unlink($tempFile);
 });
@@ -86,14 +86,17 @@ it('can list files', function () {
     $dto = $response->dto();
     expect($dto)->toBeInstanceOf(ListFilesOut::class)
         ->and($dto->object)->toBe('list')
-        ->and($dto->total)->toBe(2)
-        ->and($dto->data)->toHaveCount(2)
-        ->and($dto->data[0]->id)->toBe('file-550e8400-e29b-41d4-a716-446655440000')
-        ->and($dto->data[0]->filename)->toBe('training_data.jsonl')
-        ->and($dto->data[0]->purpose)->toBe(FilePurpose::FINE_TUNE)
-        ->and($dto->data[1]->id)->toBe('file-660e8400-e29b-41d4-a716-446655440001')
-        ->and($dto->data[1]->filename)->toBe('batch_data.jsonl')
-        ->and($dto->data[1]->purpose)->toBe(FilePurpose::BATCH);
+        ->and($dto->total)->toBe(3)
+        ->and($dto->data)->toHaveCount(3)
+        ->and($dto->data[0]->id)->toBe('0a980fee-f172-4555-b2ca-3b70e43b036c')
+        ->and($dto->data[0]->filename)->toBe('batch-input.jsonl')
+        ->and($dto->data[0]->purpose)->toBe(FilePurpose::BATCH)
+        ->and($dto->data[1]->id)->toBe('92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2')
+        ->and($dto->data[1]->filename)->toBe('batch-input.jsonl')
+        ->and($dto->data[1]->purpose)->toBe(FilePurpose::BATCH)
+        ->and($dto->data[2]->id)->toBe('615c701a-38f0-4101-9765-649919412a7c')
+        ->and($dto->data[2]->filename)->toBe('training-data.jsonl')
+        ->and($dto->data[2]->purpose)->toBe(FilePurpose::FINE_TUNE);
 });
 
 it('can list files with filters', function () {
@@ -104,8 +107,8 @@ it('can list files with filters', function () {
     $response = $this->mistral->files()->list(
         page: 0,
         pageSize: 10,
-        sampleType: SampleType::INSTRUCT,
-        source: Source::UPLOAD,
+        sampleTypes: [SampleType::INSTRUCT],
+        sources: [Source::UPLOAD],
         search: 'training',
         purpose: FilePurpose::FINE_TUNE
     );
@@ -119,7 +122,7 @@ it('can retrieve a file', function () {
         RetrieveFile::class => MockResponse::fixture('files/retrieve'),
     ]);
 
-    $fileId = 'file-550e8400-e29b-41d4-a716-446655440000';
+    $fileId = '615c701a-38f0-4101-9765-649919412a7c';
     $response = $this->mistral->files()->retrieve($fileId);
 
     Saloon::assertSent(RetrieveFile::class);
@@ -130,11 +133,11 @@ it('can retrieve a file', function () {
     expect($dto)->toBeInstanceOf(RetrieveFileOut::class)
         ->and($dto->id)->toBe($fileId)
         ->and($dto->object)->toBe('file')
-        ->and($dto->bytes)->toBe(1024)
-        ->and($dto->filename)->toBe('training_data.jsonl')
+        ->and($dto->bytes)->toBe(865)
+        ->and($dto->filename)->toBe('training-data.jsonl')
         ->and($dto->purpose)->toBe(FilePurpose::FINE_TUNE)
         ->and($dto->sampleType)->toBe(SampleType::INSTRUCT)
-        ->and($dto->numLines)->toBe(100)
+        ->and($dto->numLines)->toBe(5)
         ->and($dto->source)->toBe(Source::UPLOAD);
 });
 
@@ -143,7 +146,7 @@ it('can delete a file', function () {
         DeleteFile::class => MockResponse::fixture('files/delete'),
     ]);
 
-    $fileId = 'file-550e8400-e29b-41d4-a716-446655440000';
+    $fileId = 'ed3e56f8-8df4-4548-a5bc-a4e07ff29d09';
     $response = $this->mistral->files()->delete($fileId);
 
     Saloon::assertSent(DeleteFile::class);
@@ -166,7 +169,7 @@ it('can download a file', function () {
         ),
     ]);
 
-    $fileId = 'file-550e8400-e29b-41d4-a716-446655440000';
+    $fileId = '615c701a-38f0-4101-9765-649919412a7c';
     $response = $this->mistral->files()->download($fileId);
 
     Saloon::assertSent(DownloadFile::class);
@@ -181,7 +184,7 @@ it('can get signed URL', function () {
         GetSignedUrl::class => MockResponse::fixture('files/signedUrl'),
     ]);
 
-    $fileId = 'file-550e8400-e29b-41d4-a716-446655440000';
+    $fileId = '615c701a-38f0-4101-9765-649919412a7c';
     $response = $this->mistral->files()->getSignedUrl($fileId);
 
     Saloon::assertSent(GetSignedUrl::class);
@@ -190,7 +193,7 @@ it('can get signed URL', function () {
 
     $dto = $response->dto();
     expect($dto)->toBeInstanceOf(FileSignedURL::class)
-        ->and($dto->url)->toStartWith('https://storage.googleapis.com/mistral-files/');
+        ->and($dto->url)->toContain('blob.core.windows.net');
 });
 
 it('can get signed URL with custom expiry', function () {
@@ -198,7 +201,7 @@ it('can get signed URL with custom expiry', function () {
         GetSignedUrl::class => MockResponse::fixture('files/signedUrl'),
     ]);
 
-    $fileId = 'file-550e8400-e29b-41d4-a716-446655440000';
+    $fileId = '615c701a-38f0-4101-9765-649919412a7c';
     $response = $this->mistral->files()->getSignedUrl($fileId, expiry: 48);
 
     Saloon::assertSent(GetSignedUrl::class);

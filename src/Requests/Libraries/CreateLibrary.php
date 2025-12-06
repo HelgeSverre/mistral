@@ -24,7 +24,7 @@ class CreateLibrary extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return '/v1/libraries';
+        return '/libraries';
     }
 
     protected function defaultBody(): array

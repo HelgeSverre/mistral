@@ -23,7 +23,7 @@ class RetrieveModelRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return '/v1/models/'.$this->modelId;
+        return '/models/'.$this->modelId;
     }
 
     public function createDtoFromResponse(Response $response): BaseModelCard|FTModelCard

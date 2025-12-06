@@ -62,20 +62,19 @@ Enable streaming in your chat request:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Write a short story about a robot learning to paint.',
-        ]),
+        ],
     ],
     'stream' => true, // Enable streaming
     'temperature' => 0.8,
@@ -165,10 +164,9 @@ header('Content-Type: text/event-stream');
 header('Cache-Control: no-cache');
 header('X-Accel-Buffering: no'); // Disable Nginx buffering
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $userMessage = $_GET['message'] ?? 'Hello!';
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
@@ -176,10 +174,10 @@ $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => $userMessage,
-        ]),
+        ],
     ],
     'stream' => true,
 ]);
@@ -280,10 +278,9 @@ Complete working example (`streaming-chat.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -299,14 +296,14 @@ echo "Generating story with streaming...\n\n";
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::System,
+        [
+            'role' => Role::system,
             'content' => 'You are a creative writer. Keep responses brief.',
-        ]),
-        ChatMessage::from([
-            'role' => Role::User,
+        ],
+        [
+            'role' => Role::user,
             'content' => 'Write a haiku about PHP programming.',
-        ]),
+        ],
     ],
     'stream' => true,
     'temperature' => 0.8,
@@ -371,10 +368,10 @@ class ProgressStream
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Explain streaming in 3 sentences.',
-        ]),
+        ],
     ],
     'stream' => true,
 ]);
@@ -429,10 +426,10 @@ class BufferedStream
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Count from 1 to 10 with descriptions.',
-        ]),
+        ],
     ],
     'stream' => true,
 ]);
@@ -495,10 +492,10 @@ class CancellableStream
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Write a long story about space exploration.',
-        ]),
+        ],
     ],
     'stream' => true,
     'maxTokens' => 500,
@@ -566,10 +563,10 @@ $multiHandler->addHandler('charCount', function($token, $prev) {
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Describe PHP in one paragraph.',
-        ]),
+        ],
     ],
     'stream' => true,
 ]);

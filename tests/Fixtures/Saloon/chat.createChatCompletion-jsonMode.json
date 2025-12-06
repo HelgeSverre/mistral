@@ -1,26 +1,6 @@
 {
-    "statusCode": 200,
-    "headers": {
-        "Date": "Tue, 27 Feb 2024 14:02:07 GMT",
-        "Content-Type": "application\/json",
-        "Content-Length": "386",
-        "Connection": "keep-alive",
-        "ratelimitbysize-reset": "53",
-        "x-ratelimitbysize-remaining-minute": "1998427",
-        "ratelimitbysize-limit": "2000000",
-        "x-ratelimitbysize-limit-minute": "2000000",
-        "ratelimitbysize-query-cost": "117",
-        "x-ratelimitbysize-remaining-month": "9999835326",
-        "ratelimitbysize-remaining": "1998427",
-        "x-ratelimitbysize-limit-month": "10000000000",
-        "access-control-allow-origin": "*",
-        "x-kong-upstream-latency": "322",
-        "x-kong-proxy-latency": "1",
-        "x-kong-request-id": "cdb1065ada18336dcaccc35611c6642c",
-        "CF-Cache-Status": "DYNAMIC",
-        "Server": "cloudflare",
-        "CF-RAY": "85c0f6b4cf9d0b69-OSL",
-        "alt-svc": "h3=\":443\"; ma=86400"
-    },
-    "data": "{\"id\":\"6b88739cf9ed4a74a30c52a6e42acd15\",\"object\":\"chat.completion\",\"created\":1709042527,\"model\":\"mistral-small-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"{\\\"name\\\": \\\"John Doe\\\", \\\"age\\\": 30, \\\"email\\\": \\\"johndoe@example.com\\\"}\",\"tool_calls\":[]},\"finish_reason\":\"stop\",\"logprobs\":null}],\"usage\":{\"prompt_tokens\":20,\"total_tokens\":48,\"completion_tokens\":28}}"
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"cd4c294a19b34c8da2c3dfd6234c671c\",\"created\":1761715712,\"model\":\"mistral-small-latest\",\"usage\":{\"prompt_tokens\":41,\"total_tokens\":72,\"completion_tokens\":31},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"{\\n  \\\"name\\\": \\\"John Doe\\\",\\n  \\\"age\\\": 30,\\n  \\\"email\\\": \\\"john.doe@example.com\\\"\\n}\"}}]}",
+  "context": []
 }

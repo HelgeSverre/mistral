@@ -53,16 +53,16 @@ class Files extends BaseResource
      *
      * @param  int|null  $page  The page number (default: 0)
      * @param  int|null  $pageSize  The page size (default: 100)
-     * @param  SampleType|null  $sampleType  Filter by sample type
-     * @param  Source|null  $source  Filter by source
+     * @param  SampleType[]|null  $sampleTypes  Filter by sample types
+     * @param  Source[]|null  $sources  Filter by sources
      * @param  string|null  $search  Search query
      * @param  FilePurpose|null  $purpose  Filter by purpose
      */
     public function list(
         ?int $page = null,
         ?int $pageSize = null,
-        ?SampleType $sampleType = null,
-        ?Source $source = null,
+        ?array $sampleTypes = null,
+        ?array $sources = null,
         ?string $search = null,
         ?FilePurpose $purpose = null
     ): Response {
@@ -70,8 +70,8 @@ class Files extends BaseResource
             new ListFilesRequest(
                 page: $page,
                 pageSize: $pageSize,
-                sampleType: $sampleType,
-                source: $source,
+                sampleTypes: $sampleTypes,
+                sources: $sources,
                 search: $search,
                 purpose: $purpose
             )
@@ -80,16 +80,19 @@ class Files extends BaseResource
 
     /**
      * List all uploaded files and return typed DTO
+     *
+     * @param  SampleType[]|null  $sampleTypes  Filter by sample types
+     * @param  Source[]|null  $sources  Filter by sources
      */
     public function listDto(
         ?int $page = null,
         ?int $pageSize = null,
-        ?SampleType $sampleType = null,
-        ?Source $source = null,
+        ?array $sampleTypes = null,
+        ?array $sources = null,
         ?string $search = null,
         ?FilePurpose $purpose = null
     ): ListFilesOut {
-        return $this->list($page, $pageSize, $sampleType, $source, $search, $purpose)->dto();
+        return $this->list($page, $pageSize, $sampleTypes, $sources, $search, $purpose)->dto();
     }
 
     /**
