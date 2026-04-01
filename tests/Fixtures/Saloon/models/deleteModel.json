@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\": \"ft:open-mistral-7b:587a6b29:20240514:7e773925\", \"object\": \"model\", \"deleted\": true}",
+    "context": []
+}

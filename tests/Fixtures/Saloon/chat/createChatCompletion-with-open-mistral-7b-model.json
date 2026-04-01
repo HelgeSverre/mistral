@@ -1,0 +1,6 @@
+{
+    "statusCode": 200,
+    "headers": {},
+    "data": "{\"id\":\"94c9a63ac2d9464b85dabfe64d490b5d\",\"created\":1761706637,\"model\":\"open-mistral-7b\",\"usage\":{\"prompt_tokens\":6,\"total_tokens\":16,\"completion_tokens\":10},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Hello! How can I help you today?\"}}]}",
+    "context": []
+}

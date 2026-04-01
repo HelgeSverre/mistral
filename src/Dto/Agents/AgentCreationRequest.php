@@ -7,12 +7,16 @@ use Spatie\LaravelData\Data;
 
 class AgentCreationRequest extends Data
 {
+    /**
+     * @param  string[]|null  $handoffs  Agent IDs that this agent can hand off to
+     */
     public function __construct(
         public string $name,
         public string $model,
         public ?string $instructions = null,
         public ?string $description = null,
         public ?array $tools = null,
+        public ?array $handoffs = null,
         public ?float $temperature = null,
         #[MapName('top_p')]
         public ?float $topP = null,

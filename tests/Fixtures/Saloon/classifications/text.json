@@ -1,10 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Sat, 11 Oct 2025 10:00:00 GMT",
+        "Date": "Wed, 29 Oct 2025 12:00:00 GMT",
         "Content-Type": "application/json",
-        "Content-Length": "256",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b0118f7a0f0-OSL",
+        "mistral-correlation-id": "019a2d34-1cc7-790d-a8ea-97de49921f2b",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"id\":\"class_01234567\",\"model\":\"mistral-classifier-latest\",\"results\":[{\"predicted_class\":\"technology\",\"categories\":{\"technology\":0.95,\"science\":0.03,\"business\":0.02},\"category_scores\":{\"technology\":4.75,\"science\":-1.23,\"business\":-2.45}}]}"
+    "data": "{\"id\":\"class_01234567\",\"model\":\"mistral-classifier-latest\",\"results\":[{\"predicted_class\":\"technology\",\"categories\":{\"technology\":0.95,\"science\":0.03,\"business\":0.02},\"category_scores\":{\"technology\":4.75,\"science\":1.2,\"business\":0.8}}]}",
+    "context": []
 }

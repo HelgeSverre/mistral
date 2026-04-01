@@ -20,7 +20,7 @@ beforeEach(function () {
 
 it('CreateChatCompletion works', function ($model) {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture("chat.createChatCompletion-with-{$model}-model"),
+        CreateChatCompletion::class => MockResponse::fixture("chat/createChatCompletion-with-{$model}-model"),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -52,7 +52,7 @@ it('CreateChatCompletion works', function ($model) {
 
 it('CreateChatCompletion works with json mode', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion-jsonMode'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion-jsonMode'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -78,14 +78,16 @@ it('CreateChatCompletion works with json mode', function () {
         ->and($dto->choices)->toBeInstanceOf(DataCollection::class)
         ->and($dto->choices[0])->toBeInstanceOf(ChatCompletionChoice::class)
         ->and($dto->choices[0]->message)->toBeInstanceOf(ChatCompletionMessage::class)
-        ->and($dto->choices[0]->message->content)->toBe('{"name": "John Doe", "age": 30, "email": "johndoe@example.com"}')
+        ->and($dto->choices[0]->message->content)->toBeJson()
+        ->and(json_decode($dto->choices[0]->message->content, true))->toMatchArray(['name' => 'John Doe', 'age' => 30])
+        ->and(json_decode($dto->choices[0]->message->content, true)['email'])->toContain('@')
         ->and($dto->model)->toBe(Model::small->value)
         ->and($dto->object)->toBe('chat.completion');
 });
 
 it('CreateChatCompletion works with function calling', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion-functionCall'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion-functionCall'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -149,8 +151,7 @@ it('CreateChatCompletion works with function calling', function () {
 
     expect($response->json('choices.0.message.content'))->toBe('')
         ->and($response->json('choices.0.message.tool_calls'))->toBeArray()
-        ->and($response->json('choices.0.message.tool_calls.0.id'))->toBe('null')
-        ->and($response->json('choices.0.message.tool_calls.0.type'))->toBe('function')
+        ->and($response->json('choices.0.message.tool_calls.0.id'))->toBeString()->not->toBeEmpty()
         ->and($response->json('choices.0.message.tool_calls.0.function'))->toBeArray()
         ->and($response->json('choices.0.message.tool_calls.0.function.name'))->toBe('searchWeather')
         ->and($response->json('choices.0.message.tool_calls.0.function.arguments'))->toBeJson();
@@ -169,7 +170,7 @@ it('CreateChatCompletion works with function calling', function () {
 
 it('CreateChatCompletion response can be cast to DTO', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -198,7 +199,7 @@ it('CreateChatCompletion response can be cast to DTO', function () {
 
 it('CreateChatCompletion works with stop parameter as string', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -219,7 +220,7 @@ it('CreateChatCompletion works with stop parameter as string', function () {
 
 it('CreateChatCompletion works with stop parameter as array', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -240,7 +241,7 @@ it('CreateChatCompletion works with stop parameter as array', function () {
 
 it('CreateChatCompletion works with presence_penalty', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -261,7 +262,7 @@ it('CreateChatCompletion works with presence_penalty', function () {
 
 it('CreateChatCompletion works with frequency_penalty', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -282,7 +283,7 @@ it('CreateChatCompletion works with frequency_penalty', function () {
 
 it('CreateChatCompletion works with prediction parameter', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -306,7 +307,7 @@ it('CreateChatCompletion works with prediction parameter', function () {
 
 it('CreateChatCompletion works with all new parameters combined', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(

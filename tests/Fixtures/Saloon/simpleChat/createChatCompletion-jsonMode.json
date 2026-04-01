@@ -1,0 +1,6 @@
+{
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"83d60a186ae04135bf7681175bb4ddc4\",\"created\":1761719906,\"model\":\"mistral-small-latest\",\"usage\":{\"prompt_tokens\":41,\"total_tokens\":72,\"completion_tokens\":31},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"{\\n  \\\"name\\\": \\\"John Doe\\\",\\n  \\\"age\\\": 30,\\n  \\\"email\\\": \\\"john.doe@example.com\\\"\\n}\"}}]}",
+  "context": []
+}

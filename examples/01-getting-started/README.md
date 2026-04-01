@@ -15,7 +15,7 @@ models and understand the fundamental patterns used throughout the SDK.
 
 ### Prerequisites
 
-- PHP 8.1 or higher
+- PHP 8.2 or higher
 - Composer installed
 - A Mistral AI API key (get one at [console.mistral.ai](https://console.mistral.ai))
 - Basic understanding of PHP and Composer
@@ -66,10 +66,9 @@ Create a new PHP file to test your setup:
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 // Load environment variables (optional, if using vlucas/phpdotenv)
 if (file_exists('.env')) {
@@ -95,10 +94,10 @@ Let's make a simple chat completion request:
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'Hello, Mistral! Please introduce yourself.',
-        ]),
+        ],
     ],
 ]);
 
@@ -129,10 +128,9 @@ Here's the complete working example (`getting-started.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Enums\Role;
 
 // Get API key from environment
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
@@ -147,10 +145,10 @@ $mistral = new Mistral($apiKey);
 $request = ChatCompletionRequest::from([
     'model' => 'mistral-small-latest',
     'messages' => [
-        ChatMessage::from([
-            'role' => Role::User,
+        [
+            'role' => Role::user,
             'content' => 'What is the capital of France? Answer in one sentence.',
-        ]),
+        ],
     ],
     'temperature' => 0.7,
     'maxTokens' => 100,
@@ -224,18 +222,18 @@ Add a follow-up message:
 
 ```php
 'messages' => [
-    ChatMessage::from([
-        'role' => Role::User,
+    [
+        'role' => Role::user,
         'content' => 'What is the capital of France?',
-    ]),
-    ChatMessage::from([
-        'role' => Role::Assistant,
+    ],
+    [
+        'role' => Role::assistant,
         'content' => 'The capital of France is Paris.',
-    ]),
-    ChatMessage::from([
-        'role' => Role::User,
+    ],
+    [
+        'role' => Role::user,
         'content' => 'What is its population?',
-    ]),
+    ],
 ],
 ```
 

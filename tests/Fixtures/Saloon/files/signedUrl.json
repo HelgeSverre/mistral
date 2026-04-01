@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"url\":\"https://storage.googleapis.com/mistral-files/file-550e8400-e29b-41d4-a716-446655440000?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=service-account%40project.iam.gserviceaccount.com%2F20240601%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20240601T000000Z&X-Goog-Expires=86400&X-Goog-SignedHeaders=host&X-Goog-Signature=abcdef123456\"}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 02:43:47 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "995f53caae3f0731-OSL",
+        "mistral-correlation-id": "019a2dd9-9aba-7829-8185-b2992f58d5aa",
+        "x-kong-request-id": "019a2dd9-9aba-7829-8185-b2992f58d5aa",
+        "x-envoy-upstream-service-time": "25",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "26",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=UV1jJNIHvsgO6SCwmYv9xy7c1uxmtr6FiRLP2hy4C4E-1761705827-1.0.1.1-c46ims7fjAfX1_XkbgVTTkq8yum.woObwlZokKEKVE1ToMR2d3u9a86cmIFNnP3G7Jc.eU0Pl0nXqcROAhHwiv6h.tEwsDpVFHskMDd9W3E; path=/; expires=Wed, 29-Oct-25 03:13:47 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=gMoFgVmB4tHfHDfWuoYO76mZKgVz6AzBA4x4TwdtBZI-1761705827039-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"url\": \"https://mistralaifilesapiprodswe.blob.core.windows.net/fine-tune/75ab4b00-4e69-4d5f-b390-88e5c411dfbc/253a62c0-6672-496a-beb5-ecae98b2bc31/615c701a38f041019765649919412a7c.jsonl?se=2025-10-30T02%3A43%3A47Z&sp=r&sv=2025-01-05&sr=b&sig=QlVqgylQIiDmYnv%2Bpl9wLq/XMubHbprp/LMl5llXlsU%3D\"}",
+    "context": []
 }

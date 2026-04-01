@@ -26,7 +26,7 @@ class AppendToConversationStreamRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        $body = array_filter($this->appendRequest->toArray());
+        $body = array_filter($this->appendRequest->toArray(), fn ($v) => $v !== null);
         $body['stream'] = true;
 
         return $body;

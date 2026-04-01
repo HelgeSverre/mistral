@@ -1,0 +1,6 @@
+{
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"466c2a4e019342d8b690779c9e2eb379\",\"created\":1761719904,\"model\":\"open-mistral-7b\",\"usage\":{\"prompt_tokens\":14,\"total_tokens\":79,\"completion_tokens\":65},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Sure, the word is \\\"banana\\\". Interestingly, bananas are not actually berries, despite being called so in many English-speaking countries. They are considered a type of fruit called an \\\"infrustescence,\\\" which is a cluster of flowers and fruit fused together on a single stem.\"}}]}",
+  "context": []
+}

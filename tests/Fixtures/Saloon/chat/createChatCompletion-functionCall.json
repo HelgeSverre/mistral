@@ -1,0 +1,6 @@
+{
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"89cd42ded18843b989a472e52e815744\",\"created\":1761715713,\"model\":\"mistral-small-latest\",\"usage\":{\"prompt_tokens\":81,\"total_tokens\":92,\"completion_tokens\":11},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"tool_calls\",\"message\":{\"role\":\"assistant\",\"tool_calls\":[{\"id\":\"04UZ3lm6D\",\"function\":{\"name\":\"searchWeather\",\"arguments\":\"{\\\"location\\\": \\\"Paris\\\"}\"},\"index\":0}],\"content\":\"\"}}]}",
+  "context": []
+}

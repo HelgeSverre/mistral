@@ -1,0 +1,14 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b04f98c1525-OSL",
+        "mistral-correlation-id": "019a2d34-1f29-7198-b86c-815b05d88b77",
+        "access-control-allow-origin": "*",
+        "Server": "cloudflare"
+    },
+    "data": "{\"expected_duration_seconds\":300,\"cost\":5.99,\"cost_currency\":\"USD\",\"train_tokens_per_step\":4096,\"train_tokens\":409600,\"data_tokens\":1638400,\"estimated_start_time\":1715693000}",
+    "context": []
+}

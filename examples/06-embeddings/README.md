@@ -54,8 +54,8 @@ Generate embeddings for single or multiple texts:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Embeddings\EmbeddingRequest;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Embeddings\EmbeddingRequest;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
@@ -324,8 +324,8 @@ Complete working example (`embeddings.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Embeddings\EmbeddingRequest;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Embeddings\EmbeddingRequest;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {

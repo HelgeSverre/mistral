@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:33:06 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "310",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e3c7b5e73b4f1-OSL",
+        "mistral-correlation-id": "019a2d2b-0930-7203-b817-b0bfef263b88",
+        "x-kong-request-id": "019a2d2b-0930-7203-b817-b0bfef263b88",
+        "x-envoy-upstream-service-time": "163",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999943",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999844321",
+        "x-ratelimit-tokens-query-cost": "17",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "57",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "163",
+        "x-kong-proxy-latency": "7",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=nUCvCYigK.wS3_bv2E15M..r6HwNvvRoLrhcwexOq.U-1761694386-1.0.1.1-veymLR2oYign4lXIXjcSwxiJWBgtTTsbiwod3LdGexkaCDJxXuZCCejkIZP3Aik3KGGdMx1o9RGXC_3EmCKYAUG4VF4Gntua2xNdZWDcmFw; path=\/; expires=Wed, 29-Oct-25 00:03:06 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=GDrdldo4t.9x3_eVLoYxtxaVL.oYHJxElgrZRgxZkzM-1761694386653-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"72fc1809ff35463dbc2d24ccf1b79d14\",\"created\":1761694386,\"model\":\"mistral-large-latest\",\"usage\":{\"prompt_tokens\":10,\"total_tokens\":17,\"completion_tokens\":7},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Banana! \ud83c\udf4c\"}}]}",
+    "context": []
+}

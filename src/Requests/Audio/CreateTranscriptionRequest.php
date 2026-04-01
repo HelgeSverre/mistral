@@ -52,7 +52,7 @@ class CreateTranscriptionRequest extends Request implements HasBody
         $body = [
             new MultipartValue(
                 name: 'file',
-                value: file_get_contents($this->filePath),
+                value: fopen($this->filePath, 'r'),
                 filename: basename($this->filePath)
             ),
             new MultipartValue(

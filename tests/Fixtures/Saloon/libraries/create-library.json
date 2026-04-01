@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"id\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"Product Documentation\",\"description\":\"All product docs for RAG\",\"created_at\":\"2024-01-15T10:00:00Z\",\"updated_at\":\"2024-01-15T10:00:00Z\"}"
+    "statusCode": 201,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 14:45:51 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "473",
+        "Connection": "keep-alive",
+        "CF-RAY": "9963758418b356a5-OSL",
+        "mistral-correlation-id": "019a306e-aeac-74e0-8e51-a4aa694dae1c",
+        "x-kong-request-id": "019a306e-aeac-74e0-8e51-a4aa694dae1c",
+        "x-envoy-upstream-service-time": "99",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "100",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=Yn1lweVnYwkqmAa0_jVaiMtgXp8gK_wjmvwXHSY3K64-1761749151-1.0.1.1-rGOZBNzA_rbhhTLGtIwnYZ1e.6ceoQ4TPiWlt1N._7LcyLSlQV.pY_6Z4IiB_emkEXP0IxDhBYfJtyyK_f2tg0MNIHh3BzHwva83nhebgI4; path=/; expires=Wed, 29-Oct-25 15:15:51 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=BI6o2qAT7jn7fsgqxelkr6lx.mq32RvKy6FkkITNYTg-1761749151516-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"019a306e-aebe-775e-9290-67ee7100e41e\",\"name\":\"Test Library\",\"created_at\":\"2025-10-29T14:45:51.424712Z\",\"updated_at\":\"2025-10-29T14:45:51.424712Z\",\"owner_id\":\"253a62c0-6672-496a-beb5-ecae98b2bc31\",\"owner_type\":\"Workspace\",\"total_size\":0,\"nb_documents\":0,\"chunk_size\":null,\"emoji\":null,\"description\":\"A test library for fixture generation\",\"generated_description\":null,\"explicit_user_members_count\":null,\"explicit_workspace_members_count\":null,\"org_sharing_role\":null}",
+    "context": []
 }

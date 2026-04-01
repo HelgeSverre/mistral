@@ -1,0 +1,26 @@
+{
+    "statusCode": 400,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:10 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "157",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b2f99fd5a0f-OSL",
+        "mistral-correlation-id": "019a2d34-39d1-791d-b8e7-135bf81c075c",
+        "x-kong-request-id": "019a2d34-39d1-791d-b8e7-135bf81c075c",
+        "x-envoy-upstream-service-time": "1293",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "1293",
+        "x-kong-proxy-latency": "6",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=dhnwJyF6jr3wtXUYPQ.VxtfwcA26..rC6B1g9UrxLeM-1761694990-1.0.1.1-COZVGAc64y6ITIyk3L7RzAgXkstNir0ECyrHjABMFHCvr_vzt2OUytPvleLuArBbMipgjmX5mzE7M9cpbwXrbfMmLzBJo_TnRLRWmq3cKv4; path=\/; expires=Wed, 29-Oct-25 00:13:10 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=x7u.9GrvdURX4VQb2qdqukNhxWraj6CwFm0mv16jQxM-1761694990059-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"object\":\"error\",\"message\":\"File could not be fetched from url 'https:\/\/example.com\/document.pdf'\",\"type\":\"invalid_request_file\",\"param\":null,\"code\":\"3310\"}",
+    "context": []
+}

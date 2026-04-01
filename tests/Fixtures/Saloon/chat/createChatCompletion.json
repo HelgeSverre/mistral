@@ -1,0 +1,6 @@
+{
+  "statusCode": 200,
+  "headers": {},
+  "data": "{\"id\":\"957feda9da5147f6a84b8f8582ea4bfc\",\"created\":1761715711,\"model\":\"open-mistral-7b\",\"usage\":{\"prompt_tokens\":14,\"total_tokens\":76,\"completion_tokens\":62},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"Banana! Now, I wonder if there could be a banana split themed conversation. Or perhaps a discussion on different types of bananas like Cavendish, Plantains, and Lady Fingers. The possibilities are sweet and plentiful, just like a delicious banana smoothie!\"}}]}",
+  "context": []
+}

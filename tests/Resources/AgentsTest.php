@@ -5,8 +5,12 @@
 use HelgeSverre\Mistral\Dto\Agents\Agent;
 use HelgeSverre\Mistral\Dto\Agents\AgentCreationRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentList;
+use HelgeSverre\Mistral\Dto\Agents\AgentsCompletionRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentUpdateRequest;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
+use HelgeSverre\Mistral\Enums\Role;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentRequest;
+use HelgeSverre\Mistral\Requests\Agents\CreateAgentsCompletionRequest;
 use HelgeSverre\Mistral\Requests\Agents\GetAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\ListAgentsRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentRequest;
@@ -283,4 +287,54 @@ it('can handle agents without optional fields', function () {
         ->and($dto->temperature)->toBeNull()
         ->and($dto->topP)->toBeNull()
         ->and($dto->version)->toBe(1);
+});
+
+it('can run completion with an agent', function () {
+    Saloon::fake([
+        CreateAgentsCompletionRequest::class => MockResponse::fixture('agents/completion'),
+    ]);
+
+    $response = $this->mistral->agents()->complete(
+        new AgentsCompletionRequest(
+            agentId: 'ag:123456:20241011:a1b2c3d4',
+            messages: [
+                ['role' => Role::user->value, 'content' => 'Hello, I need help with my order.'],
+            ]
+        )
+    );
+
+    Saloon::assertSent(CreateAgentsCompletionRequest::class);
+
+    expect($response->status())->toBe(200);
+
+    $dto = $response->dto();
+    expect($dto)->toBeInstanceOf(ChatCompletionResponse::class)
+        ->and($dto->id)->toBe('cmpl-abc123def456')
+        ->and($dto->object)->toBe('chat.completion')
+        ->and($dto->model)->toBe('mistral-large-latest')
+        ->and($dto->choices)->toBeInstanceOf(DataCollection::class)
+        ->and($dto->choices[0]->message->content)->toContain('customer support agent');
+});
+
+it('can run completion with an agent using completeDto', function () {
+    Saloon::fake([
+        CreateAgentsCompletionRequest::class => MockResponse::fixture('agents/completion'),
+    ]);
+
+    $dto = $this->mistral->agents()->completeDto(
+        new AgentsCompletionRequest(
+            agentId: 'ag:123456:20241011:a1b2c3d4',
+            messages: [
+                ['role' => Role::user->value, 'content' => 'Hello!'],
+            ],
+            maxTokens: 500,
+            presencePenalty: 0.5,
+            frequencyPenalty: 0.5
+        )
+    );
+
+    Saloon::assertSent(CreateAgentsCompletionRequest::class);
+
+    expect($dto)->toBeInstanceOf(ChatCompletionResponse::class)
+        ->and($dto->usage->totalTokens)->toBe(40);
 });

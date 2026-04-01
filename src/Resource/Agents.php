@@ -2,11 +2,17 @@
 
 namespace HelgeSverre\Mistral\Resource;
 
+use Generator;
+use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Agents\Agent;
 use HelgeSverre\Mistral\Dto\Agents\AgentCreationRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentList;
+use HelgeSverre\Mistral\Dto\Agents\AgentsCompletionRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentUpdateRequest;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
+use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentRequest;
+use HelgeSverre\Mistral\Requests\Agents\CreateAgentsCompletionRequest;
 use HelgeSverre\Mistral\Requests\Agents\GetAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\ListAgentsRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentRequest;
@@ -16,6 +22,8 @@ use Saloon\Http\Response;
 
 class Agents extends BaseResource
 {
+    use HandlesStreamedResponses;
+
     /**
      * Create a new agent
      */
@@ -94,5 +102,53 @@ class Agents extends BaseResource
     public function updateVersionDto(string $agentId, int $version): Agent
     {
         return $this->updateVersion($agentId, $version)->dto();
+    }
+
+    /**
+     * Run completion using an agent
+     */
+    public function complete(AgentsCompletionRequest $request): Response
+    {
+        return $this->connector->send(new CreateAgentsCompletionRequest($request));
+    }
+
+    /**
+     * Run completion using an agent and return typed DTO
+     */
+    public function completeDto(AgentsCompletionRequest $request): ChatCompletionResponse
+    {
+        return $this->complete($request)->dto();
+    }
+
+    /**
+     * Run streamed completion using an agent
+     *
+     * @return Generator<StreamedChatCompletionResponse>
+     */
+    public function completeStreamed(AgentsCompletionRequest $request): Generator
+    {
+        $streamRequest = new AgentsCompletionRequest(
+            agentId: $request->agentId,
+            messages: $request->messages,
+            maxTokens: $request->maxTokens,
+            stream: true,
+            stop: $request->stop,
+            randomSeed: $request->randomSeed,
+            responseFormat: $request->responseFormat,
+            tools: $request->tools,
+            toolChoice: $request->toolChoice,
+            presencePenalty: $request->presencePenalty,
+            frequencyPenalty: $request->frequencyPenalty,
+            n: $request->n,
+            prediction: $request->prediction,
+            parallelToolCalls: $request->parallelToolCalls,
+            promptMode: $request->promptMode,
+        );
+
+        $response = $this->connector->send(new CreateAgentsCompletionRequest($streamRequest));
+
+        foreach ($this->getStreamIterator($response->stream()) as $chatResponse) {
+            yield StreamedChatCompletionResponse::from($chatResponse);
+        }
     }
 }

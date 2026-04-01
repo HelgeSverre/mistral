@@ -14,11 +14,11 @@ class MistralServiceProvider extends PackageServiceProvider
 
     public function packageBooted(): void
     {
-        $this->app->bind(Mistral::class, function () {
+        $this->app->singleton(Mistral::class, function () {
             return new Mistral(
                 apiKey: config('mistral.api_key'),
                 baseUrl: config('mistral.base_url'),
-                timeout: config('mistral.timeout', 30),
+                timeout: config('mistral.timeout', 60),
             );
         });
     }

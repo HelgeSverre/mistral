@@ -1,0 +1,8 @@
+{
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "text/event-stream; charset=utf-8"
+  },
+  "data": "data: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"role\":\"assistant\",\"content\":\"\"},\"finish_reason\":null}]}\n\ndata: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"Hello\"},\"finish_reason\":null}],\"p\":\"abcdefghijkl\"}\n\ndata: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\",\"},\"finish_reason\":null}],\"p\":\"abcdefgh\"}\n\ndata: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\" there\"},\"finish_reason\":null}],\"p\":\"ab\"}\n\ndata: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"!\"},\"finish_reason\":null}],\"p\":\"abcdefghijklmnopqrstu\"}\n\ndata: {\"id\":\"3aa8c8cbce8443338808946e60da4554\",\"object\":\"chat.completion.chunk\",\"created\":1761719906,\"model\":\"open-mistral-7b\",\"choices\":[{\"index\":0,\"delta\":{\"content\":\"\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":10,\"total_tokens\":15,\"completion_tokens\":5},\"p\":\"abcdefghijklmnopqrstu\"}\n\ndata: [DONE]",
+  "context": []
+}

@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"data\":[{\"entity_id\":\"850e8400-e29b-41d4-a716-446655440003\",\"entity_type\":\"user\",\"role\":\"owner\",\"created_at\":\"2024-01-15T10:00:00Z\",\"updated_at\":\"2024-01-15T10:00:00Z\"},{\"entity_id\":\"750e8400-e29b-41d4-a716-446655440002\",\"entity_type\":\"team\",\"role\":\"editor\",\"created_at\":\"2024-01-15T11:00:00Z\",\"updated_at\":\"2024-01-15T11:00:00Z\"}],\"object\":\"list\"}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 14:45:51 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "11",
+        "Connection": "keep-alive",
+        "CF-RAY": "99637583580456a5-OSL",
+        "mistral-correlation-id": "019a306e-ae55-7a1e-9c11-1f3a5dead0f4",
+        "x-kong-request-id": "019a306e-ae55-7a1e-9c11-1f3a5dead0f4",
+        "x-envoy-upstream-service-time": "8",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "9",
+        "x-kong-proxy-latency": "7",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=EWfJUdvXSIbbWRy1YrKVx6.1z7VzgRCyGCL6FeL7eOU-1761749151-1.0.1.1-piRERV7iDfGHYrqG_VaZjNypCTto2ge6GXT9FE2T31jBt09XXhaKtjsHyoEO1ULIqcMor42C_pl30NSLc8n3vygrt4IjxfG7AmAjsr6YoWY; path=/; expires=Wed, 29-Oct-25 15:15:51 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=YWKIz6WmJSj6CUPceNiRliY06_uaiEaGhFBc7cqGPo8-1761749151338-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"data\":[{\"entity_id\":\"user-123\",\"entity_type\":\"user\",\"role\":\"owner\",\"created_at\":\"2024-01-01T00:00:00Z\",\"updated_at\":\"2024-01-01T00:00:00Z\"},{\"entity_id\":\"team-456\",\"entity_type\":\"team\",\"role\":\"editor\",\"created_at\":\"2024-01-02T00:00:00Z\",\"updated_at\":\"2024-01-02T00:00:00Z\"}],\"total\":2}",
+    "context": []
 }

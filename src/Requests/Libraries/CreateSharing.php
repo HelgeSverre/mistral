@@ -25,7 +25,7 @@ class CreateSharing extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}/share";
+        return "/libraries/{$this->libraryId}/share";
     }
 
     protected function defaultBody(): array

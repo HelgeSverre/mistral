@@ -55,12 +55,11 @@ Define a simple function for the AI to use:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Dto\Chat\ToolCall;
-use Helge\Mistral\Dto\Chat\FunctionTool;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Dto\Chat\ToolCall;
+use HelgeSverre\Mistral\Dto\Chat\FunctionTool;
+use HelgeSverre\Mistral\Enums\Role;
 
 // Define the function schema
 $getCurrentWeather = FunctionTool::from([
@@ -145,10 +144,10 @@ class FunctionCallingAssistant
     public function chat(string $userMessage): string
     {
         $messages = [
-            ChatMessage::from([
-                'role' => Role::User,
+            [
+                'role' => Role::user,
                 'content' => $userMessage,
-            ]),
+            ],
         ];
 
         // First API call - let AI decide if it needs to call functions
@@ -175,8 +174,8 @@ class FunctionCallingAssistant
                 $result = $this->executeFunction($functionName, $arguments);
 
                 // Add function result to messages
-                $messages[] = ChatMessage::from([
-                    'role' => Role::Tool,
+                $messages[] = [
+                    'role' => Role::tool,
                     'content' => json_encode($result),
                     'toolCallId' => $toolCall->id,
                 ]);
@@ -307,11 +306,10 @@ Complete working example (`function-calling.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Chat\ChatCompletionRequest;
-use Helge\Mistral\Dto\Chat\ChatMessage;
-use Helge\Mistral\Dto\Chat\FunctionTool;
-use Helge\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Chat\ChatCompletionRequest;
+use HelgeSverre\Mistral\Dto\Chat\FunctionTool;
+use HelgeSverre\Mistral\Enums\Role;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {
@@ -371,10 +369,10 @@ function get_weather(array $args): array
 
 // User query
 $messages = [
-    ChatMessage::from([
-        'role' => Role::User,
+    [
+        'role' => Role::user,
         'content' => "What's the weather like in Paris, France? Give me details.",
-    ]),
+    ],
 ];
 
 // First call - AI decides to use function
@@ -401,8 +399,8 @@ if (!empty($assistantMessage->toolCalls)) {
 
     // Add to conversation
     $messages[] = $assistantMessage;
-    $messages[] = ChatMessage::from([
-        'role' => Role::Tool,
+    $messages[] = [
+        'role' => Role::tool,
         'content' => json_encode($result),
         'toolCallId' => $assistantMessage->toolCalls[0]->id,
     ]);
@@ -480,10 +478,10 @@ function database_query(array $args): array
 }
 
 $messages = [
-    ChatMessage::from([
-        'role' => Role::User,
+    [
+        'role' => Role::user,
         'content' => 'Find all electronic products in our database',
-    ]),
+    ],
 ];
 
 $request = ChatCompletionRequest::from([
@@ -548,7 +546,7 @@ function calculate(array $args): array
             'multiply' => array_product($values),
             'divide' => $values[0] / ($values[1] ?: 1),
             'power' => pow($values[0], $values[1] ?? 2),
-            'sqrt' => sqrt($values[0]),
+            'sqrt' => sqrt($values[0],
             default => throw new Exception("Unknown operation"),
         };
 
@@ -563,10 +561,10 @@ function calculate(array $args): array
 }
 
 $messages = [
-    ChatMessage::from([
-        'role' => Role::User,
+    [
+        'role' => Role::user,
         'content' => 'What is 15 squared plus the square root of 144?',
-    ]),
+    ],
 ];
 
 $request = ChatCompletionRequest::from([
@@ -591,8 +589,8 @@ if (!empty($assistantMessage->toolCalls)) {
 
         echo "  {$args['operation']}(" . implode(', ', $args['values']) . ") = {$result['result']}\n";
 
-        $messages[] = ChatMessage::from([
-            'role' => Role::Tool,
+        $messages[] = [
+            'role' => Role::tool,
             'content' => json_encode($result),
             'toolCallId' => $toolCall->id,
         ]);
@@ -612,10 +610,10 @@ if (!empty($assistantMessage->toolCalls)) {
 echo "\n=== Example 4: Force Function Call ===\n\n";
 
 $messages = [
-    ChatMessage::from([
-        'role' => Role::User,
+    [
+        'role' => Role::user,
         'content' => 'Hello, how are you?',
-    ]),
+    ],
 ];
 
 $request = ChatCompletionRequest::from([

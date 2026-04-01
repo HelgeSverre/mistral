@@ -1,11 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Sat, 11 Oct 2025 10:30:00 GMT",
-        "Content-Type": "application/json",
-        "Content-Length": "480",
+        "Date": "Wed, 29 Oct 2025 06:41:27 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "358",
         "Connection": "keep-alive",
-        "access-control-allow-origin": "*"
+        "CF-RAY": "9960aff0d8d1b4f4-OSL",
+        "mistral-correlation-id": "019a2eb3-329c-7518-b9d1-090e8901d5da",
+        "x-kong-request-id": "019a2eb3-329c-7518-b9d1-090e8901d5da",
+        "x-envoy-upstream-service-time": "172",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999775",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999841405",
+        "x-ratelimit-tokens-query-cost": "37",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "58",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "173",
+        "x-kong-proxy-latency": "7",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=0Ntfc1g_LwfkUNg5KuOm.VheDdDhyt5jq16Yb4GN8MM-1761720087-1.0.1.1-o0DWBnX7_Itgdg7otRN6.GJllvrPEXd45_v6zTzFktbhQ_q_Vwj.LJ8xQxiHExCXAjeYBb63mv2.SgmPTOFrcCaxEJ3JC7G.qoEVx6s_plw; path=\/; expires=Wed, 29-Oct-25 07:11:27 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=1f1FqWnaKofj6b1SKIyr1xHBHJxgFWvPCTpeGKIo9Cw-1761720087386-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"fim_completion_def456\",\"object\":\"fim.completion\",\"created\":1728645001,\"model\":\"codestral-latest\",\"choices\":[{\"index\":0,\"message\":\"a: number, b: number\",\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":12,\"total_tokens\":28,\"completion_tokens\":16}}"
+    "data": "{\"id\":\"7738e8fbed214d4eaa1a6fc7c3ed3021\",\"created\":1761720087,\"model\":\"codestral-latest\",\"usage\":{\"prompt_tokens\":14,\"total_tokens\":37,\"completion_tokens\":23},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"a, b) {\\n  var sum = a + b;\\n  return sum;\\n}\\nfunction getSum(\"}}]}",
+    "context": []
 }

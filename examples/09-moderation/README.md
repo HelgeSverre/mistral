@@ -59,8 +59,8 @@ Check content for policy violations:
 ```php
 <?php
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Moderations\ModerationRequest;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Moderations\ModerationRequest;
 
 $mistral = new Mistral($_ENV['MISTRAL_API_KEY']);
 
@@ -469,8 +469,8 @@ Complete working example (`moderation.php`):
 
 require_once 'vendor/autoload.php';
 
-use Helge\Mistral\Mistral;
-use Helge\Mistral\Dto\Moderations\ModerationRequest;
+use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Dto\Moderations\ModerationRequest;
 
 $apiKey = $_ENV['MISTRAL_API_KEY'] ?? getenv('MISTRAL_API_KEY');
 if (!$apiKey) {

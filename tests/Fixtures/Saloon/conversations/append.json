@@ -1,9 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Date": "Tue, 28 Oct 2025 23:43:03 GMT",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b0d9f9656ba-OSL",
+        "mistral-correlation-id": "019a2d34-2495-7690-b4f9-be8c2b2a477a",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"conversation_id\":\"conv_abc123\",\"entries\":[{\"id\":\"entry_005\",\"object\":\"conversation.entry\",\"created_at\":1728648020,\"role\":\"user\",\"content\":\"What's 2 + 2?\",\"metadata\":null},{\"id\":\"entry_006\",\"object\":\"conversation.entry\",\"created_at\":1728648021,\"role\":\"assistant\",\"content\":\"2 + 2 equals 4.\",\"metadata\":null}]}"
+    "data": "{\"conversation_id\":\"conv_abc123\",\"entries\":[{\"id\":\"entry_005\",\"object\":\"conversation.entry\",\"created_at\":1728648300,\"role\":\"user\",\"content\":\"What's 2 + 2?\"},{\"id\":\"entry_006\",\"object\":\"conversation.entry\",\"created_at\":1728648301,\"role\":\"assistant\",\"content\":\"2 + 2 equals 4.\"}]}",
+    "context": []
 }

@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Fri, 06 Dec 2025 10:00:00 GMT",
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"cmpl-abc123def456\",\"object\":\"chat.completion\",\"created\":1733482800,\"model\":\"mistral-large-latest\",\"choices\":[{\"index\":0,\"message\":{\"role\":\"assistant\",\"content\":\"Hello! I'm your customer support agent. How can I help you today?\"},\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":25,\"completion_tokens\":15,\"total_tokens\":40}}",
+    "context": []
+}

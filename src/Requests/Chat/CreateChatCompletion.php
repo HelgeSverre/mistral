@@ -30,7 +30,7 @@ class CreateChatCompletion extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_filter($this->chatCompletionRequest->toArray());
+        return array_filter($this->chatCompletionRequest->toArray(), fn ($v) => $v !== null);
     }
 
     public function createDtoFromResponse(Response $response): ChatCompletionResponse

@@ -16,7 +16,7 @@ class CancelBatchJobRequest extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/batch/jobs/{$this->jobId}/cancel";
+        return "/batch/jobs/{$this->jobId}/cancel";
     }
 
     public function __construct(

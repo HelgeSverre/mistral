@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"id\":\"file-550e8400-e29b-41d4-a716-446655440000\",\"object\":\"file\",\"deleted\":true}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 02:44:00 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "995f541cbe4d35a6-OSL",
+        "mistral-correlation-id": "019a2dd9-ce05-703d-b34b-57bd1a320de4",
+        "x-kong-request-id": "019a2dd9-ce05-703d-b34b-57bd1a320de4",
+        "x-envoy-upstream-service-time": "68",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "69",
+        "x-kong-proxy-latency": "4",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=Hi_9fbMK3bd6C2hk_nwWbypEjAiMJYklCrks0NoA3.Q-1761705840-1.0.1.1-56TP2MoQsQWodE5fuwRvuw.YVkNcSUWxKXs7u_A9CrlhANYDOiEw2rMPtmHSJTjtb1KYp9RgqUBUxvVMgxPhnRhQLNDytzXbn72_Huxf0Ks; path=/; expires=Wed, 29-Oct-25 03:14:00 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=4B.tfxy3wTpnPS6PZKmJ.SXh.RORuMff0AZsCoievMg-1761705840212-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\": \"ed3e56f8-8df4-4548-a5bc-a4e07ff29d09\", \"object\": \"file\", \"deleted\": true}",
+    "context": []
 }

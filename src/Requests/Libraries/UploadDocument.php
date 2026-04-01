@@ -25,7 +25,7 @@ class UploadDocument extends Request implements HasBody
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}/documents";
+        return "/libraries/{$this->libraryId}/documents";
     }
 
     protected function defaultBody(): array

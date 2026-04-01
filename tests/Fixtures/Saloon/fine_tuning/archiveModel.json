@@ -1,0 +1,14 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b04f98c1525-OSL",
+        "mistral-correlation-id": "019a2d34-1f29-7198-b86c-815b05d88b77",
+        "access-control-allow-origin": "*",
+        "Server": "cloudflare"
+    },
+    "data": "{\"id\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"object\":\"model\",\"created\":1715693400,\"owned_by\":\"user-123\",\"root\":\"open-mistral-7b\",\"archived\":true,\"model_type\":\"completion\"}",
+    "context": []
+}

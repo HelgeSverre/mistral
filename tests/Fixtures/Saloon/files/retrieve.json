@@ -1,7 +1,26 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"id\":\"file-550e8400-e29b-41d4-a716-446655440000\",\"object\":\"file\",\"bytes\":1024,\"created_at\":1717059200,\"filename\":\"training_data.jsonl\",\"purpose\":\"fine-tune\",\"sample_type\":\"instruct\",\"num_lines\":100,\"source\":\"upload\"}"
+    "statusCode": 200,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 02:43:46 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "CF-RAY": "995f53ca2dd70731-OSL",
+        "mistral-correlation-id": "019a2dd9-9a68-78e3-8b2d-080af3799bbe",
+        "x-kong-request-id": "019a2dd9-9a68-78e3-8b2d-080af3799bbe",
+        "x-envoy-upstream-service-time": "35",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "35",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=aEK9Qmroh_fbiLQohoUw6jfUrKSjYq71ym_M2fmFMhE-1761705826-1.0.1.1-FCt5.CAscYtSmHgSFKxy544JEY5WO1KdHaB.4MDara8iWaLyDCFCBWw_DtNCxBmrGQkEKqXz1VWZ8xa3BF3kmygqNbK1aisPwlhUijNr5Rw; path=/; expires=Wed, 29-Oct-25 03:13:46 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=9WgOCAOyOIAoowCbPK1DjYR.WojvQTf5EW8tqvMi1os-1761705826966-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\": \"615c701a-38f0-4101-9765-649919412a7c\", \"object\": \"file\", \"bytes\": 865, \"created_at\": 1761697766, \"filename\": \"training-data.jsonl\", \"purpose\": \"fine-tune\", \"sample_type\": \"instruct\", \"num_lines\": 5, \"mimetype\": \"application/jsonl\", \"source\": \"upload\", \"signature\": \"ab56facf0e21bf0d\", \"deleted\": false}",
+    "context": []
 }

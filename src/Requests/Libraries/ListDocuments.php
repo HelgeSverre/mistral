@@ -22,7 +22,7 @@ class ListDocuments extends Request
 
     public function resolveEndpoint(): string
     {
-        return "/v1/libraries/{$this->libraryId}/documents";
+        return "/libraries/{$this->libraryId}/documents";
     }
 
     protected function defaultQuery(): array

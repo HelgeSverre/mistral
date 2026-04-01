@@ -1,7 +1,30 @@
 {
-  "statusCode": 200,
-  "headers": {
-    "Content-Type": "application/json"
-  },
-  "data": "{\"id\":\"650e8400-e29b-41d4-a716-446655440001\",\"library_id\":\"550e8400-e29b-41d4-a716-446655440000\",\"name\":\"test-document.txt\",\"status\":\"queued\",\"created_at\":\"2024-01-15T10:30:00Z\",\"updated_at\":\"2024-01-15T10:30:00Z\",\"size_bytes\":null,\"num_chunks\":null}"
+    "statusCode": 201,
+    "headers": {
+        "Date": "Wed, 29 Oct 2025 14:45:53 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "539",
+        "Connection": "keep-alive",
+        "CF-RAY": "9963758d4b5b56a5-OSL",
+        "mistral-correlation-id": "019a306e-b472-710b-be94-47987a0d1b81",
+        "x-kong-request-id": "019a306e-b472-710b-be94-47987a0d1b81",
+        "x-ratelimit-limit-document-minute": "100",
+        "x-ratelimit-remaining-document-minute": "99",
+        "x-ratelimit-limit-document-day": "5000",
+        "x-ratelimit-remaining-document-day": "4999",
+        "x-envoy-upstream-service-time": "190",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "191",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=3WlRJ_k9W5QwXRqUo914GBdGxeQVxaYVghy__KbEgtU-1761749153-1.0.1.1-_gXdNUR5XCwj.5KQPZVWTp8ukJUJehxSoJAwvGQ48WKrY4UbRgyHpa2XZfG834YEpVpl9_kbL9JrrnIgrr39FW3XYhzxIWChaz2znKlXJGw; path=/; expires=Wed, 29-Oct-25 15:15:53 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=huhBRTUjAO_G91cTlFFeg6sTeDOV3LTPTyyDvvlOs_8-1761749153084-0.0.1.1-604800000; path=/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"f94baae5-758c-4da0-99f7-049254e94b95\",\"library_id\":\"019a306e-aebe-775e-9290-67ee7100e41e\",\"hash\":\"057a1aabbea7434e320a6195c61ff491\",\"mime_type\":\"text/plain\",\"extension\":\"txt\",\"size\":44,\"name\":\"test_doc_tKBQRm\",\"summary\":null,\"created_at\":\"2025-10-29T14:45:52.897939Z\",\"last_processed_at\":null,\"number_of_pages\":null,\"processing_status\":\"Running\",\"uploaded_by_id\":\"253a62c0-6672-496a-beb5-ecae98b2bc31\",\"uploaded_by_type\":\"Workspace\",\"tokens_processing_main_content\":null,\"tokens_processing_summary\":null,\"tokens_processing_total\":0}",
+    "context": []
 }

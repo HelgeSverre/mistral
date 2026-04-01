@@ -13,7 +13,7 @@ beforeEach(function () {
 
 it('ProcessDocument works with URL', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocumentSuccess'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocumentSuccess'),
     ]);
 
     $response = $this->mistral->ocr()->process(
@@ -32,14 +32,14 @@ it('ProcessDocument works with URL', function () {
         ->and($dto->pages)->toHaveCount(3)
         ->and($dto->pages[0]->index)->toBe(0)
         ->and($dto->pages[0]->markdown)->toContain('PDF Association Cheat Sheet')
-        ->and($dto->pages[0]->images)->toHaveCount(6)
+        ->and($dto->pages[0]->images)->toHaveCount(1)
         ->and($dto->usageInfo->pagesProcessed)->toBe(3)
         ->and($dto->usageInfo->docSizeBytes)->toBe(953033);
 });
 
 it('ProcessDocument throws exception for error responses', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     expect(fn () => $this->mistral->ocr()->processUrl(
@@ -53,7 +53,7 @@ it('ProcessDocument throws exception for error responses', function () {
 
 it('ProcessDocument with base64 throws exception on error', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     $base64Data = base64_encode('PDF content here');
@@ -70,7 +70,7 @@ it('ProcessDocument with base64 throws exception on error', function () {
 
 it('ProcessDocument with processBase64 throws exception on error', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     $base64Data = base64_encode('PDF content here');
@@ -87,7 +87,7 @@ it('ProcessDocument with processBase64 throws exception on error', function () {
 
 it('ProcessDocument with Document object throws exception on error', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     $document = Document::fromUrl('https://pdfa.org/download-area/cheat-sheets/Color.pdf');
@@ -103,7 +103,7 @@ it('ProcessDocument with Document object throws exception on error', function ()
 
 it('ProcessDocument throws exception with error details for invalid URL', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     try {
@@ -190,7 +190,7 @@ it('Document::fromFileId creates correct document object', function () {
 
 it('ProcessDocument throws exception and includes error details', function () {
     Saloon::fake([
-        ProcessDocument::class => MockResponse::fixture('ocr.processDocument'),
+        ProcessDocument::class => MockResponse::fixture('ocr/processDocument'),
     ]);
 
     try {

@@ -1,9 +1,15 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Fri, 11 Oct 2024 12:00:00 GMT",
+        "Date": "Tue, 28 Oct 2025 23:43:03 GMT",
         "Content-Type": "application/json",
-        "Connection": "keep-alive"
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b0edd9c56c0-OSL",
+        "mistral-correlation-id": "019a2d34-2557-7edc-ab89-6d0bec29e425",
+        "access-control-allow-origin": "*",
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare"
     },
-    "data": "{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\",\"metadata\":null}"
+    "data": "{\"id\":\"conv_abc123\",\"object\":\"conversation\",\"created_at\":1728648000,\"model\":\"mistral-large-latest\"}",
+    "context": []
 }

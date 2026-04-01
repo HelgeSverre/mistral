@@ -1,0 +1,9 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json; charset=utf-8",
+        "Connection": "keep-alive"
+    },
+    "data": "{\"id\": \"ft:open-mistral-7b:587a6b29:20240514:7e773925\", \"object\": \"model\", \"created\": 1715690400, \"owned_by\": \"587a6b29\", \"type\": \"fine-tuned\", \"job\": \"ftjob-abc123\", \"root\": \"open-mistral-7b\", \"archived\": false, \"name\": \"Custom Fine-tuned Model\", \"description\": \"A custom fine-tuned model for testing\", \"capabilities\": {\"completion_chat\": true, \"function_calling\": false, \"fine_tuning\": false, \"vision\": false}}",
+    "context": []
+}

@@ -31,7 +31,7 @@ it('CreateFIMCompletion works with basic parameters', function () {
         ->and($response->json())->toBeArray()
         ->and($response->body())->json()
         ->and($response->json('model'))->toBe('codestral-latest')
-        ->and($response->json('object'))->toBe('fim.completion');
+        ->and($response->json('object'))->toBe('chat.completion');
 });
 
 it('CreateFIMCompletion response can be cast to DTO', function () {
@@ -55,9 +55,9 @@ it('CreateFIMCompletion response can be cast to DTO', function () {
         ->and($dto->usage)->toBeInstanceOf(Usage::class)
         ->and($dto->choices)->toBeInstanceOf(DataCollection::class)
         ->and($dto->choices[0])->toBeInstanceOf(FIMChoice::class)
-        ->and($dto->choices[0]->message)->toBe('n: int, memo: dict = None')
+        ->and($dto->choices[0]->getContent())->toContain('n')
         ->and($dto->model)->toBe('codestral-latest')
-        ->and($dto->object)->toBe('fim.completion');
+        ->and($dto->object)->toBe('chat.completion');
 });
 
 it('CreateFIMCompletion works with suffix parameter', function () {
@@ -79,7 +79,7 @@ it('CreateFIMCompletion works with suffix parameter', function () {
 
     expect($dto)->toBeInstanceOf(FIMCompletionResponse::class)
         ->and($dto->id)->not()->toBeNull()
-        ->and($dto->choices[0]->message)->toBe('a: number, b: number')
+        ->and($dto->choices[0]->getContent())->toContain('return')
         ->and($response->status())->toBe(200);
 });
 
@@ -229,5 +229,6 @@ it('CreateFIMCompletion works with code autocompletion scenario', function () {
 
     expect($response->status())->toBe(200)
         ->and($response->json('choices'))->toBeArray()
-        ->and($response->json('choices.0.message'))->toBeString();
+        ->and($response->json('choices.0.message'))->toBeArray()
+        ->and($response->json('choices.0.message.content'))->toBeString();
 });

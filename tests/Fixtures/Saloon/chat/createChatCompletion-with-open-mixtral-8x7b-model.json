@@ -1,0 +1,33 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:33:07 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "369",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e3c7faedc569b-OSL",
+        "mistral-correlation-id": "019a2d2b-0be2-71e3-b02d-93f47d420975",
+        "x-kong-request-id": "019a2d2b-0be2-71e3-b02d-93f47d420975",
+        "x-envoy-upstream-service-time": "293",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999878",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999844256",
+        "x-ratelimit-tokens-query-cost": "35",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "54",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "294",
+        "x-kong-proxy-latency": "5",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=epxVKjTHKiu.YqdlaFuEFrU0valHn_A37gS9GncAkvU-1761694387-1.0.1.1-zA1ZOE2DbA_wMDPBFN8xbFIJajQQnXUDR26a6K8g8ycyvt.PzcMZWOIR6NFbHrsFT17yHVtaj_SSD9dJzt..jSoYPWF1Xqjrv_b30riV7SY; path=\/; expires=Wed, 29-Oct-25 00:03:07 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=deNa4gWxWiPxcqtwfnTJQ5YM74O7lC9GEFAChLhJbR4-1761694387471-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "data": "{\"id\":\"796f3a861de64a17943435429955c90a\",\"created\":1761694387,\"model\":\"open-mixtral-8x7b\",\"usage\":{\"prompt_tokens\":15,\"total_tokens\":35,\"completion_tokens\":20},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"length\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"\\\"Banana\\\" is a yellow fruit that is elongated in shape and has a sweet\"}}]}",
+    "context": []
+}

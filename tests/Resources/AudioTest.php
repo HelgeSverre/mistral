@@ -21,12 +21,11 @@ it('can transcribe audio file', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3'
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest'
     );
 
     Saloon::assertSent(CreateTranscriptionRequest::class);
@@ -36,8 +35,6 @@ it('can transcribe audio file', function () {
     $dto = $response->dto();
     expect($dto)->toBeInstanceOf(TranscriptionResponse::class)
         ->and($dto->text)->toBe('Hello, this is a test transcription of an audio file.');
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with language parameter', function () {
@@ -45,12 +42,11 @@ it('can transcribe audio with language parameter', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_with_language'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         language: 'fr'
     );
 
@@ -62,8 +58,6 @@ it('can transcribe audio with language parameter', function () {
     expect($dto)->toBeInstanceOf(TranscriptionResponse::class)
         ->and($dto->text)->toBe("Bonjour, ceci est un test de transcription d'un fichier audio.")
         ->and($dto->language)->toBe('fr');
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with verbose JSON format', function () {
@@ -71,12 +65,11 @@ it('can transcribe audio with verbose JSON format', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_verbose'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         responseFormat: ResponseFormat::VERBOSE_JSON
     );
 
@@ -89,8 +82,6 @@ it('can transcribe audio with verbose JSON format', function () {
         ->and($dto->text)->toBe('Hello, this is a test transcription of an audio file.')
         ->and($dto->language)->toBe('en')
         ->and($dto->duration)->toBe(5.2);
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with word-level timestamps', function () {
@@ -98,12 +89,11 @@ it('can transcribe audio with word-level timestamps', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_verbose'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         responseFormat: ResponseFormat::VERBOSE_JSON,
         timestampGranularities: [TimestampGranularity::WORD]
     );
@@ -120,8 +110,6 @@ it('can transcribe audio with word-level timestamps', function () {
         ->and($dto->words[0]->word)->toBe('Hello')
         ->and($dto->words[0]->start)->toBe(0.0)
         ->and($dto->words[0]->end)->toBe(0.5);
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with segment-level timestamps', function () {
@@ -129,12 +117,11 @@ it('can transcribe audio with segment-level timestamps', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_verbose'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         responseFormat: ResponseFormat::VERBOSE_JSON,
         timestampGranularities: [TimestampGranularity::SEGMENT]
     );
@@ -157,8 +144,6 @@ it('can transcribe audio with segment-level timestamps', function () {
         ->and($dto->segments[0]->compressionRatio)->toBe(1.5)
         ->and($dto->segments[0]->noSpeechProb)->toBe(0.01)
         ->and($dto->segments[0]->tokens)->toBeArray();
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with both word and segment timestamps', function () {
@@ -166,12 +151,11 @@ it('can transcribe audio with both word and segment timestamps', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_verbose'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         responseFormat: ResponseFormat::VERBOSE_JSON,
         timestampGranularities: [
             TimestampGranularity::WORD,
@@ -189,8 +173,6 @@ it('can transcribe audio with both word and segment timestamps', function () {
         ->and($dto->words)->toHaveCount(10)
         ->and($dto->segments)->toBeArray()
         ->and($dto->segments)->toHaveCount(1);
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with temperature parameter', function () {
@@ -198,20 +180,17 @@ it('can transcribe audio with temperature parameter', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         temperature: 0.5
     );
 
     Saloon::assertSent(CreateTranscriptionRequest::class);
 
     expect($response->status())->toBe(200);
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with prompt parameter', function () {
@@ -219,20 +198,17 @@ it('can transcribe audio with prompt parameter', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         prompt: 'This is a technical discussion about AI.'
     );
 
     Saloon::assertSent(CreateTranscriptionRequest::class);
 
     expect($response->status())->toBe(200);
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with all parameters', function () {
@@ -240,12 +216,11 @@ it('can transcribe audio with all parameters', function () {
         CreateTranscriptionRequest::class => MockResponse::fixture('audio/transcription_verbose'),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $response = $this->mistral->audio()->transcribe(
-        filePath: $tempFile,
-        model: 'whisper-large-v3',
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest',
         language: 'en',
         prompt: 'Technical discussion',
         responseFormat: ResponseFormat::VERBOSE_JSON,
@@ -267,8 +242,6 @@ it('can transcribe audio with all parameters', function () {
         ->and($dto->duration)->toBeFloat()
         ->and($dto->words)->toBeArray()
         ->and($dto->segments)->toBeArray();
-
-    unlink($tempFile);
 });
 
 it('can transcribe audio with streaming', function () {
@@ -282,12 +255,11 @@ it('can transcribe audio with streaming', function () {
         ),
     ]);
 
-    $tempFile = tempnam(sys_get_temp_dir(), 'audio_');
-    file_put_contents($tempFile, 'fake audio content');
+    $audioFile = __DIR__.'/../Fixtures/test-data/test-audio.mp3';
 
     $stream = $this->mistral->audio()->transcribeStreamed(
-        filePath: $tempFile,
-        model: 'whisper-large-v3'
+        filePath: $audioFile,
+        model: 'voxtral-mini-latest'
     );
 
     $chunks = iterator_to_array($stream);
@@ -297,8 +269,6 @@ it('can transcribe audio with streaming', function () {
     expect($chunks)->toHaveCount(2)
         ->and($chunks[0]['text'])->toBe('Hello, ')
         ->and($chunks[1]['text'])->toBe('world!');
-
-    unlink($tempFile);
 });
 
 it('ResponseFormat enum has correct values', function () {

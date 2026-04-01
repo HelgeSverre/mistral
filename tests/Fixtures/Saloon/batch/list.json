@@ -1,7 +1,8 @@
 {
-    "statusCode": 200,
-    "headers": {
-        "Content-Type": "application/json"
-    },
-    "data": "{\"data\":[{\"id\":\"batch-job-123e4567-e89b-12d3-a456-426614174000\",\"object\":\"batch.job\",\"status\":\"RUNNING\",\"input_files\":[\"file-abc123\",\"file-def456\"],\"endpoint\":\"/v1/chat/completions\",\"created_at\":1715693073,\"started_at\":1715693100,\"model\":\"mistral-large-latest\",\"metadata\":{\"experiment\":\"test-001\",\"version\":\"1.0\"},\"total_requests\":100,\"succeeded_requests\":45,\"failed_requests\":2},{\"id\":\"batch-job-987f6543-e21c-32d1-b654-123456789abc\",\"object\":\"batch.job\",\"status\":\"SUCCESS\",\"input_files\":[\"file-xyz789\"],\"endpoint\":\"/v1/embeddings\",\"created_at\":1715693000,\"started_at\":1715693010,\"completed_at\":1715693200,\"model\":\"mistral-embed\",\"output_file\":\"output-file-xyz\",\"total_requests\":50,\"succeeded_requests\":50,\"failed_requests\":0}],\"object\":\"list\",\"total\":2}"
+  "statusCode": 200,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": "{\"data\": [{\"id\": \"877443e6-c853-4846-9857-6e4e0ab932f4\", \"object\": \"batch\", \"input_files\": [\"92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2\"], \"metadata\": null, \"endpoint\": \"/v1/chat/completions\", \"model\": \"mistral-small-latest\", \"agent_id\": null, \"output_file\": null, \"error_file\": null, \"errors\": [], \"status\": \"RUNNING\", \"created_at\": 1761710170, \"total_requests\": 3, \"completed_requests\": 0, \"succeeded_requests\": 0, \"failed_requests\": 0, \"started_at\": 1761710171, \"completed_at\": null}], \"object\": \"list\", \"total\": 1}",
+  "context": []
 }

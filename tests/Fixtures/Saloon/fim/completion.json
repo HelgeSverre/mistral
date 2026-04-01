@@ -1,11 +1,33 @@
 {
     "statusCode": 200,
     "headers": {
-        "Date": "Sat, 11 Oct 2025 10:30:00 GMT",
-        "Content-Type": "application/json",
-        "Content-Length": "450",
+        "Date": "Wed, 29 Oct 2025 06:41:27 GMT",
+        "Content-Type": "application\/json",
+        "Content-Length": "547",
         "Connection": "keep-alive",
-        "access-control-allow-origin": "*"
+        "CF-RAY": "9960afee0e7bb4f3-OSL",
+        "mistral-correlation-id": "019a2eb3-30de-7ffc-af2b-79567747d1a5",
+        "x-kong-request-id": "019a2eb3-30de-7ffc-af2b-79567747d1a5",
+        "x-envoy-upstream-service-time": "311",
+        "x-ratelimit-limit-tokens-minute": "2000000",
+        "x-ratelimit-remaining-tokens-minute": "1999812",
+        "x-ratelimit-limit-tokens-month": "10000000000",
+        "x-ratelimit-remaining-tokens-month": "9999841442",
+        "x-ratelimit-tokens-query-cost": "94",
+        "x-ratelimit-limit-req-10-second": "60",
+        "x-ratelimit-remaining-req-10-second": "59",
+        "access-control-allow-origin": "*",
+        "x-kong-upstream-latency": "311",
+        "x-kong-proxy-latency": "9",
+        "cf-cache-status": "DYNAMIC",
+        "Set-Cookie": [
+            "__cf_bm=f.qWxm7ZEpyHQYfAkt1A0J4uW9UbnqvcRY_TIg26q_A-1761720087-1.0.1.1-pidNcRxXiaG6yumxClKCGGRxpHSD7k7HgheDAroEkFsN2TnlQVM.CAB8cPTpibMgBT_uGqADqmRLGksEcANo6ECDhRjzbsrpAGLJRW9z328; path=\/; expires=Wed, 29-Oct-25 07:11:27 GMT; domain=.mistral.ai; HttpOnly; Secure; SameSite=None",
+            "_cfuvid=Pg2JECr78hPkgWxSYQG7nspD2u_L7wvYWc4e1c3Kqtw-1761720087077-0.0.1.1-604800000; path=\/; domain=.mistral.ai; HttpOnly; Secure; SameSite=None"
+        ],
+        "Strict-Transport-Security": "max-age=15552000; includeSubDomains",
+        "Server": "cloudflare",
+        "alt-svc": "h3=\":443\"; ma=86400"
     },
-    "data": "{\"id\":\"fim_completion_abc123\",\"object\":\"fim.completion\",\"created\":1728645000,\"model\":\"codestral-latest\",\"choices\":[{\"index\":0,\"message\":\"n: int, memo: dict = None\",\"finish_reason\":\"stop\"}],\"usage\":{\"prompt_tokens\":10,\"total_tokens\":25,\"completion_tokens\":15}}"
+    "data": "{\"id\":\"2ff3c49d80e74316b4b4d21d24631a7f\",\"created\":1761720086,\"model\":\"codestral-latest\",\"usage\":{\"prompt_tokens\":8,\"total_tokens\":94,\"completion_tokens\":86},\"object\":\"chat.completion\",\"choices\":[{\"index\":0,\"finish_reason\":\"stop\",\"message\":{\"role\":\"assistant\",\"tool_calls\":null,\"content\":\"n: int) -> int:\\n    if n <= 0:\\n        raise ValueError(\\\"Input should be a positive integer.\\\")\\n    elif n == 1:\\n        return 0\\n    elif n == 2:\\n        return 1\\n    a, b = 0, 1\\n    for _ in range(2, n):\\n        a, b = b, a + b\\n    return b\"}}]}",
+    "context": []
 }

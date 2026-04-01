@@ -43,7 +43,7 @@ it('can moderate text and cast to DTO', function () {
     );
 
     expect($dto)->toBeInstanceOf(ModerationResponse::class)
-        ->and($dto->id)->toBe('78a02375835540f19ff045a32b8709ea')
+        ->and($dto->id)->toBe('6d4ace5b96e94e07a35c188310451e66')
         ->and($dto->model)->toBe('mistral-moderation-latest')
         ->and($dto->results)->toBeInstanceOf(DataCollection::class)
         ->and($dto->results)->toHaveCount(1)
@@ -71,11 +71,12 @@ it('can detect flagged content', function () {
         input: 'This is a test message'
     );
 
-    // Note: The fixture contains safe content, so we verify the structure rather than specific flags
+    // Note: The fixture contains flagged content (violence_and_threats: true)
     expect($dto)->toBeInstanceOf(ModerationResponse::class)
-        ->and($dto->id)->toBe('7c9d419fac054766a81aac44fc2dd4f7')
-        ->and($dto->results[0]->isFlagged())->toBeFalse()
+        ->and($dto->id)->toBe('1e94eb66cb4f406b8022823f1e0e1969')
+        ->and($dto->results[0]->isFlagged())->toBeTrue()
         ->and($dto->results[0]->categories)->toBeObject()
+        ->and($dto->results[0]->categories->violenceAndThreats)->toBeTrue()
         ->and($dto->results[0]->categoryScores)->toBeObject();
 });
 
@@ -95,11 +96,10 @@ it('can moderate array of text inputs', function () {
     );
 
     expect($dto)->toBeInstanceOf(ModerationResponse::class)
-        ->and($dto->id)->toBe('5165174639fe4f62bc3e2dd452fcd739')
-        ->and($dto->results)->toHaveCount(3)
+        ->and($dto->id)->toBe('9dbc6dbbf242407893fea5fedcf160bc')
+        ->and($dto->results)->toHaveCount(2)
         ->and($dto->results[0])->toBeInstanceOf(ModerationResult::class)
-        ->and($dto->results[1])->toBeInstanceOf(ModerationResult::class)
-        ->and($dto->results[2])->toBeInstanceOf(ModerationResult::class);
+        ->and($dto->results[1])->toBeInstanceOf(ModerationResult::class);
 });
 
 it('can check category scores', function () {

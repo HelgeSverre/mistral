@@ -7,6 +7,9 @@ use Spatie\LaravelData\Data;
 
 class Agent extends Data
 {
+    /**
+     * @param  string[]|null  $handoffs  Agent IDs that this agent can hand off to
+     */
     public function __construct(
         public string $id,
         public string $object,
@@ -17,6 +20,7 @@ class Agent extends Data
         public ?string $instructions = null,
         public ?string $description = null,
         public ?array $tools = null,
+        public ?array $handoffs = null,
         public ?float $temperature = null,
         #[MapName('top_p')]
         public ?float $topP = null,

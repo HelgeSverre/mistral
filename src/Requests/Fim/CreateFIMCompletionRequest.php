@@ -30,7 +30,7 @@ class CreateFIMCompletionRequest extends Request implements HasBody
 
     protected function defaultBody(): array
     {
-        return array_filter($this->fimCompletionRequest->toArray());
+        return array_filter($this->fimCompletionRequest->toArray(), fn ($v) => $v !== null);
     }
 
     public function createDtoFromResponse(Response $response): FIMCompletionResponse

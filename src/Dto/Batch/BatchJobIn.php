@@ -8,7 +8,10 @@ use Spatie\LaravelData\Data;
 class BatchJobIn extends Data
 {
     /**
-     * @param  string[]  $inputFiles
+     * @param  string[]  $inputFiles  Array of file UUIDs
+     * @param  string  $endpoint  API endpoint (e.g. /v1/chat/completions)
+     * @param  array<string,string>|null  $metadata  Key-value metadata (max 16 pairs, 64 char keys, 512 char values)
+     * @param  int|null  $timeoutHours  Timeout in hours (default: 24)
      */
     public function __construct(
         #[MapName('input_files')]
@@ -20,7 +23,5 @@ class BatchJobIn extends Data
         public ?array $metadata = null,
         #[MapName('timeout_hours')]
         public ?int $timeoutHours = null,
-        #[MapName('completion_window')]
-        public ?string $completionWindow = null,
     ) {}
 }

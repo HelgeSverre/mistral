@@ -1,0 +1,14 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Date": "Tue, 28 Oct 2025 23:43:01 GMT",
+        "Content-Type": "application/json",
+        "Connection": "keep-alive",
+        "CF-RAY": "995e4b04f98c1525-OSL",
+        "mistral-correlation-id": "019a2d34-1f29-7198-b86c-815b05d88b77",
+        "access-control-allow-origin": "*",
+        "Server": "cloudflare"
+    },
+    "data": "{\"data\":[{\"id\":\"f1a2b3c4-d5e6-7890-abcd-ef1234567890\",\"auto_start\":false,\"hyperparameters\":{\"training_steps\":100,\"learning_rate\":0.0001},\"fine_tuned_model\":\"ft:open-mistral-7b:587a6b29:20240514:7e773925\",\"model\":\"open-mistral-7b\",\"status\":\"SUCCESS\",\"job_type\":\"completion\",\"created_at\":1715692800,\"modified_at\":1715693400,\"training_files\":[{\"file_id\":\"9876dcba-4321-0987-fedc-ba9876543210\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\",\"suffix\":\"my-model-v1\"},{\"id\":\"g2b3c4d5-e6f7-8901-bcde-fg2345678901\",\"auto_start\":true,\"hyperparameters\":{\"training_steps\":50,\"learning_rate\":5.0e-5},\"model\":\"open-mistral-7b\",\"status\":\"RUNNING\",\"job_type\":\"classifier\",\"created_at\":1715693000,\"modified_at\":1715693600,\"training_files\":[{\"file_id\":\"8765dcba-3210-9876-fedc-ba8765432109\",\"weight\":1}],\"validation_files\":[],\"object\":\"job\"}],\"total\":2,\"object\":\"list\"}",
+    "context": []
+}

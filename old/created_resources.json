@@ -1,0 +1,17 @@
+{
+    "generated_at": "2025-10-29 00:29:28",
+    "resources": [
+        {
+            "type": "file",
+            "id": "615c701a-38f0-4101-9765-649919412a7c"
+        },
+        {
+            "type": "file",
+            "id": "92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2"
+        }
+    ],
+    "resource_ids": {
+        "training_file": "615c701a-38f0-4101-9765-649919412a7c",
+        "batch_file": "92eceef6-84a2-4bc4-a064-ab6b6ec5b9a2"
+    }
+}
