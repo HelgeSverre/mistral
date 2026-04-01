@@ -5,6 +5,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2026-04-01
+
+### Changed
+
+- **Upgraded Saloon to v4**: Bumped `saloonphp/saloon` and `saloonphp/laravel-plugin` dependencies from `^3.x` to `^4.0`
+
+### Migration Guide
+
+Saloon v4 no longer allows dots in fixture names — only alphanumeric characters, hyphens, slashes, and underscores are permitted. If you have custom test fixtures using the old dot-separator convention (e.g. `MockResponse::fixture('chat.create')`), rename them to use slashes instead (e.g. `MockResponse::fixture('chat/create')`).
+
+---
+
 ## [2.0.0] - 2025-10-21
 
 ### Added

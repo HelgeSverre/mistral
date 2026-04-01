@@ -1,5 +1,6 @@
 {
     "name": "helgesverre/mistral",
+    "version": "3.0.0",
     "description": "Laravel Client for the Mistral.ai API",
     "keywords": [
         "laravel",
@@ -18,7 +19,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "saloonphp/laravel-plugin": "^v3.5",
+        "saloonphp/laravel-plugin": "^4.0",
+        "saloonphp/saloon": "^4.0",
         "spatie/laravel-data": "^3|^4",
         "spatie/laravel-package-tools": "^1.16"
     },

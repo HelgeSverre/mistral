@@ -20,7 +20,7 @@ beforeEach(function () {
 
 it('CreateChatCompletion works', function ($model) {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture("chat.createChatCompletion-with-{$model}-model"),
+        CreateChatCompletion::class => MockResponse::fixture("chat/createChatCompletion-with-{$model}-model"),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -52,7 +52,7 @@ it('CreateChatCompletion works', function ($model) {
 
 it('CreateChatCompletion works with json mode', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion-jsonMode'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion-jsonMode'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -87,7 +87,7 @@ it('CreateChatCompletion works with json mode', function () {
 
 it('CreateChatCompletion works with function calling', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion-functionCall'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion-functionCall'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -170,7 +170,7 @@ it('CreateChatCompletion works with function calling', function () {
 
 it('CreateChatCompletion response can be cast to DTO', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -199,7 +199,7 @@ it('CreateChatCompletion response can be cast to DTO', function () {
 
 it('CreateChatCompletion works with stop parameter as string', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -220,7 +220,7 @@ it('CreateChatCompletion works with stop parameter as string', function () {
 
 it('CreateChatCompletion works with stop parameter as array', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -241,7 +241,7 @@ it('CreateChatCompletion works with stop parameter as array', function () {
 
 it('CreateChatCompletion works with presence_penalty', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -262,7 +262,7 @@ it('CreateChatCompletion works with presence_penalty', function () {
 
 it('CreateChatCompletion works with frequency_penalty', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -283,7 +283,7 @@ it('CreateChatCompletion works with frequency_penalty', function () {
 
 it('CreateChatCompletion works with prediction parameter', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(
@@ -307,7 +307,7 @@ it('CreateChatCompletion works with prediction parameter', function () {
 
 it('CreateChatCompletion works with all new parameters combined', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('chat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('chat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->chat()->create(

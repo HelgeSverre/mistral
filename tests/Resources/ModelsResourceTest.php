@@ -19,7 +19,7 @@ beforeEach(function () {
 
 it('ListModels works', function () {
     Saloon::fake([
-        ListModels::class => MockResponse::fixture('models.listModels'),
+        ListModels::class => MockResponse::fixture('models/listModels'),
     ]);
 
     $response = $this->mistral->models()->list();
@@ -34,7 +34,7 @@ it('ListModels works', function () {
 
 it('ListModels response can be cast to DTO', function () {
     Saloon::fake([
-        ListModels::class => MockResponse::fixture('models.listModels'),
+        ListModels::class => MockResponse::fixture('models/listModels'),
     ]);
 
     /** @var ModelList $dto */
@@ -49,7 +49,7 @@ it('ListModels response can be cast to DTO', function () {
 
 it('RetrieveModel works for base model', function () {
     Saloon::fake([
-        RetrieveModelRequest::class => MockResponse::fixture('models.retrieveModel-base'),
+        RetrieveModelRequest::class => MockResponse::fixture('models/retrieveModel-base'),
     ]);
 
     $dto = $this->mistral->models()->retrieve('open-mistral-7b');
@@ -68,7 +68,7 @@ it('RetrieveModel works for base model', function () {
 
 it('RetrieveModel works for fine-tuned model', function () {
     Saloon::fake([
-        RetrieveModelRequest::class => MockResponse::fixture('models.retrieveModel-finetuned'),
+        RetrieveModelRequest::class => MockResponse::fixture('models/retrieveModel-finetuned'),
     ]);
 
     $dto = $this->mistral->models()->retrieve('ft:open-mistral-7b:587a6b29:20240514:7e773925');
@@ -87,7 +87,7 @@ it('RetrieveModel works for fine-tuned model', function () {
 
 it('DeleteModel works', function () {
     Saloon::fake([
-        DeleteModelRequest::class => MockResponse::fixture('models.deleteModel'),
+        DeleteModelRequest::class => MockResponse::fixture('models/deleteModel'),
     ]);
 
     $dto = $this->mistral->models()->delete('ft:open-mistral-7b:587a6b29:20240514:7e773925');

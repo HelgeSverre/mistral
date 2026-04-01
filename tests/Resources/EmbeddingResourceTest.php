@@ -14,7 +14,7 @@ beforeEach(function () {
 });
 it('CreateEmbedding works', function () {
     Saloon::fake([
-        CreateEmbedding::class => MockResponse::fixture('embedding.createEmbedding'),
+        CreateEmbedding::class => MockResponse::fixture('embedding/createEmbedding'),
     ]);
 
     $response = $this->mistral->embedding()->create(
@@ -31,7 +31,7 @@ it('CreateEmbedding works', function () {
 
 it('CreateEmbedding response can be cast to DTO', function () {
     Saloon::fake([
-        CreateEmbedding::class => MockResponse::fixture('embedding.createEmbedding'),
+        CreateEmbedding::class => MockResponse::fixture('embedding/createEmbedding'),
     ]);
 
     /** @var EmbeddingResponse $dto */

@@ -15,7 +15,7 @@ beforeEach(function () {
 
 it('create() works', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('simpleChat.createChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('simpleChat/createChatCompletion'),
     ]);
 
     $response = $this->mistral->simpleChat()->create(
@@ -42,7 +42,7 @@ it('create() works', function () {
 
 it('create() works using json mode', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('simpleChat.createChatCompletion-jsonMode'),
+        CreateChatCompletion::class => MockResponse::fixture('simpleChat/createChatCompletion-jsonMode'),
     ]);
 
     $response = $this->mistral->simpleChat()->create(
@@ -73,7 +73,7 @@ it('create() works using json mode', function () {
 
 it('create() with jsonMode throws on incompatible model', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('simpleChat.createChatCompletion-jsonMode-throw'),
+        CreateChatCompletion::class => MockResponse::fixture('simpleChat/createChatCompletion-jsonMode-throw'),
     ]);
 
     $this->expectException(InvalidArgumentException::class);
@@ -93,7 +93,7 @@ it('create() with jsonMode throws on incompatible model', function () {
 
 it('stream() works', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('simpleChat.createStreamedChatCompletion'),
+        CreateChatCompletion::class => MockResponse::fixture('simpleChat/createStreamedChatCompletion'),
     ]);
 
     $response = $this->mistral->simpleChat()->stream(
@@ -119,7 +119,7 @@ it('stream() works', function () {
 
 it('stream() works with json mode', function () {
     Saloon::fake([
-        CreateChatCompletion::class => MockResponse::fixture('simpleChat.createStreamedChatCompletion-jsonMode'),
+        CreateChatCompletion::class => MockResponse::fixture('simpleChat/createStreamedChatCompletion-jsonMode'),
     ]);
 
     $response = $this->mistral->simpleChat()->stream(

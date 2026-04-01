@@ -33,7 +33,7 @@ beforeEach(function () {
 
 it('can list fine-tuning jobs', function () {
     Saloon::fake([
-        ListJobsRequest::class => MockResponse::fixture('fine_tuning.listJobs'),
+        ListJobsRequest::class => MockResponse::fixture('fine_tuning/listJobs'),
     ]);
 
     $response = $this->mistral->fineTuning()->list();
@@ -45,7 +45,7 @@ it('can list fine-tuning jobs', function () {
 
 it('can list jobs and convert to DTO', function () {
     Saloon::fake([
-        ListJobsRequest::class => MockResponse::fixture('fine_tuning.listJobs'),
+        ListJobsRequest::class => MockResponse::fixture('fine_tuning/listJobs'),
     ]);
 
     $jobsOut = $this->mistral->fineTuning()->listAsDto();
@@ -65,7 +65,7 @@ it('can list jobs and convert to DTO', function () {
 
 it('can list jobs with query parameters', function () {
     Saloon::fake([
-        ListJobsRequest::class => MockResponse::fixture('fine_tuning.listJobs'),
+        ListJobsRequest::class => MockResponse::fixture('fine_tuning/listJobs'),
     ]);
 
     $response = $this->mistral->fineTuning()->list(
@@ -93,7 +93,7 @@ it('can list jobs with query parameters', function () {
 
 it('can create a fine-tuning job', function () {
     Saloon::fake([
-        CreateJobRequest::class => MockResponse::fixture('fine_tuning.createJobCompletion'),
+        CreateJobRequest::class => MockResponse::fixture('fine_tuning/createJobCompletion'),
     ]);
 
     $jobIn = new JobIn(
@@ -127,7 +127,7 @@ it('can create a fine-tuning job', function () {
 
 it('can create job and convert to DTO for completion type', function () {
     Saloon::fake([
-        CreateJobRequest::class => MockResponse::fixture('fine_tuning.createJobCompletion'),
+        CreateJobRequest::class => MockResponse::fixture('fine_tuning/createJobCompletion'),
     ]);
 
     $jobIn = new JobIn(
@@ -156,7 +156,7 @@ it('can create job and convert to DTO for completion type', function () {
 
 it('can create job with dry run', function () {
     Saloon::fake([
-        CreateJobRequest::class => MockResponse::fixture('fine_tuning.createJobDryRun'),
+        CreateJobRequest::class => MockResponse::fixture('fine_tuning/createJobDryRun'),
     ]);
 
     $jobIn = new JobIn(
@@ -187,7 +187,7 @@ it('can create job with dry run', function () {
 
 it('can get detailed job information', function () {
     Saloon::fake([
-        GetJobRequest::class => MockResponse::fixture('fine_tuning.getJobDetailed'),
+        GetJobRequest::class => MockResponse::fixture('fine_tuning/getJobDetailed'),
     ]);
 
     $response = $this->mistral->fineTuning()->get('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -199,7 +199,7 @@ it('can get detailed job information', function () {
 
 it('can get job and convert to detailed DTO', function () {
     Saloon::fake([
-        GetJobRequest::class => MockResponse::fixture('fine_tuning.getJobDetailed'),
+        GetJobRequest::class => MockResponse::fixture('fine_tuning/getJobDetailed'),
     ]);
 
     $jobOut = $this->mistral->fineTuning()->getAsDto('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -219,7 +219,7 @@ it('can get job and convert to detailed DTO', function () {
 
 it('can cancel a fine-tuning job', function () {
     Saloon::fake([
-        CancelJobRequest::class => MockResponse::fixture('fine_tuning.cancelJob'),
+        CancelJobRequest::class => MockResponse::fixture('fine_tuning/cancelJob'),
     ]);
 
     $response = $this->mistral->fineTuning()->cancel('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -231,7 +231,7 @@ it('can cancel a fine-tuning job', function () {
 
 it('can cancel job and convert to DTO', function () {
     Saloon::fake([
-        CancelJobRequest::class => MockResponse::fixture('fine_tuning.cancelJob'),
+        CancelJobRequest::class => MockResponse::fixture('fine_tuning/cancelJob'),
     ]);
 
     $jobOut = $this->mistral->fineTuning()->cancelAsDto('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -243,7 +243,7 @@ it('can cancel job and convert to DTO', function () {
 
 it('can start a validated fine-tuning job', function () {
     Saloon::fake([
-        StartJobRequest::class => MockResponse::fixture('fine_tuning.startJob'),
+        StartJobRequest::class => MockResponse::fixture('fine_tuning/startJob'),
     ]);
 
     $response = $this->mistral->fineTuning()->start('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -255,7 +255,7 @@ it('can start a validated fine-tuning job', function () {
 
 it('can start job and convert to DTO', function () {
     Saloon::fake([
-        StartJobRequest::class => MockResponse::fixture('fine_tuning.startJob'),
+        StartJobRequest::class => MockResponse::fixture('fine_tuning/startJob'),
     ]);
 
     $jobOut = $this->mistral->fineTuning()->startAsDto('f1a2b3c4-d5e6-7890-abcd-ef1234567890');
@@ -267,7 +267,7 @@ it('can start job and convert to DTO', function () {
 
 it('can update fine-tuned model metadata', function () {
     Saloon::fake([
-        UpdateModelRequest::class => MockResponse::fixture('fine_tuning.updateModel'),
+        UpdateModelRequest::class => MockResponse::fixture('fine_tuning/updateModel'),
     ]);
 
     $updateModel = new UpdateFTModelIn(
@@ -287,7 +287,7 @@ it('can update fine-tuned model metadata', function () {
 
 it('can update model and convert to DTO', function () {
     Saloon::fake([
-        UpdateModelRequest::class => MockResponse::fixture('fine_tuning.updateModel'),
+        UpdateModelRequest::class => MockResponse::fixture('fine_tuning/updateModel'),
     ]);
 
     $updateModel = new UpdateFTModelIn(
@@ -311,7 +311,7 @@ it('can update model and convert to DTO', function () {
 
 it('can archive a fine-tuned model', function () {
     Saloon::fake([
-        ArchiveModelRequest::class => MockResponse::fixture('fine_tuning.archiveModel'),
+        ArchiveModelRequest::class => MockResponse::fixture('fine_tuning/archiveModel'),
     ]);
 
     $response = $this->mistral->fineTuning()->archiveModel('ft:open-mistral-7b:587a6b29:20240514:7e773925');
@@ -323,7 +323,7 @@ it('can archive a fine-tuned model', function () {
 
 it('can archive model and convert to DTO', function () {
     Saloon::fake([
-        ArchiveModelRequest::class => MockResponse::fixture('fine_tuning.archiveModel'),
+        ArchiveModelRequest::class => MockResponse::fixture('fine_tuning/archiveModel'),
     ]);
 
     $archiveOut = $this->mistral->fineTuning()->archiveModelAsDto('ft:open-mistral-7b:587a6b29:20240514:7e773925');
@@ -337,7 +337,7 @@ it('can archive model and convert to DTO', function () {
 
 it('can unarchive a fine-tuned model', function () {
     Saloon::fake([
-        UnarchiveModelRequest::class => MockResponse::fixture('fine_tuning.unarchiveModel'),
+        UnarchiveModelRequest::class => MockResponse::fixture('fine_tuning/unarchiveModel'),
     ]);
 
     $response = $this->mistral->fineTuning()->unarchiveModel('ft:open-mistral-7b:587a6b29:20240514:7e773925');
@@ -349,7 +349,7 @@ it('can unarchive a fine-tuned model', function () {
 
 it('can unarchive model and convert to DTO', function () {
     Saloon::fake([
-        UnarchiveModelRequest::class => MockResponse::fixture('fine_tuning.unarchiveModel'),
+        UnarchiveModelRequest::class => MockResponse::fixture('fine_tuning/unarchiveModel'),
     ]);
 
     $unarchiveOut = $this->mistral->fineTuning()->unarchiveModelAsDto('ft:open-mistral-7b:587a6b29:20240514:7e773925');
