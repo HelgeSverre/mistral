@@ -9,6 +9,7 @@ use HelgeSverre\Mistral\Dto\Agents\AgentsCompletionRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentUpdateRequest;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
 use HelgeSverre\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentsCompletionRequest;
 use HelgeSverre\Mistral\Requests\Agents\GetAgentRequest;
@@ -20,7 +21,7 @@ use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can create an agent', function () {

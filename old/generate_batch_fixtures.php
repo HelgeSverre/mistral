@@ -2,6 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+use HelgeSverre\Mistral\Dto\Batch\BatchJobIn;
 use HelgeSverre\Mistral\Mistral;
 
 // Load environment variables
@@ -59,7 +60,7 @@ function saveFixture(string $name, $response): void
 try {
     // 1. Create batch job
     echo "1. Creating batch job with file {$batchFileId}...\n";
-    $batchJobIn = new \HelgeSverre\Mistral\Dto\Batch\BatchJobIn(
+    $batchJobIn = new BatchJobIn(
         inputFiles: [$batchFileId],
         endpoint: '/v1/chat/completions',
         model: 'mistral-small-latest'

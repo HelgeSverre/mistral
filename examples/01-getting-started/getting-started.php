@@ -143,7 +143,7 @@ function verifyInstallation(Mistral $mistral): void
             // Display first 5 models
             echo "  • Sample models:\n";
 
-            /** @var \HelgeSverre\Mistral\Dto\Models\Model[] $sampleModels */
+            /** @var HelgeSverre\Mistral\Dto\Models\Model[] $sampleModels */
             $sampleModels = $models->data->toCollection()->take(5)->all();
 
             foreach ($sampleModels as $model) {

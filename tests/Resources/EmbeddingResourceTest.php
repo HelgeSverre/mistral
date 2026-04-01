@@ -4,13 +4,14 @@
 
 use HelgeSverre\Mistral\Dto\Embedding\Embedding;
 use HelgeSverre\Mistral\Dto\Embedding\EmbeddingResponse;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Embedding\CreateEmbedding;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 it('CreateEmbedding works', function () {
     Saloon::fake([

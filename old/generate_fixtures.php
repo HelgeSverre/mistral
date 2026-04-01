@@ -18,6 +18,7 @@ require_once __DIR__.'/vendor/autoload.php';
 use HelgeSverre\Mistral\Dto\Agents\AgentCreationRequest;
 use HelgeSverre\Mistral\Dto\Batch\BatchJobIn;
 use HelgeSverre\Mistral\Dto\Conversations\ConversationRequest;
+use HelgeSverre\Mistral\Enums\FilePurpose;
 use HelgeSverre\Mistral\Enums\Role;
 use HelgeSverre\Mistral\Mistral;
 
@@ -107,7 +108,7 @@ class FixtureGenerator
                 try {
                     $response = $this->mistral->files()->upload(
                         filePath: $trainingFile,
-                        purpose: \HelgeSverre\Mistral\Enums\FilePurpose::FINE_TUNE
+                        purpose: FilePurpose::FINE_TUNE
                     );
                     $fileId = $response->json('id');
                     $this->resourceIds['training_file'] = $fileId;
@@ -129,7 +130,7 @@ class FixtureGenerator
                 try {
                     $response = $this->mistral->files()->upload(
                         filePath: $batchFile,
-                        purpose: \HelgeSverre\Mistral\Enums\FilePurpose::BATCH
+                        purpose: FilePurpose::BATCH
                     );
                     $fileId = $response->json('id');
                     $this->resourceIds['batch_file'] = $fileId;

@@ -1,8 +1,10 @@
 <?php
 
+use HelgeSverre\Mistral\Mistral;
+
 /** @noinspection PhpUnhandledExceptionInspection */
 it('There is a default timeout', function () {
-    $mistral = new HelgeSverre\Mistral\Mistral(
+    $mistral = new Mistral(
         apiKey: config('mistral.api_key'),
     );
 
@@ -10,7 +12,7 @@ it('There is a default timeout', function () {
 });
 
 it('Can change the timeout', function () {
-    $mistral = new HelgeSverre\Mistral\Mistral(
+    $mistral = new Mistral(
         apiKey: config('mistral.api_key'),
         timeout: 10
     );
@@ -19,7 +21,7 @@ it('Can change the timeout', function () {
 });
 
 it('Can change the timeout to 0', function () {
-    $mistral = new HelgeSverre\Mistral\Mistral(
+    $mistral = new Mistral(
         apiKey: config('mistral.api_key'),
         timeout: 0
     );

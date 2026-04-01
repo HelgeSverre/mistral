@@ -2,6 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+use HelgeSverre\Mistral\Enums\FilePurpose;
 use HelgeSverre\Mistral\Mistral;
 
 // Load environment variables
@@ -105,7 +106,7 @@ try {
     try {
         $response = $mistral->files()->upload(
             filePath: $tempFile,
-            purpose: HelgeSverre\Mistral\Enums\FilePurpose::FINE_TUNE
+            purpose: FilePurpose::FINE_TUNE
         );
 
         if ($response->successful()) {

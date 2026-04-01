@@ -5,13 +5,14 @@
 use HelgeSverre\Mistral\Dto\Fim\FIMChoice;
 use HelgeSverre\Mistral\Dto\Fim\FIMCompletionResponse;
 use HelgeSverre\Mistral\Dto\Usage;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Fim\CreateFIMCompletionRequest;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('CreateFIMCompletion works with basic parameters', function () {

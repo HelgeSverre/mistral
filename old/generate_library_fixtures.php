@@ -2,11 +2,15 @@
 
 require __DIR__.'/vendor/autoload.php';
 
+use HelgeSverre\Mistral\Dto\Libraries\DocumentUpdateIn;
+use HelgeSverre\Mistral\Dto\Libraries\LibraryIn;
+use HelgeSverre\Mistral\Dto\Libraries\LibraryInUpdate;
 use HelgeSverre\Mistral\Mistral;
+use Illuminate\Contracts\Console\Kernel;
 
 // Bootstrap Laravel for testing
 $app = require_once __DIR__.'/vendor/orchestra/testbench-core/laravel/bootstrap/app.php';
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+$app->make(Kernel::class)->bootstrap();
 
 // Load environment variables
 if (file_exists(__DIR__.'/.env')) {
@@ -55,7 +59,7 @@ try {
 
     // 2. Create a library
     echo "\n2. Creating a test library...\n";
-    $libraryIn = new \HelgeSverre\Mistral\Dto\Libraries\LibraryIn(
+    $libraryIn = new LibraryIn(
         name: 'Test Library',
         description: 'A test library for fixture generation'
     );
@@ -77,7 +81,7 @@ try {
 
         // 4. Update library
         echo "\n4. Updating library...\n";
-        $libraryUpdate = new \HelgeSverre\Mistral\Dto\Libraries\LibraryInUpdate(
+        $libraryUpdate = new LibraryInUpdate(
             name: 'Updated Test Library',
             description: 'Updated description'
         );
@@ -117,7 +121,7 @@ try {
 
                 // 8. Update document
                 echo "\n8. Updating document metadata...\n";
-                $documentUpdate = new \HelgeSverre\Mistral\Dto\Libraries\DocumentUpdateIn(
+                $documentUpdate = new DocumentUpdateIn(
                     name: 'renamed-test-document.txt'
                 );
                 $response = $mistral->libraries()->updateDocument($libraryId, $documentId, $documentUpdate);

@@ -3,12 +3,15 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 
 use HelgeSverre\Mistral\Dto\OCR\Document;
+use HelgeSverre\Mistral\Dto\OCR\OCRResponse;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\OCR\ProcessDocument;
+use Saloon\Exceptions\Request\ClientException;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('ProcessDocument works with URL', function () {
@@ -27,7 +30,7 @@ it('ProcessDocument works with URL', function () {
     expect($response->status())->toBe(200);
 
     $dto = $response->dto();
-    expect($dto)->toBeInstanceOf(\HelgeSverre\Mistral\Dto\OCR\OCRResponse::class)
+    expect($dto)->toBeInstanceOf(OCRResponse::class)
         ->and($dto->model)->toBe('mistral-ocr-2505-completion')
         ->and($dto->pages)->toHaveCount(3)
         ->and($dto->pages[0]->index)->toBe(0)
@@ -46,7 +49,7 @@ it('ProcessDocument throws exception for error responses', function () {
         url: 'https://pdfa.org/download-area/cheat-sheets/Color.pdf',
         model: 'mistral-ocr-latest',
         includeImageBase64: true,
-    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
+    ))->toThrow(ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
 });
@@ -63,7 +66,7 @@ it('ProcessDocument with base64 throws exception on error', function () {
         document: $base64Data,
         mimeType: 'application/pdf',
         includeImageBase64: false,
-    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
+    ))->toThrow(ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
 });
@@ -80,7 +83,7 @@ it('ProcessDocument with processBase64 throws exception on error', function () {
         mimeType: 'application/pdf',
         model: 'mistral-ocr-latest',
         includeImageBase64: false,
-    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
+    ))->toThrow(ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
 });
@@ -96,7 +99,7 @@ it('ProcessDocument with Document object throws exception on error', function ()
         model: 'mistral-ocr-latest',
         document: $document,
         includeImageBase64: true,
-    ))->toThrow(\Saloon\Exceptions\Request\ClientException::class);
+    ))->toThrow(ClientException::class);
 
     Saloon::assertSent(ProcessDocument::class);
 });
@@ -113,7 +116,7 @@ it('ProcessDocument throws exception with error details for invalid URL', functi
         );
 
         expect(true)->toBe(false, 'Exception should have been thrown');
-    } catch (\Saloon\Exceptions\Request\ClientException $e) {
+    } catch (ClientException $e) {
         expect($e->getResponse()->status())->toBe(400)
             ->and($e->getResponse()->json('object'))->toBe('error')
             ->and($e->getResponse()->json('type'))->toBe('invalid_request_file')
@@ -200,7 +203,7 @@ it('ProcessDocument throws exception and includes error details', function () {
         );
 
         expect(true)->toBe(false, 'Exception should have been thrown');
-    } catch (\Saloon\Exceptions\Request\ClientException $e) {
+    } catch (ClientException $e) {
         expect($e->getResponse()->status())->toBe(400)
             ->and($e->getResponse()->json('object'))->toBe('error')
             ->and($e->getResponse()->json('type'))->toBe('invalid_request_file')

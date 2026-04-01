@@ -1,5 +1,25 @@
 <?php
 
+use HelgeSverre\Mistral\Mistral;
+use Illuminate\Config\Repository;
+use Illuminate\Container\Container;
+use Illuminate\Contracts\Support\Arrayable;
+use Spatie\LaravelData\Casts\DateTimeInterfaceCast;
+use Spatie\LaravelData\Casts\EnumCast;
+use Spatie\LaravelData\Normalizers\ArrayableNormalizer;
+use Spatie\LaravelData\Normalizers\ArrayNormalizer;
+use Spatie\LaravelData\Normalizers\JsonNormalizer;
+use Spatie\LaravelData\Normalizers\ModelNormalizer;
+use Spatie\LaravelData\Normalizers\ObjectNormalizer;
+use Spatie\LaravelData\Support\DataConfig\RuleInferrer\AttributesRuleInferrer;
+use Spatie\LaravelData\Support\DataConfig\RuleInferrer\BuiltInTypesRuleInferrer;
+use Spatie\LaravelData\Support\DataConfig\RuleInferrer\NullableRuleInferrer;
+use Spatie\LaravelData\Support\DataConfig\RuleInferrer\RequiredRuleInferrer;
+use Spatie\LaravelData\Support\DataConfig\RuleInferrer\SometimesRuleInferrer;
+use Spatie\LaravelData\Transformers\ArrayableTransformer;
+use Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer;
+use Spatie\LaravelData\Transformers\EnumTransformer;
+
 /**
  * Bootstrap file for all examples
  *
@@ -22,19 +42,19 @@ require_once $autoloadPath;
 // Bootstrap minimal Laravel container for Laravel Data
 // Laravel's helpers.php (loaded by composer) uses Container::getInstance()
 // so we need to set up the global instance with config binding
-$container = \Illuminate\Container\Container::getInstance();
+$container = Container::getInstance();
 
 if ($container === null || ! $container->bound('config')) {
     // Create new container if none exists
     if ($container === null) {
-        $container = new \Illuminate\Container\Container;
-        \Illuminate\Container\Container::setInstance($container);
+        $container = new Container;
+        Container::setInstance($container);
     }
 
     // Register config repository with Laravel Data configuration
     // We provide a minimal config inline to avoid requiring Laravel Application
     $container->singleton('config', function () {
-        return new \Illuminate\Config\Repository([
+        return new Repository([
             'data' => [
                 'date_format' => DATE_ATOM,
                 'date_timezone' => null,
@@ -46,27 +66,27 @@ if ($container === null || ! $container->bound('config')) {
                 ],
                 'wrap' => null,
                 'transformers' => [
-                    \DateTimeInterface::class => \Spatie\LaravelData\Transformers\DateTimeInterfaceTransformer::class,
-                    \Illuminate\Contracts\Support\Arrayable::class => \Spatie\LaravelData\Transformers\ArrayableTransformer::class,
-                    \BackedEnum::class => \Spatie\LaravelData\Transformers\EnumTransformer::class,
+                    DateTimeInterface::class => DateTimeInterfaceTransformer::class,
+                    Arrayable::class => ArrayableTransformer::class,
+                    BackedEnum::class => EnumTransformer::class,
                 ],
                 'casts' => [
-                    \DateTimeInterface::class => \Spatie\LaravelData\Casts\DateTimeInterfaceCast::class,
-                    \BackedEnum::class => \Spatie\LaravelData\Casts\EnumCast::class,
+                    DateTimeInterface::class => DateTimeInterfaceCast::class,
+                    BackedEnum::class => EnumCast::class,
                 ],
                 'rule_inferrers' => [
-                    \Spatie\LaravelData\Support\DataConfig\RuleInferrer\AttributesRuleInferrer::class,
-                    \Spatie\LaravelData\Support\DataConfig\RuleInferrer\SometimesRuleInferrer::class,
-                    \Spatie\LaravelData\Support\DataConfig\RuleInferrer\NullableRuleInferrer::class,
-                    \Spatie\LaravelData\Support\DataConfig\RuleInferrer\RequiredRuleInferrer::class,
-                    \Spatie\LaravelData\Support\DataConfig\RuleInferrer\BuiltInTypesRuleInferrer::class,
+                    AttributesRuleInferrer::class,
+                    SometimesRuleInferrer::class,
+                    NullableRuleInferrer::class,
+                    RequiredRuleInferrer::class,
+                    BuiltInTypesRuleInferrer::class,
                 ],
                 'normalizers' => [
-                    \Spatie\LaravelData\Normalizers\ModelNormalizer::class,
-                    \Spatie\LaravelData\Normalizers\ArrayableNormalizer::class,
-                    \Spatie\LaravelData\Normalizers\ObjectNormalizer::class,
-                    \Spatie\LaravelData\Normalizers\ArrayNormalizer::class,
-                    \Spatie\LaravelData\Normalizers\JsonNormalizer::class,
+                    ModelNormalizer::class,
+                    ArrayableNormalizer::class,
+                    ObjectNormalizer::class,
+                    ArrayNormalizer::class,
+                    JsonNormalizer::class,
                 ],
                 'name_mapping_strategy' => [
                     'input' => null,
@@ -127,9 +147,9 @@ if (file_exists(__DIR__.'/helpers.php')) {
 }
 
 // Create a default Mistral client factory
-function createMistralClient(): \HelgeSverre\Mistral\Mistral
+function createMistralClient(): Mistral
 {
-    return new \HelgeSverre\Mistral\Mistral(
+    return new Mistral(
         apiKey: $_ENV['MISTRAL_API_KEY'],
         baseUrl: $_ENV['MISTRAL_BASE_URL'] ?? null,
         timeout: (int) ($_ENV['MISTRAL_TIMEOUT'] ?? 60)

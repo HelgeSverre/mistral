@@ -7,10 +7,13 @@ use HelgeSverre\Mistral\Dto\Fim\FIMCompletionRequest;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Enums\Role;
 use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
+use HelgeSverre\Mistral\Requests\Fim\CreateFIMCompletionRequest;
+use Illuminate\Contracts\Console\Kernel;
 
 // Bootstrap Laravel for testing
 $app = require_once __DIR__.'/vendor/orchestra/testbench-core/laravel/bootstrap/app.php';
-$app->make(Illuminate\Contracts\Console\Kernel::class)->bootstrap();
+$app->make(Kernel::class)->bootstrap();
 
 // Load environment variables
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
@@ -53,7 +56,7 @@ echo "=== Generating SimpleChat Fixtures ===\n";
 
 try {
     // Basic simple chat with open-mistral-7b
-    $chatRequest = new \HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion(
+    $chatRequest = new CreateChatCompletion(
         new ChatCompletionRequest(
             model: 'open-mistral-7b',
             messages: [
@@ -66,7 +69,7 @@ try {
     saveFixture('simpleChat.createChatCompletion.json', $response);
 
     // Simple chat with JSON mode
-    $chatRequest = new \HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion(
+    $chatRequest = new CreateChatCompletion(
         new ChatCompletionRequest(
             model: Model::small->value,
             messages: [
@@ -89,7 +92,7 @@ echo "\n=== Generating Chat Fixtures ===\n";
 
 try {
     // Chat with JSON mode
-    $chatRequest = new \HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion(
+    $chatRequest = new CreateChatCompletion(
         new ChatCompletionRequest(
             model: Model::small->value,
             messages: [
@@ -103,7 +106,7 @@ try {
     saveFixture('chat.createChatCompletion-jsonMode.json', $response);
 
     // Chat with function calling
-    $chatRequest = new \HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion(
+    $chatRequest = new CreateChatCompletion(
         new ChatCompletionRequest(
             model: Model::small->value,
             messages: [
@@ -135,7 +138,7 @@ try {
     saveFixture('chat.createChatCompletion-functionCall.json', $response);
 
     // Chat with open-mistral-7b model
-    $chatRequest = new \HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion(
+    $chatRequest = new CreateChatCompletion(
         new ChatCompletionRequest(
             model: 'open-mistral-7b',
             messages: [
@@ -161,7 +164,7 @@ echo "\n=== Generating FIM Fixtures ===\n";
 
 try {
     // Basic FIM completion
-    $fimRequest = new \HelgeSverre\Mistral\Requests\Fim\CreateFIMCompletionRequest(
+    $fimRequest = new CreateFIMCompletionRequest(
         new FIMCompletionRequest(
             model: 'codestral-latest',
             prompt: 'def fibonacci(n):',
@@ -172,7 +175,7 @@ try {
     saveFixture('fim/completion.json', $response);
 
     // FIM with suffix
-    $fimRequest = new \HelgeSverre\Mistral\Requests\Fim\CreateFIMCompletionRequest(
+    $fimRequest = new CreateFIMCompletionRequest(
         new FIMCompletionRequest(
             model: 'codestral-latest',
             prompt: 'def hello(',

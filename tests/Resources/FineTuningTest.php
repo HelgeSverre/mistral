@@ -16,6 +16,7 @@ use HelgeSverre\Mistral\Dto\FineTuning\UnarchiveFTModelOut;
 use HelgeSverre\Mistral\Dto\FineTuning\UpdateFTModelIn;
 use HelgeSverre\Mistral\Dto\FineTuning\WandbIntegration;
 use HelgeSverre\Mistral\Enums\JobStatus;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\FineTuning\ArchiveModelRequest;
 use HelgeSverre\Mistral\Requests\FineTuning\CancelJobRequest;
 use HelgeSverre\Mistral\Requests\FineTuning\CreateJobRequest;
@@ -28,7 +29,7 @@ use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can list fine-tuning jobs', function () {

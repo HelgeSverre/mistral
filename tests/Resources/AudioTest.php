@@ -7,13 +7,14 @@ use HelgeSverre\Mistral\Dto\Audio\TranscriptionSegment;
 use HelgeSverre\Mistral\Dto\Audio\TranscriptionWord;
 use HelgeSverre\Mistral\Enums\ResponseFormat;
 use HelgeSverre\Mistral\Enums\TimestampGranularity;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Audio\CreateTranscriptionRequest;
 use HelgeSverre\Mistral\Requests\Audio\CreateTranscriptionStreamRequest;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can transcribe audio file', function () {

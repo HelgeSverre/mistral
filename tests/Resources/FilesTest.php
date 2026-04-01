@@ -10,6 +10,7 @@ use HelgeSverre\Mistral\Dto\Files\UploadFileOut;
 use HelgeSverre\Mistral\Enums\FilePurpose;
 use HelgeSverre\Mistral\Enums\SampleType;
 use HelgeSverre\Mistral\Enums\Source;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Files\DeleteFile;
 use HelgeSverre\Mistral\Requests\Files\DownloadFile;
 use HelgeSverre\Mistral\Requests\Files\GetSignedUrl;
@@ -20,7 +21,7 @@ use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can upload a file', function () {

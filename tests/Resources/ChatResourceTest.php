@@ -9,13 +9,14 @@ use HelgeSverre\Mistral\Dto\Chat\ToolCalls;
 use HelgeSverre\Mistral\Dto\Usage;
 use HelgeSverre\Mistral\Enums\Model;
 use HelgeSverre\Mistral\Enums\Role;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Chat\CreateChatCompletion;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('CreateChatCompletion works', function ($model) {

@@ -4,6 +4,7 @@
 
 use HelgeSverre\Mistral\Dto\Moderations\ModerationResponse;
 use HelgeSverre\Mistral\Dto\Moderations\ModerationResult;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Classifications\CreateChatModerationRequest;
 use HelgeSverre\Mistral\Requests\Classifications\CreateModerationRequest;
 use Saloon\Http\Faking\MockResponse;
@@ -11,7 +12,7 @@ use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can moderate text with safe content', function () {

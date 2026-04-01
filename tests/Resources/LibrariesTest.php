@@ -23,6 +23,7 @@ use HelgeSverre\Mistral\Requests\Libraries\UpdateLibrary;
 use HelgeSverre\Mistral\Requests\Libraries\UploadDocument;
 use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
+use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
     $this->mistral = new Mistral('test-api-key');
@@ -59,7 +60,7 @@ it('can list libraries with pagination', function () {
 
     expect($dto)->toHaveProperty('data')
         ->and($dto)->toHaveProperty('total')
-        ->and($dto->data)->toBeInstanceOf(\Spatie\LaravelData\DataCollection::class)
+        ->and($dto->data)->toBeInstanceOf(DataCollection::class)
         ->and($dto->total)->toBeInt();
 });
 

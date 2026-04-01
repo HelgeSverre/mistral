@@ -6,6 +6,7 @@ use HelgeSverre\Mistral\Dto\Models\BaseModelCard;
 use HelgeSverre\Mistral\Dto\Models\DeleteModelOut;
 use HelgeSverre\Mistral\Dto\Models\FTModelCard;
 use HelgeSverre\Mistral\Dto\Models\ModelList;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Models\DeleteModelRequest;
 use HelgeSverre\Mistral\Requests\Models\ListModels;
 use HelgeSverre\Mistral\Requests\Models\RetrieveModelRequest;
@@ -14,7 +15,7 @@ use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('ListModels works', function () {

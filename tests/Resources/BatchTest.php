@@ -6,6 +6,7 @@ use HelgeSverre\Mistral\Dto\Batch\BatchJobIn;
 use HelgeSverre\Mistral\Dto\Batch\BatchJobOut;
 use HelgeSverre\Mistral\Dto\Batch\BatchJobsOut;
 use HelgeSverre\Mistral\Enums\BatchJobStatus;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Batch\CancelBatchJobRequest;
 use HelgeSverre\Mistral\Requests\Batch\CreateBatchJobRequest;
 use HelgeSverre\Mistral\Requests\Batch\GetBatchJobRequest;
@@ -14,7 +15,7 @@ use Saloon\Http\Faking\MockResponse;
 use Saloon\Laravel\Facades\Saloon;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can list batch jobs', function () {

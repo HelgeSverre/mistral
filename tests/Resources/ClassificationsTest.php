@@ -4,6 +4,7 @@
 
 use HelgeSverre\Mistral\Dto\Classifications\ClassificationResponse;
 use HelgeSverre\Mistral\Dto\Classifications\ClassificationResult;
+use HelgeSverre\Mistral\Mistral;
 use HelgeSverre\Mistral\Requests\Classifications\CreateChatClassificationRequest;
 use HelgeSverre\Mistral\Requests\Classifications\CreateClassificationRequest;
 use Saloon\Http\Faking\MockResponse;
@@ -11,7 +12,7 @@ use Saloon\Laravel\Facades\Saloon;
 use Spatie\LaravelData\DataCollection;
 
 beforeEach(function () {
-    $this->mistral = new HelgeSverre\Mistral\Mistral(apiKey: config('mistral.api_key'));
+    $this->mistral = new Mistral(apiKey: config('mistral.api_key'));
 });
 
 it('can classify single text input', function () {
