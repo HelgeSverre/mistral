@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"ag:123456:20260501:a1b2c3d4\",\"object\":\"agent\",\"name\":\"Customer Support Agent\",\"model\":\"mistral-large-latest\",\"instructions\":\"You are a helpful customer support assistant.\",\"description\":\"Handles support tickets\",\"tools\":[{\"type\":\"web_search\"}],\"handoffs\":[\"ag:123456:20260501:e5f6g7h8\"],\"completion_args\":{\"temperature\":0.7,\"top_p\":0.9},\"guardrails\":[{\"type\":\"pii\"}],\"metadata\":{\"team\":\"support\",\"env\":\"prod\"},\"version\":3,\"versions\":[1,2,3],\"created_at\":\"2026-05-01T12:00:00Z\",\"updated_at\":\"2026-05-15T09:30:00Z\",\"deployment_chat\":true,\"source\":\"api\",\"version_message\":\"Tuned instructions for warmer tone\"}",
+    "context": []
+}

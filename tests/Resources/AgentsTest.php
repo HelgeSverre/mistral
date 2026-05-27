@@ -439,3 +439,82 @@ it('can delete an agent alias', function () {
     expect($response->status())->toBe(204);
 });
 
+it('parses an agent response with all spec-shaped fields', function () {
+    Saloon::fake([
+        GetAgentRequest::class => MockResponse::fixture('agents/get_spec_shaped'),
+    ]);
+
+    $dto = $this->mistral->agents()->getDto('ag:123456:20260501:a1b2c3d4');
+
+    expect($dto)->toBeInstanceOf(Agent::class)
+        ->and($dto->id)->toBe('ag:123456:20260501:a1b2c3d4')
+        ->and($dto->name)->toBe('Customer Support Agent')
+        ->and($dto->version)->toBe(3)
+        ->and($dto->versions)->toBe([1, 2, 3])
+        ->and($dto->createdAt)->toBe('2026-05-01T12:00:00Z')
+        ->and($dto->updatedAt)->toBe('2026-05-15T09:30:00Z')
+        ->and($dto->deploymentChat)->toBeTrue()
+        ->and($dto->source)->toBe('api')
+        ->and($dto->versionMessage)->toBe('Tuned instructions for warmer tone')
+        ->and($dto->completionArgs)->toBe(['temperature' => 0.7, 'top_p' => 0.9])
+        ->and($dto->guardrails)->toBe([['type' => 'pii']])
+        ->and($dto->metadata)->toBe(['team' => 'support', 'env' => 'prod'])
+        ->and($dto->handoffs)->toBe(['ag:123456:20260501:e5f6g7h8']);
+});
+
+it('accepts both int and string created_at for backwards compatibility', function () {
+    Saloon::fake([
+        GetAgentRequest::class => MockResponse::fixture('agents/get'),
+    ]);
+
+    // Existing fixture uses int Unix timestamp
+    $dto = $this->mistral->agents()->getDto('ag:123456:20241011:a1b2c3d4');
+    expect($dto->createdAt)->toBe(1728648000);
+});
+
+it('can create an agent with the new completion_args and metadata fields', function () {
+    Saloon::fake([
+        CreateAgentRequest::class => MockResponse::fixture('agents/create'),
+    ]);
+
+    $this->mistral->agents()->create(
+        new AgentCreationRequest(
+            name: 'Modern Agent',
+            model: 'mistral-large-latest',
+            completionArgs: ['temperature' => 0.7, 'top_p' => 0.9],
+            guardrails: [['type' => 'pii']],
+            metadata: ['team' => 'platform'],
+            versionMessage: 'Initial version',
+        )
+    );
+
+    Saloon::assertSent(function (CreateAgentRequest $request) {
+        $body = $request->body()->all();
+
+        return $body['completion_args'] === ['temperature' => 0.7, 'top_p' => 0.9]
+            && $body['guardrails'] === [['type' => 'pii']]
+            && $body['metadata'] === ['team' => 'platform']
+            && $body['version_message'] === 'Initial version';
+    });
+});
+
+it('can update an agent with deployment_chat toggle', function () {
+    Saloon::fake([
+        UpdateAgentRequest::class => MockResponse::fixture('agents/update'),
+    ]);
+
+    $this->mistral->agents()->update(
+        'ag:123456:20241011:a1b2c3d4',
+        new AgentUpdateRequest(
+            deploymentChat: true,
+            versionMessage: 'Enable for chat UI',
+        )
+    );
+
+    Saloon::assertSent(function (UpdateAgentRequest $request) {
+        $body = $request->body()->all();
+
+        return $body['deployment_chat'] === true
+            && $body['version_message'] === 'Enable for chat UI';
+    });
+});
