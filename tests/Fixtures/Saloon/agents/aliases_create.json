@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"alias\":\"production\",\"version\":2,\"created_at\":\"2026-05-01T12:00:00Z\",\"updated_at\":\"2026-05-15T09:30:00Z\"}",
+    "context": []
+}

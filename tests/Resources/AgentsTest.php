@@ -3,6 +3,7 @@
 /** @noinspection PhpUnhandledExceptionInspection */
 
 use HelgeSverre\Mistral\Dto\Agents\Agent;
+use HelgeSverre\Mistral\Dto\Agents\AgentAliasResponse;
 use HelgeSverre\Mistral\Dto\Agents\AgentCreationRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentList;
 use HelgeSverre\Mistral\Dto\Agents\AgentsCompletionRequest;
@@ -10,10 +11,15 @@ use HelgeSverre\Mistral\Dto\Agents\AgentUpdateRequest;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
 use HelgeSverre\Mistral\Enums\Role;
 use HelgeSverre\Mistral\Mistral;
+use HelgeSverre\Mistral\Requests\Agents\CreateAgentAliasRequest;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentsCompletionRequest;
+use HelgeSverre\Mistral\Requests\Agents\DeleteAgentAliasRequest;
 use HelgeSverre\Mistral\Requests\Agents\GetAgentRequest;
+use HelgeSverre\Mistral\Requests\Agents\GetAgentVersionRequest;
+use HelgeSverre\Mistral\Requests\Agents\ListAgentAliasesRequest;
 use HelgeSverre\Mistral\Requests\Agents\ListAgentsRequest;
+use HelgeSverre\Mistral\Requests\Agents\ListAgentVersionsRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentVersionRequest;
 use Saloon\Http\Faking\MockResponse;
@@ -339,3 +345,97 @@ it('can run completion with an agent using completeDto', function () {
     expect($dto)->toBeInstanceOf(ChatCompletionResponse::class)
         ->and($dto->usage->totalTokens)->toBe(40);
 });
+
+it('can list agent versions', function () {
+    Saloon::fake([
+        ListAgentVersionsRequest::class => MockResponse::fixture('agents/versions_list'),
+    ]);
+
+    $response = $this->mistral->agents()->listVersions('ag:123456:20241011:a1b2c3d4');
+
+    Saloon::assertSent(ListAgentVersionsRequest::class);
+
+    expect($response->status())->toBe(200);
+
+    $collection = $response->dto();
+    expect($collection)->toBeInstanceOf(DataCollection::class)
+        ->and($collection)->toHaveCount(2)
+        ->and($collection[0])->toBeInstanceOf(Agent::class)
+        ->and($collection[0]->version)->toBe(1)
+        ->and($collection[1]->version)->toBe(2);
+});
+
+it('can list agent versions with pagination and DTO helper', function () {
+    Saloon::fake([
+        ListAgentVersionsRequest::class => MockResponse::fixture('agents/versions_list'),
+    ]);
+
+    $collection = $this->mistral->agents()->listVersionsDto(
+        agentId: 'ag:123456:20241011:a1b2c3d4',
+        page: 0,
+        pageSize: 20,
+    );
+
+    Saloon::assertSent(ListAgentVersionsRequest::class);
+    expect($collection)->toBeInstanceOf(DataCollection::class)
+        ->and($collection)->toHaveCount(2);
+});
+
+it('can get a specific agent version', function () {
+    Saloon::fake([
+        GetAgentVersionRequest::class => MockResponse::fixture('agents/versions_get'),
+    ]);
+
+    $dto = $this->mistral->agents()->getVersionDto('ag:123456:20241011:a1b2c3d4', 2);
+
+    Saloon::assertSent(GetAgentVersionRequest::class);
+    expect($dto)->toBeInstanceOf(Agent::class)
+        ->and($dto->version)->toBe(2)
+        ->and($dto->instructions)->toContain('friendly');
+});
+
+it('can list agent aliases', function () {
+    Saloon::fake([
+        ListAgentAliasesRequest::class => MockResponse::fixture('agents/aliases_list'),
+    ]);
+
+    $collection = $this->mistral->agents()->listAliasesDto('ag:123456:20241011:a1b2c3d4');
+
+    Saloon::assertSent(ListAgentAliasesRequest::class);
+    expect($collection)->toBeInstanceOf(DataCollection::class)
+        ->and($collection)->toHaveCount(2)
+        ->and($collection[0])->toBeInstanceOf(AgentAliasResponse::class)
+        ->and($collection[0]->alias)->toBe('production')
+        ->and($collection[0]->version)->toBe(2)
+        ->and($collection[1]->alias)->toBe('staging')
+        ->and($collection[1]->version)->toBe(3);
+});
+
+it('can create or update an agent alias', function () {
+    Saloon::fake([
+        CreateAgentAliasRequest::class => MockResponse::fixture('agents/aliases_create'),
+    ]);
+
+    $dto = $this->mistral->agents()->createAliasDto(
+        agentId: 'ag:123456:20241011:a1b2c3d4',
+        alias: 'production',
+        version: 2,
+    );
+
+    Saloon::assertSent(CreateAgentAliasRequest::class);
+    expect($dto)->toBeInstanceOf(AgentAliasResponse::class)
+        ->and($dto->alias)->toBe('production')
+        ->and($dto->version)->toBe(2);
+});
+
+it('can delete an agent alias', function () {
+    Saloon::fake([
+        DeleteAgentAliasRequest::class => MockResponse::make(body: '', status: 204),
+    ]);
+
+    $response = $this->mistral->agents()->deleteAlias('ag:123456:20241011:a1b2c3d4', 'production');
+
+    Saloon::assertSent(DeleteAgentAliasRequest::class);
+    expect($response->status())->toBe(204);
+});
+

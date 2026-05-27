@@ -5,20 +5,27 @@ namespace HelgeSverre\Mistral\Resource;
 use Generator;
 use HelgeSverre\Mistral\Concerns\HandlesStreamedResponses;
 use HelgeSverre\Mistral\Dto\Agents\Agent;
+use HelgeSverre\Mistral\Dto\Agents\AgentAliasResponse;
 use HelgeSverre\Mistral\Dto\Agents\AgentCreationRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentList;
 use HelgeSverre\Mistral\Dto\Agents\AgentsCompletionRequest;
 use HelgeSverre\Mistral\Dto\Agents\AgentUpdateRequest;
 use HelgeSverre\Mistral\Dto\Chat\ChatCompletionResponse;
 use HelgeSverre\Mistral\Dto\Chat\StreamedChatCompletionResponse;
+use HelgeSverre\Mistral\Requests\Agents\CreateAgentAliasRequest;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\CreateAgentsCompletionRequest;
+use HelgeSverre\Mistral\Requests\Agents\DeleteAgentAliasRequest;
 use HelgeSverre\Mistral\Requests\Agents\GetAgentRequest;
+use HelgeSverre\Mistral\Requests\Agents\GetAgentVersionRequest;
+use HelgeSverre\Mistral\Requests\Agents\ListAgentAliasesRequest;
 use HelgeSverre\Mistral\Requests\Agents\ListAgentsRequest;
+use HelgeSverre\Mistral\Requests\Agents\ListAgentVersionsRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentRequest;
 use HelgeSverre\Mistral\Requests\Agents\UpdateAgentVersionRequest;
 use Saloon\Http\BaseResource;
 use Saloon\Http\Response;
+use Spatie\LaravelData\DataCollection;
 
 class Agents extends BaseResource
 {
@@ -150,5 +157,81 @@ class Agents extends BaseResource
         foreach ($this->getStreamIterator($response->stream()) as $chatResponse) {
             yield StreamedChatCompletionResponse::from($chatResponse);
         }
+    }
+
+    /**
+     * List all versions of an agent.
+     */
+    public function listVersions(string $agentId, ?int $page = null, ?int $pageSize = null): Response
+    {
+        return $this->connector->send(new ListAgentVersionsRequest($agentId, $page, $pageSize));
+    }
+
+    /**
+     * List all versions of an agent and return typed DTO collection.
+     *
+     * @return DataCollection<int, Agent>
+     */
+    public function listVersionsDto(string $agentId, ?int $page = null, ?int $pageSize = null): DataCollection
+    {
+        return $this->listVersions($agentId, $page, $pageSize)->dto();
+    }
+
+    /**
+     * Get a specific agent version by version number.
+     */
+    public function getVersion(string $agentId, int $version): Response
+    {
+        return $this->connector->send(new GetAgentVersionRequest($agentId, $version));
+    }
+
+    /**
+     * Get a specific agent version by version number and return typed DTO.
+     */
+    public function getVersionDto(string $agentId, int $version): Agent
+    {
+        return $this->getVersion($agentId, $version)->dto();
+    }
+
+    /**
+     * List all aliases for an agent.
+     */
+    public function listAliases(string $agentId): Response
+    {
+        return $this->connector->send(new ListAgentAliasesRequest($agentId));
+    }
+
+    /**
+     * List all aliases for an agent and return typed DTO collection.
+     *
+     * @return DataCollection<int, AgentAliasResponse>
+     */
+    public function listAliasesDto(string $agentId): DataCollection
+    {
+        return $this->listAliases($agentId)->dto();
+    }
+
+    /**
+     * Create or update an agent version alias.
+     */
+    public function createAlias(string $agentId, string $alias, int $version): Response
+    {
+        return $this->connector->send(new CreateAgentAliasRequest($agentId, $alias, $version));
+    }
+
+    /**
+     * Create or update an agent version alias and return typed DTO.
+     */
+    public function createAliasDto(string $agentId, string $alias, int $version): AgentAliasResponse
+    {
+        return $this->createAlias($agentId, $alias, $version)->dto();
+    }
+
+    /**
+     * Delete an agent version alias. Returns 204 No Content.
+     */
+    public function deleteAlias(string $agentId, string $alias): Response
+    {
+        return $this->connector->send(new DeleteAgentAliasRequest($agentId, $alias));
     }
 }

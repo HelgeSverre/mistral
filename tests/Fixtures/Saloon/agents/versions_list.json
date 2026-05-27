@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "[{\"id\":\"ag:123456:20241011:a1b2c3d4\",\"object\":\"agent\",\"created_at\":1728648000,\"name\":\"Customer Support Agent\",\"model\":\"mistral-large-latest\",\"instructions\":\"You are a helpful customer support assistant.\",\"description\":\"Handles support tickets\",\"temperature\":0.7,\"top_p\":0.9,\"version\":1},{\"id\":\"ag:123456:20241011:a1b2c3d4\",\"object\":\"agent\",\"created_at\":1728648500,\"name\":\"Customer Support Agent\",\"model\":\"mistral-large-latest\",\"instructions\":\"You are a helpful, friendly customer support assistant.\",\"description\":\"Handles support tickets\",\"temperature\":0.7,\"top_p\":0.9,\"version\":2}]",
+    "context": []
+}
