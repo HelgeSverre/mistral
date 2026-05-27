@@ -57,7 +57,7 @@ Mistral::models();
 
 ## Examples
 
-The package includes **10 hands-on examples** in the `examples/` directory, each with detailed documentation, working code, and explanations. These examples are the fastest way to learn the SDK and see it in action.
+The package includes **12 hands-on examples** in the `examples/` directory, each with detailed documentation, working code, and explanations. These examples are the fastest way to learn the SDK and see it in action.
 
 **Quick Start**: Begin with [01-getting-started](./examples/01-getting-started) to set up your first working integration.
 
@@ -73,6 +73,8 @@ The package includes **10 hands-on examples** in the `examples/` directory, each
 | [08-audio](./examples/08-audio)                       | Transcribe audio files with support for multiple languages and formats  |
 | [09-moderation](./examples/09-moderation)             | Identify and filter inappropriate content with content moderation       |
 | [10-error-handling](./examples/10-error-handling)     | Implement robust error handling, retry logic, and rate limit management |
+| [11-speech](./examples/11-speech)                     | Generate spoken audio from text with preset or custom voices            |
+| [12-voices](./examples/12-voices)                     | Manage custom voices — create from a sample, list, update, delete       |
 
 Each example includes:
 
@@ -226,6 +228,15 @@ Access via `$mistral->agents()`
 - `updateDto(string $agentId, AgentUpdateRequest $request)`: Agent - Update and return typed DTO
 - `updateVersion(string $agentId, int $version)`: Response - Switch agent version
 - `updateVersionDto(string $agentId, int $version)`: Agent - Switch version and return typed DTO
+- `listVersions(string $agentId, ?int $page, ?int $pageSize)`: Response - List all versions of an agent
+- `listVersionsDto(...)`: DataCollection&lt;Agent&gt; - List versions and return typed DTO collection
+- `getVersion(string $agentId, int $version)`: Response - Get a specific agent version
+- `getVersionDto(string $agentId, int $version)`: Agent - Get version and return typed DTO
+- `listAliases(string $agentId)`: Response - List all aliases for an agent
+- `listAliasesDto(string $agentId)`: DataCollection&lt;AgentAliasResponse&gt; - List aliases and return typed DTO collection
+- `createAlias(string $agentId, string $alias, int $version)`: Response - Create or update an alias (idempotent PUT)
+- `createAliasDto(...)`: AgentAliasResponse - Create/update alias and return typed DTO
+- `deleteAlias(string $agentId, string $alias)`: Response - Delete an alias (204 No Content)
 
 ### Conversations Resource
 
@@ -257,17 +268,56 @@ Access via `$mistral->audio()`
 
 **Methods:**
 
+Transcription (speech-to-text):
+
 - `transcribe(string $filePath, ...)`: Response - Transcribe audio
 - `transcribeDto(string $filePath, ...)`: TranscriptionResponse - Transcribe and return typed DTO
 - `transcribeStreamed(string $filePath, ...)`: Generator - Transcribe with streaming
 
-**Example:**
+Speech (text-to-speech):
+
+- `speech(SpeechRequest $request)`: Response - Generate speech audio
+- `speechDto(SpeechRequest $request)`: SpeechResponse - Generate speech and return typed DTO (base64 audio + `decoded()` / `saveTo()` helpers)
+- `speechStreamed(SpeechRequest $request)`: Generator - Stream audio chunks (`SpeechStreamAudioDelta` + final `SpeechStreamDone`)
+
+Voices:
+
+- `listVoices(?int $limit, ?int $offset)`: Response - List voices (paginated)
+- `listVoicesDto(...)`: VoiceListResponse
+- `createVoice(VoiceCreateRequest $request)`: Response - Create a custom voice (use `VoiceCreateRequest::fromFile()` to load + base64 a local file)
+- `createVoiceDto(...)`: VoiceResponse
+- `getVoice(string $voiceId)`: Response - Get a voice
+- `getVoiceDto(string $voiceId)`: VoiceResponse
+- `updateVoice(string $voiceId, VoiceUpdateRequest $request)`: Response - Update voice metadata
+- `updateVoiceDto(...)`: VoiceResponse
+- `deleteVoice(string $voiceId)`: Response - Delete a custom voice (returns the deleted voice)
+- `deleteVoiceDto(string $voiceId)`: VoiceResponse
+- `getVoiceSample(string $voiceId)`: Response - Download the raw `audio/wav` sample for a voice
+
+**Example — transcription:**
 
 ```php
 $transcription = $mistral->audio()->transcribeDto(
     filePath: '/path/to/audio.mp3',
     model: 'voxtral-small-latest'
 );
+```
+
+**Example — text-to-speech:**
+
+```php
+use HelgeSverre\Mistral\Dto\Audio\SpeechRequest;
+use HelgeSverre\Mistral\Enums\SpeechOutputFormat;
+
+$dto = $mistral->audio()->speechDto(
+    SpeechRequest::withVoice(
+        input: 'Hello from PHP!',
+        voiceId: 'alice',
+        responseFormat: SpeechOutputFormat::MP3,
+    )
+);
+
+$dto->saveTo('hello.mp3');
 ```
 
 ### Files Resource
@@ -711,6 +761,14 @@ For convenience, here is a list of all the DTOs available in this package, organ
 - [Audio/TranscriptionResponse.php](./src/Dto/Audio/TranscriptionResponse.php)
 - [Audio/TranscriptionSegment.php](./src/Dto/Audio/TranscriptionSegment.php)
 - [Audio/TranscriptionWord.php](./src/Dto/Audio/TranscriptionWord.php)
+- [Audio/SpeechRequest.php](./src/Dto/Audio/SpeechRequest.php)
+- [Audio/SpeechResponse.php](./src/Dto/Audio/SpeechResponse.php)
+- [Audio/SpeechStreamAudioDelta.php](./src/Dto/Audio/SpeechStreamAudioDelta.php)
+- [Audio/SpeechStreamDone.php](./src/Dto/Audio/SpeechStreamDone.php)
+- [Audio/VoiceResponse.php](./src/Dto/Audio/VoiceResponse.php)
+- [Audio/VoiceListResponse.php](./src/Dto/Audio/VoiceListResponse.php)
+- [Audio/VoiceCreateRequest.php](./src/Dto/Audio/VoiceCreateRequest.php)
+- [Audio/VoiceUpdateRequest.php](./src/Dto/Audio/VoiceUpdateRequest.php)
 
 ### Classifications & Moderation
 
@@ -730,6 +788,7 @@ For convenience, here is a list of all the DTOs available in this package, organ
 - [Agents/AgentList.php](./src/Dto/Agents/AgentList.php)
 - [Agents/AgentCreationRequest.php](./src/Dto/Agents/AgentCreationRequest.php)
 - [Agents/AgentUpdateRequest.php](./src/Dto/Agents/AgentUpdateRequest.php)
+- [Agents/AgentAliasResponse.php](./src/Dto/Agents/AgentAliasResponse.php)
 
 ### Conversations
 
