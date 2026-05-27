@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"id\":\"01234567-89ab-cdef-0123-456789abcdef\",\"name\":\"Alice Updated\",\"slug\":\"alice\",\"languages\":[\"en\",\"es\"],\"gender\":\"female\",\"age\":31,\"tags\":[\"warm\",\"narrator\"],\"color\":\"#ff8800\",\"retention_notice\":30,\"created_at\":\"2026-05-01T12:00:00Z\",\"user_id\":\"user-123\"}",
+    "context": []
+}

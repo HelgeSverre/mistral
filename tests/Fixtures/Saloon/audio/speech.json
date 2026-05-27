@@ -1,0 +1,8 @@
+{
+    "statusCode": 200,
+    "headers": {
+        "Content-Type": "application/json"
+    },
+    "data": "{\"audio_data\":\"SGVsbG8sIHdvcmxkIQ==\"}",
+    "context": []
+}
