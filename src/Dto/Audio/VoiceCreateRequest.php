@@ -2,6 +2,7 @@
 
 namespace HelgeSverre\Mistral\Dto\Audio;
 
+use InvalidArgumentException;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 
@@ -45,6 +46,10 @@ class VoiceCreateRequest extends Data
         ?string $color = null,
         int $retentionNotice = 30,
     ): self {
+        if (! is_readable($filePath)) {
+            throw new InvalidArgumentException("Voice sample file is not readable: {$filePath}");
+        }
+
         return new self(
             name: $name,
             sampleAudio: base64_encode((string) file_get_contents($filePath)),

@@ -503,3 +503,26 @@ it('can fetch a voice audio sample', function () {
     expect($response->status())->toBe(200)
         ->and($response->body())->toBe('FAKE-WAV-BYTES');
 });
+
+it('throws when the voice sample file is not readable', function () {
+    VoiceCreateData::fromFile(name: 'Alice', filePath: '/no/such/file.wav');
+})->throws(InvalidArgumentException::class, 'Voice sample file is not readable');
+
+it('throws when the speech reference audio file is not readable', function () {
+    SpeechRequest::withRefAudioFile(input: 'Hello', filePath: '/no/such/file.wav');
+})->throws(InvalidArgumentException::class, 'Reference audio file is not readable');
+
+it('does not send a stream flag from the SpeechRequest DTO itself', function () {
+    Saloon::fake([
+        CreateSpeechRequest::class => MockResponse::fixture('audio/speech'),
+    ]);
+
+    $this->mistral->audio()->speech(
+        SpeechRequest::withVoice(input: 'Hi', voiceId: 'alice')
+    );
+
+    Saloon::assertSent(function (CreateSpeechRequest $request) {
+        // The request class owns the stream flag; the non-stream request forces it false.
+        return $request->body()->all()['stream'] === false;
+    });
+});

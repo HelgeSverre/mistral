@@ -14,17 +14,17 @@ class Agent extends Data
      * @param  array<string, mixed>|null  $completionArgs  Completion arguments (temperature, top_p, etc.) — replaces top-level temperature/topP
      * @param  array<int, mixed>|null  $guardrails  Guardrail configurations applied to this agent
      * @param  array<string, mixed>|null  $metadata  Arbitrary key/value metadata
-     * @param  int|string|null  $createdAt  Spec says ISO date-time string; legacy/older responses returned a Unix timestamp int. Both accepted.
+     * @param  int|string  $createdAt  Spec says ISO date-time string; legacy/older responses returned a Unix timestamp int. Both accepted.
      * @param  string|null  $updatedAt  ISO date-time when the agent (current version) was last updated
      * @param  string|null  $source  Where the agent originated (e.g. "api", "le-chat")
      */
     public function __construct(
         public string $id,
         public string $object,
+        #[MapName('created_at')]
+        public int|string $createdAt,
         public string $name,
         public string $model,
-        #[MapName('created_at')]
-        public int|string|null $createdAt = null,
         public ?string $instructions = null,
         public ?string $description = null,
         public ?array $tools = null,

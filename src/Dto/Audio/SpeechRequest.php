@@ -3,6 +3,7 @@
 namespace HelgeSverre\Mistral\Dto\Audio;
 
 use HelgeSverre\Mistral\Enums\SpeechOutputFormat;
+use InvalidArgumentException;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Data;
 
@@ -17,7 +18,6 @@ class SpeechRequest extends Data
         public ?string $refAudio = null,
         #[MapName('response_format')]
         public ?SpeechOutputFormat $responseFormat = null,
-        public bool $stream = false,
     ) {}
 
     public static function withVoice(
@@ -54,6 +54,10 @@ class SpeechRequest extends Data
         ?string $model = null,
         ?SpeechOutputFormat $responseFormat = null,
     ): self {
+        if (! is_readable($filePath)) {
+            throw new InvalidArgumentException("Reference audio file is not readable: {$filePath}");
+        }
+
         return self::withRefAudio(
             input: $input,
             refAudioBase64: base64_encode((string) file_get_contents($filePath)),

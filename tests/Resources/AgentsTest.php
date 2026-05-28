@@ -60,8 +60,7 @@ it('can create an agent', function () {
                     ],
                 ],
             ],
-            temperature: 0.7,
-            topP: 0.9
+            completionArgs: ['temperature' => 0.7, 'top_p' => 0.9]
         )
     );
 
@@ -176,8 +175,7 @@ it('can update an agent', function () {
         $agentId,
         new AgentUpdateRequest(
             instructions: 'You are an expert customer support assistant. Always be polite, professional, and provide detailed solutions.',
-            temperature: 0.8,
-            topP: 0.95
+            completionArgs: ['temperature' => 0.8, 'top_p' => 0.95]
         )
     );
 
@@ -494,7 +492,10 @@ it('can create an agent with the new completion_args and metadata fields', funct
         return $body['completion_args'] === ['temperature' => 0.7, 'top_p' => 0.9]
             && $body['guardrails'] === [['type' => 'pii']]
             && $body['metadata'] === ['team' => 'platform']
-            && $body['version_message'] === 'Initial version';
+            && $body['version_message'] === 'Initial version'
+            // Sampling settings live in completion_args; no top-level temperature/top_p (spec forbids extra props)
+            && ! array_key_exists('temperature', $body)
+            && ! array_key_exists('top_p', $body);
     });
 });
 
